@@ -1,11 +1,11 @@
-/*using GameServer;
+using GameServer;
 
 /// <summary>
-/// 当Scene创建时需要干什么
+/// Scene创建后处理。
 /// </summary>
-public class OnCreateScene : AsyncEventSystem<Event.OnCreateScene>
+public class OnCreateSceneHandle : AsyncEventSystem<OnCreateSceneEvent>
 {
-    public override async FTask Handler(Event.OnCreateScene self)
+    public override async FTask Handler(OnCreateSceneEvent self)
     {
         // GameServer服务器是以Scene为单位的、所以Scene下有什么组件都可以自己添加定义
         // OnCreateScene这个事件就是给开发者使用的
@@ -27,12 +27,11 @@ public class OnCreateScene : AsyncEventSystem<Event.OnCreateScene>
             case SceneType.Map:
             {
                 // 挂UnitComponent组件，存取unit
-                scene.AddComponent<UnitComponent>();
+                // scene.AddComponent<UnitComponent>();
                 break;
             }
         }
-        
 
         await FTask.CompletedTask;
     }
-}*/
+}

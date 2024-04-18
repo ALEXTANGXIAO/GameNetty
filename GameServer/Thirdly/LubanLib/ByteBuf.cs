@@ -6,7 +6,6 @@ using System.Text;
 
 namespace Luban
 {
-
     public enum EDeserializeError
     {
         OK,
@@ -17,8 +16,13 @@ namespace Luban
 
     public class SerializationException : Exception
     {
-        public SerializationException() { }
-        public SerializationException(string msg) : base(msg) { }
+        public SerializationException()
+        {
+        }
+
+        public SerializationException(string msg) : base(msg)
+        {
+        }
 
         public SerializationException(string message, Exception innerException) : base(message, innerException)
         {
@@ -99,7 +103,10 @@ namespace Luban
 
         public int Capacity => Bytes.Length;
 
-        public int Size { get { return WriterIndex - ReaderIndex; } }
+        public int Size
+        {
+            get { return WriterIndex - ReaderIndex; }
+        }
 
         public bool Empty => WriterIndex <= ReaderIndex;
 
@@ -135,7 +142,10 @@ namespace Luban
             }
         }
 
-        public int Remaining { get { return WriterIndex - ReaderIndex; } }
+        public int Remaining
+        {
+            get { return WriterIndex - ReaderIndex; }
+        }
 
         public void DiscardReadBytes()
         {
@@ -144,7 +154,10 @@ namespace Luban
             ReaderIndex = 0;
         }
 
-        public int NotCompactWritable { get { return Capacity - WriterIndex; } }
+        public int NotCompactWritable
+        {
+            get { return Capacity - WriterIndex; }
+        }
 
         public void WriteBytesWithoutSize(byte[] bs)
         {
@@ -167,7 +180,7 @@ namespace Luban
 
         private static int PropSize(int initSize, int needSize)
         {
-            for (int i = Math.Max(initSize, MIN_CAPACITY); ; i <<= 1)
+            for (int i = Math.Max(initSize, MIN_CAPACITY);; i <<= 1)
             {
                 if (i >= needSize)
                 {
@@ -270,6 +283,7 @@ namespace Luban
                     return;
                 }
             }
+
             EnsureWrite(3);
             Bytes[WriterIndex] = 0xff;
             Bytes[WriterIndex + 2] = (byte)x;
@@ -429,7 +443,6 @@ namespace Luban
             }
             else if (h < 0xf0)
             {
-
                 EnsureRead(4);
                 uint x = ((h & 0x0f) << 24) | ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
                 ReaderIndex += 4;
@@ -438,7 +451,8 @@ namespace Luban
             else
             {
                 EnsureRead(5);
-                uint x = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)(Bytes[ReaderIndex + 2] << 16)) | ((uint)Bytes[ReaderIndex + 3] << 8) | Bytes[ReaderIndex + 4];
+                uint x = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)(Bytes[ReaderIndex + 2] << 16)) | ((uint)Bytes[ReaderIndex + 3] << 8) |
+                         Bytes[ReaderIndex + 4];
                 ReaderIndex += 5;
                 return x;
             }
@@ -452,7 +466,7 @@ namespace Luban
                 EnsureWrite(1);
                 Bytes[WriterIndex++] = (byte)(x << 1);
             }
-            else if (x < 0x4000)// 10 11 1111, -
+            else if (x < 0x4000) // 10 11 1111, -
             {
                 EnsureWrite(2);
 
@@ -471,6 +485,7 @@ namespace Luban
                 {
                     *(uint*)(wb) = (x << 3 | 0b011);
                 }
+
                 WriterIndex += 3;
             }
             else if (x < 0x10000000) // 1110 1111,-,-,-
@@ -480,6 +495,7 @@ namespace Luban
                 {
                     *(uint*)(wb) = (x << 4 | 0b0111);
                 }
+
                 WriterIndex += 4;
             }
             else
@@ -489,6 +505,7 @@ namespace Luban
                 {
                     *(uint*)(wb) = (x << 5 | 0b01111);
                 }
+
                 WriterIndex += 5;
             }
         }
@@ -752,7 +769,8 @@ namespace Luban
             else if (h < 0xf8)
             {
                 EnsureRead(5);
-                uint xl = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)(Bytes[ReaderIndex + 2] << 16)) | ((uint)Bytes[ReaderIndex + 3] << 8) | (Bytes[ReaderIndex + 4]);
+                uint xl = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)(Bytes[ReaderIndex + 2] << 16)) | ((uint)Bytes[ReaderIndex + 3] << 8) |
+                          (Bytes[ReaderIndex + 4]);
                 uint xh = h & 0x07;
                 ReaderIndex += 5;
                 return ((ulong)xh << 32) | xl;
@@ -760,7 +778,8 @@ namespace Luban
             else if (h < 0xfc)
             {
                 EnsureRead(6);
-                uint xl = ((uint)Bytes[ReaderIndex + 2] << 24) | ((uint)(Bytes[ReaderIndex + 3] << 16)) | ((uint)Bytes[ReaderIndex + 4] << 8) | (Bytes[ReaderIndex + 5]);
+                uint xl = ((uint)Bytes[ReaderIndex + 2] << 24) | ((uint)(Bytes[ReaderIndex + 3] << 16)) | ((uint)Bytes[ReaderIndex + 4] << 8) |
+                          (Bytes[ReaderIndex + 5]);
                 uint xh = ((h & 0x03) << 8) | Bytes[ReaderIndex + 1];
                 ReaderIndex += 6;
                 return ((ulong)xh << 32) | xl;
@@ -768,7 +787,8 @@ namespace Luban
             else if (h < 0xfe)
             {
                 EnsureRead(7);
-                uint xl = ((uint)Bytes[ReaderIndex + 3] << 24) | ((uint)(Bytes[ReaderIndex + 4] << 16)) | ((uint)Bytes[ReaderIndex + 5] << 8) | (Bytes[ReaderIndex + 6]);
+                uint xl = ((uint)Bytes[ReaderIndex + 3] << 24) | ((uint)(Bytes[ReaderIndex + 4] << 16)) | ((uint)Bytes[ReaderIndex + 5] << 8) |
+                          (Bytes[ReaderIndex + 6]);
                 uint xh = ((h & 0x01) << 16) | ((uint)Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
                 ReaderIndex += 7;
                 return ((ulong)xh << 32) | xl;
@@ -776,7 +796,8 @@ namespace Luban
             else if (h < 0xff)
             {
                 EnsureRead(8);
-                uint xl = ((uint)Bytes[ReaderIndex + 4] << 24) | ((uint)(Bytes[ReaderIndex + 5] << 16)) | ((uint)Bytes[ReaderIndex + 6] << 8) | (Bytes[ReaderIndex + 7]);
+                uint xl = ((uint)Bytes[ReaderIndex + 4] << 24) | ((uint)(Bytes[ReaderIndex + 5] << 16)) | ((uint)Bytes[ReaderIndex + 6] << 8) |
+                          (Bytes[ReaderIndex + 7]);
                 uint xh = /*((h & 0x01) << 24) |*/ ((uint)Bytes[ReaderIndex + 1] << 16) | ((uint)Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
                 ReaderIndex += 8;
                 return ((ulong)xh << 32) | xl;
@@ -784,8 +805,10 @@ namespace Luban
             else
             {
                 EnsureRead(9);
-                uint xl = ((uint)Bytes[ReaderIndex + 5] << 24) | ((uint)(Bytes[ReaderIndex + 6] << 16)) | ((uint)Bytes[ReaderIndex + 7] << 8) | (Bytes[ReaderIndex + 8]);
-                uint xh = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)Bytes[ReaderIndex + 2] << 16) | ((uint)Bytes[ReaderIndex + 3] << 8) | Bytes[ReaderIndex + 4];
+                uint xl = ((uint)Bytes[ReaderIndex + 5] << 24) | ((uint)(Bytes[ReaderIndex + 6] << 16)) | ((uint)Bytes[ReaderIndex + 7] << 8) |
+                          (Bytes[ReaderIndex + 8]);
+                uint xh = ((uint)Bytes[ReaderIndex + 1] << 24) | ((uint)Bytes[ReaderIndex + 2] << 16) | ((uint)Bytes[ReaderIndex + 3] << 8) |
+                          Bytes[ReaderIndex + 4];
                 ReaderIndex += 9;
                 return ((ulong)xh << 32) | xl;
             }
@@ -1057,6 +1080,7 @@ namespace Luban
                     // 只缓存比较小的字符串
                     s = StringCacheFinder(Bytes, ReaderIndex, n);
                 }
+
                 ReaderIndex += n;
                 return s;
             }
@@ -1279,19 +1303,31 @@ namespace Luban
                 }
                 else if (h < 0xc0)
                 {
-                    if (!CanRead(2)) { return EDeserializeError.NOT_ENOUGH; }
+                    if (!CanRead(2))
+                    {
+                        return EDeserializeError.NOT_ENOUGH;
+                    }
+
                     n = ((h & 0x3f) << 8) | Bytes[ReaderIndex + 1];
                     ReaderIndex += 2;
                 }
                 else if (h < 0xe0)
                 {
-                    if (!CanRead(3)) { return EDeserializeError.NOT_ENOUGH; }
+                    if (!CanRead(3))
+                    {
+                        return EDeserializeError.NOT_ENOUGH;
+                    }
+
                     n = ((h & 0x1f) << 16) | (Bytes[ReaderIndex + 1] << 8) | Bytes[ReaderIndex + 2];
                     ReaderIndex += 3;
                 }
                 else if (h < 0xf0)
                 {
-                    if (!CanRead(4)) { return EDeserializeError.NOT_ENOUGH; }
+                    if (!CanRead(4))
+                    {
+                        return EDeserializeError.NOT_ENOUGH;
+                    }
+
                     n = ((h & 0x0f) << 24) | (Bytes[ReaderIndex + 1] << 16) | (Bytes[ReaderIndex + 2] << 8) | Bytes[ReaderIndex + 3];
                     ReaderIndex += 4;
                 }
@@ -1304,6 +1340,7 @@ namespace Luban
                 {
                     return EDeserializeError.EXCEED_SIZE;
                 }
+
                 if (Remaining < n)
                 {
                     return EDeserializeError.NOT_ENOUGH;
@@ -1350,7 +1387,6 @@ namespace Luban
         }
 
         #region segment
-
 
         public void BeginWriteSegment(out int oldSize)
         {
@@ -1454,6 +1490,7 @@ namespace Luban
             {
                 throw new SerializationException("exceed max size");
             }
+
             if (ReaderIndex > WriterIndex)
             {
                 throw new SerializationException("segment data not enough");
@@ -1492,6 +1529,7 @@ namespace Luban
             {
                 datas[i - ReaderIndex] = Bytes[i].ToString("X2");
             }
+
             return string.Join(".", datas);
         }
 
@@ -1506,10 +1544,12 @@ namespace Luban
             {
                 return false;
             }
+
             if (Size != other.Size)
             {
                 return false;
             }
+
             for (int i = 0, n = Size; i < n; i++)
             {
                 if (Bytes[ReaderIndex + i] != other.Bytes[other.ReaderIndex + i])
@@ -1517,6 +1557,7 @@ namespace Luban
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -1534,6 +1575,7 @@ namespace Luban
             {
                 data[i] = byte.Parse(ss[i]);
             }
+
             return new ByteBuf(data);
         }
 
@@ -1544,6 +1586,7 @@ namespace Luban
             {
                 hash = hash * 23 + Bytes[i];
             }
+
             return hash;
         }
 

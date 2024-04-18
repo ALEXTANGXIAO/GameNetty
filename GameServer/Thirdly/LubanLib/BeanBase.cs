@@ -1,4 +1,3 @@
-
 namespace Luban
 {
     public abstract class BeanBase

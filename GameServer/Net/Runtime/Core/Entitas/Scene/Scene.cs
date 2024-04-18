@@ -147,7 +147,7 @@ namespace GameServer
 
             if (sceneType > 0)
             {
-                await EventSystem.Instance.PublishAsync(new OnCreateScene(newScene));
+                await EventSystem.Instance.PublishAsync(new OnCreateSceneEvent(newScene));
             }
 
             Scenes.Add(newScene);
@@ -199,7 +199,7 @@ namespace GameServer
 
             if (sceneType > 0)
             {
-                await EventSystem.Instance.PublishAsync(new OnCreateScene(scene));
+                await EventSystem.Instance.PublishAsync(new OnCreateSceneEvent(scene));
             }
 
             Scenes.Add(scene);
