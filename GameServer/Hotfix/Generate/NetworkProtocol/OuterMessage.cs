@@ -7,7 +7,7 @@ using GameServer;
 namespace GameServer
 {	
 	/// <summary>
-	///  注册账号
+	///  注册账号。
 	/// </summary>
 	[ProtoContract]
 	public partial class C2R_RegisterRequest : AProto, IRequest
@@ -30,7 +30,7 @@ namespace GameServer
 		public string Message { get; set; }
 	}
 	/// <summary>
-	///  登录账号
+	///  登录账号。
 	/// </summary>
 	[ProtoContract]
 	public partial class C2R_LoginRequest : AProto, IRequest
@@ -53,7 +53,7 @@ namespace GameServer
 		public string Message { get; set; }
 	}
 	/// <summary>
-	///  登录网关
+	///  登录网关。
 	/// </summary>
 	[ProtoContract]
 	public partial class C2G_LoginGateRequest : AProto, IRequest
@@ -74,7 +74,7 @@ namespace GameServer
 		public string Message { get; set; }
 	}
 	/// <summary>
-	///  创建角色
+	///  创建角色。
 	/// </summary>
 	[ProtoContract]
 	public partial class C2G_CreateCharacterRequest : AProto, IRequest
@@ -94,11 +94,11 @@ namespace GameServer
 		[ProtoMember(1)]
 		public string Message { get; set; }
 		///<summary>
-		/// Character Character = 2;
+		/// Character Character = 2;。
 		///</summary>
 	}
 	/// <summary>
-	///  进入地图
+	///  进入地图。
 	/// </summary>
 	[ProtoContract]
 	public partial class C2G_EnterMapRequest : AProto, IRequest
@@ -120,11 +120,11 @@ namespace GameServer
 		[ProtoMember(1)]
 		public string Message { get; set; }
 		///<summary>
-		/// repeated Character Characters = 4;
+		/// repeated Character Characters = 4;。
 		///</summary>
 	}
 	/// <summary>
-	///  进入地图
+	///  进入地图。
 	/// </summary>
 	[ProtoContract]
 	public partial class G2M_CreateUnitRequest : AProto, IRouteRequest
@@ -151,11 +151,11 @@ namespace GameServer
 		[ProtoMember(2)]
 		public long AddressableId { get; set; }
 		///<summary>
-		/// Unit Unit = 3;
+		/// Unit Unit = 3;。
 		///</summary>
 	}
 	/// <summary>
-	///  退出地图
+	///  退出地图。
 	/// </summary>
 	[ProtoContract]
 	public partial class C2M_ExitRequest : AProto, IAddressableRouteRequest
@@ -177,7 +177,7 @@ namespace GameServer
 		public string Message { get; set; }
 	}
 	/// <summary>
-	///  位置对象
+	///  位置对象。
 	/// </summary>
 	[ProtoContract]
 	public partial class MoveInfo : AProto
@@ -200,7 +200,7 @@ namespace GameServer
 		public long MoveEndTime { get; set; }
 	}
 	/// <summary>
-	///  移动操作
+	///  移动操作。
 	/// </summary>
 	[ProtoContract]
 	public partial class C2M_MoveMessage : AProto, IAddressableRouteMessage
@@ -208,10 +208,10 @@ namespace GameServer
 		public uint OpCode() { return OuterOpcode.C2M_MoveMessage; }
 		public long RouteTypeOpCode() { return CoreRouteType.Addressable; }
 		[ProtoMember(1)]
-		public MoveInfo MoveInfo { get; set; }
+		public MoveInfo MoveInfo { get; set; } = new MoveInfo();
 	}
 	/// <summary>
-	///  核心状态同步
+	///  核心状态同步。
 	/// </summary>
 	[ProtoContract]
 	public partial class M2C_MoveBroadcast : AProto, IAddressableRouteMessage
@@ -219,6 +219,6 @@ namespace GameServer
 		public uint OpCode() { return OuterOpcode.M2C_MoveBroadcast; }
 		public long RouteTypeOpCode() { return CoreRouteType.Addressable; }
 		[ProtoMember(1)]
-		public List<MoveInfo> Moves = new List<MoveInfo>();
+		public List<MoveInfo> Moves { get; set; } = new List<MoveInfo>();
 	}
 }

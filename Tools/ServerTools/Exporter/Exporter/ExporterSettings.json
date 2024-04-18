@@ -9,7 +9,7 @@
             "Comment": "ProtoBuf文件所在的文件夹位置"
         },
         "ProtoBufServerDirectory": {
-            "Value": "../../../../Server/Hotfix/Generate/NetworkProtocol/",
+            "Value": "../../../../GameServer/Hotfix/Generate/NetworkProtocol/",
             "Comment": "ProtoBuf生成到服务端的文件夹位置"
         },
         "ProtoBufClientDirectory": {
@@ -25,7 +25,7 @@
             "Comment": "Excel的Version文件位置、这个文件用于记录每次导出对比是否需要再次导出的文件"
         },
         "ExcelServerFileDirectory": {
-            "Value": "../../../../Server/Hotfix/Generate/ConfigTable/Entity/",
+            "Value": "../../../../../GameServer/Hotfix/Generate/ConfigTable/Entity/",
             "Comment": "Excel生成的代码文件、在服务端文件夹位置"
         },
         "ExcelClientFileDirectory": {

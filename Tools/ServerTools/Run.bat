@@ -11,12 +11,15 @@ set /p choice=Please select an option:
 
 if "%choice%"=="1" (
     echo Client
+    cd /D %~dp0/Exporter/Exporter_Build/
     dotnet Exporter.dll --ExportPlatform 1
 ) else if "%choice%"=="2" (
     echo Server
+    cd /D %~dp0/Exporter/Exporter_Build/
     dotnet Exporter.dll --ExportPlatform 2
 ) else if "%choice%"=="3" (
     echo All
+    cd /D %~dp0/Exporter/Exporter_Build/
     dotnet Exporter.dll --ExportPlatform 3
 ) else (
     echo Invalid option
