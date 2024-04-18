@@ -10,10 +10,14 @@ namespace GameServer
         // 时间戳计算相关常量
         private static readonly long Epoch1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks / 10000;
         private static readonly long Epoch2023 = new DateTime(2023, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks / 10000 - Epoch1970;
+
         private static readonly long EpochThisYear = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks / 10000 - Epoch1970;
+
         // 运行时 ID 相关字段
         private static uint _lastRunTimeIdTime;
+
         private static uint _lastRunTimeIdSequence;
+
         // 实体 ID 相关字段
         private static uint _lastEntityIdTime;
         private static uint _lastEntityIdSequence;
@@ -24,7 +28,7 @@ namespace GameServer
         /// <returns>生成的运行时 ID。</returns>
         public static long NextRunTimeId()
         {
-            var time = (uint) ((TimeHelper.Now - EpochThisYear) / 1000);
+            var time = (uint)((TimeHelper.Now - EpochThisYear) / 1000);
 
             if (time > _lastRunTimeIdTime)
             {
@@ -94,4 +98,3 @@ namespace GameServer
         }
     }
 }
-

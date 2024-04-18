@@ -1,4 +1,3 @@
-
 namespace GameServer
 {
     /// <summary>
@@ -11,7 +10,9 @@ namespace GameServer
         /// 创建一个新的跳表实例。
         /// </summary>
         /// <param name="maxLayer">跳表的最大层数。</param>
-        public SkipTable(int maxLayer = 8) : base(maxLayer) { }
+        public SkipTable(int maxLayer = 8) : base(maxLayer)
+        {
+        }
 
         /// <summary>
         /// 向跳表中添加一个新节点。

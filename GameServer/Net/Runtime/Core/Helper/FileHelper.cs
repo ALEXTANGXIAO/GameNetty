@@ -25,7 +25,7 @@ namespace GameServer
         public static void CreateDirectory(string directoryPath)
         {
             var directoriesByFilePath = GetDirectoriesByFilePath(directoryPath);
-            
+
             foreach (var dir in directoriesByFilePath)
             {
                 if (Directory.Exists(dir))
@@ -135,9 +135,9 @@ namespace GameServer
             {
                 return;
             }
-        
+
             var files = Directory.GetFiles(folderPath);
-        
+
             foreach (var file in files)
             {
                 File.Delete(file);

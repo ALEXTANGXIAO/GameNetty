@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 #pragma warning disable CS8603
 
 namespace GameServer
@@ -53,8 +54,10 @@ namespace GameServer
     {
         /// 用于同步操作的锁对象，它确保在多线程环境下对数据的安全访问。
         private readonly object _lockObject = new object();
+
         /// 用于存储缓存的队列。
         private readonly Queue<List<TValue>> _queue = new Queue<List<TValue>>();
+
         /// 控制缓存回收的限制。当缓存的数量超过此限制时，旧的缓存将会被回收。
         private readonly int _recyclingLimit;
 

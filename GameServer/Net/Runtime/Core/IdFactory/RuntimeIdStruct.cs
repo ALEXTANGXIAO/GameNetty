@@ -34,8 +34,8 @@ namespace GameServer
         {
             ulong result = 0;
             result |= runtimeId.Sequence;
-            result |= (ulong) runtimeId.Time << 32;
-            return (long) result;
+            result |= (ulong)runtimeId.Time << 32;
+            return (long)result;
         }
 
         /// <summary>
@@ -44,11 +44,11 @@ namespace GameServer
         /// <param name="id">要转换的长整型 ID。</param>
         public static implicit operator RuntimeIdStruct(long id)
         {
-            var result = (ulong) id;
+            var result = (ulong)id;
             var idStruct = new RuntimeIdStruct()
             {
-                Time = (uint) (result >> 32),
-                Sequence = (uint) (result & 0xFFFFFFFF)
+                Time = (uint)(result >> 32),
+                Sequence = (uint)(result & 0xFFFFFFFF)
             };
             return idStruct;
         }

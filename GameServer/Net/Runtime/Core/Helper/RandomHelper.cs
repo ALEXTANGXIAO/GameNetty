@@ -42,7 +42,7 @@ namespace GameServer
         /// <returns>无符号 32 位整数。</returns>
         public static uint RandUInt32()
         {
-            return (uint) Random.Next();
+            return (uint)Random.Next();
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace GameServer
         public static float RandFloat01()
         {
             var value = Random.NextDouble();
-            return (float) value;
+            return (float)value;
         }
 
         private static int Rand(int n)

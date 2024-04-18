@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 #if GAMESERVER_NET
 using System.Runtime.Loader;
+
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 #endif
 #pragma warning disable CS8603
@@ -18,14 +19,17 @@ namespace GameServer
         /// 当程序集加载时触发的事件。
         /// </summary>
         public static event Action<int> OnLoadAssemblyEvent;
+
         /// <summary>
         /// 当程序集卸载时触发的事件。
         /// </summary>
         public static event Action<int> OnUnLoadAssemblyEvent;
+
         /// <summary>
         /// 当重新加载程序集时触发的事件。
         /// </summary>
         public static event Action<int> OnReLoadAssemblyEvent;
+
         /// <summary>
         /// 存储已加载的程序集信息的字典。
         /// </summary>
@@ -159,7 +163,7 @@ namespace GameServer
                 {
                     continue;
                 }
-                
+
                 foreach (var type in assemblyLoad)
                 {
                     yield return type;
@@ -184,7 +188,7 @@ namespace GameServer
             {
                 yield break;
             }
-            
+
             foreach (var type in assemblyLoad)
             {
                 yield return type;
@@ -223,7 +227,7 @@ namespace GameServer
                     OnLoadAssemblyEvent -= @delegate as Action<int>;
                 }
             }
-            
+
             if (OnUnLoadAssemblyEvent != null)
             {
                 foreach (var @delegate in OnUnLoadAssemblyEvent.GetInvocationList())
@@ -231,7 +235,7 @@ namespace GameServer
                     OnUnLoadAssemblyEvent -= @delegate as Action<int>;
                 }
             }
-            
+
             if (OnReLoadAssemblyEvent != null)
             {
                 foreach (var @delegate in OnReLoadAssemblyEvent.GetInvocationList())

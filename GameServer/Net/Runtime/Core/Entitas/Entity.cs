@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-
 using System.Runtime.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 #pragma warning disable CS8618
 #pragma warning disable CS8625
@@ -21,7 +21,7 @@ namespace GameServer
     public abstract class Entity : IDisposable
     {
         #region Entities
-        
+
         private static readonly Dictionary<long, Entity> Entities = new Dictionary<long, Entity>();
         private static readonly OneToManyQueue<Type, Entity> Pool = new OneToManyQueue<Type, Entity>();
 
@@ -59,7 +59,7 @@ namespace GameServer
                 return default;
             }
 
-            return (T) entity;
+            return (T)entity;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace GameServer
                 return false;
             }
 
-            outEntity = (T) entity;
+            outEntity = (T)entity;
             return true;
         }
 
@@ -92,7 +92,7 @@ namespace GameServer
 
             if (Pool.TryDequeue(entityType, out var poolEntity))
             {
-                entity = (T) poolEntity;
+                entity = (T)poolEntity;
             }
             else
             {
@@ -106,7 +106,7 @@ namespace GameServer
         private static void Return(Entity entity)
         {
             entity.Id = 0;
-            
+
             if (!entity._isFromPool)
             {
                 return;
@@ -119,6 +119,7 @@ namespace GameServer
         #endregion
 
         #region Create
+
         /// <summary>
         /// 在指定场景中创建一个实体对象，并触发相关事件（可选）。
         /// </summary>
@@ -207,6 +208,7 @@ namespace GameServer
         #endregion
 
         #region Members
+
         /// <summary>
         /// 获取或设置实体的唯一ID。
         /// </summary>
@@ -219,16 +221,16 @@ namespace GameServer
         /// <summary>
         /// 获取实体的运行时ID。
         /// </summary>
-        [BsonIgnore] 
+        [BsonIgnore]
         [IgnoreDataMember]
         public long RuntimeId { get; private set; }
 
         /// <summary>
         /// 获取一个值，表示实体是否已被释放。
         /// </summary>
-        [BsonIgnore] 
+        [BsonIgnore]
         [JsonIgnore]
-        [IgnoreDataMember] 
+        [IgnoreDataMember]
         public bool IsDisposed => RuntimeId == 0;
 
         /// <summary>
@@ -242,31 +244,21 @@ namespace GameServer
         /// <summary>
         /// 获取或设置实体的父实体。
         /// </summary>
-        [BsonIgnore] 
+        [BsonIgnore]
         [JsonIgnore]
         [IgnoreDataMember]
         public Entity Parent { get; protected set; }
 
-        [BsonElement("t")] 
-        [BsonIgnoreIfNull] 
-        private ListPool<Entity> _treeDb;
-        
-        [BsonIgnore] 
-        [IgnoreDataMember] 
-        private DictionaryPool<Type, Entity> _tree;
-        
-        [BsonElement("m")] 
-        [BsonIgnoreIfNull] 
-        private ListPool<Entity> _multiDb;
-        
-        [BsonIgnore] 
-        [IgnoreDataMember] 
-        private DictionaryPool<long, ISupportedMultiEntity> _multi;
+        [BsonElement("t")] [BsonIgnoreIfNull] private ListPool<Entity> _treeDb;
 
-        [BsonIgnore] 
-        [IgnoreDataMember] 
-        private bool _isFromPool;
-        
+        [BsonIgnore] [IgnoreDataMember] private DictionaryPool<Type, Entity> _tree;
+
+        [BsonElement("m")] [BsonIgnoreIfNull] private ListPool<Entity> _multiDb;
+
+        [BsonIgnore] [IgnoreDataMember] private DictionaryPool<long, ISupportedMultiEntity> _multi;
+
+        [BsonIgnore] [IgnoreDataMember] private bool _isFromPool;
+
         /// <summary>
         /// 获取当前实体的父实体。
         /// </summary>
@@ -280,6 +272,7 @@ namespace GameServer
         #endregion
 
         #region AddComponent
+
         /// <summary>
         /// 在当前实体上添加一个指定类型的组件，并立即触发组件事件。
         /// </summary>
@@ -320,16 +313,16 @@ namespace GameServer
                 Log.Error("Cannot add oneself to one's own components");
                 return;
             }
-            
+
             if (component.IsDisposed)
             {
                 Log.Error($"component is Disposed {component.GetType().FullName}");
                 return;
             }
-            
+
             var type = component.GetType();
             component.Parent?.RemoveComponent(component, false);
-            
+
             if (component is ISupportedMultiEntity multiEntity)
             {
                 _multi ??= DictionaryPool<long, ISupportedMultiEntity>.Create();
@@ -346,19 +339,20 @@ namespace GameServer
 #if GAMESERVER_NET
                 if (component is ISupportedSingleCollection && component.Id != Id)
                 {
-                    Log.Error($"component type :{component.GetType().FullName} for implementing ISupportedSingleCollection, it is required that the Id must be the same as the parent");
+                    Log.Error(
+                        $"component type :{component.GetType().FullName} for implementing ISupportedSingleCollection, it is required that the Id must be the same as the parent");
                 }
 #endif
                 if (_tree == null)
                 {
                     _tree = DictionaryPool<Type, Entity>.Create();
                 }
-                else if(_tree.ContainsKey(type))
+                else if (_tree.ContainsKey(type))
                 {
                     Log.Error($"type:{type.FullName} If you want to add multiple components of the same type, please implement IMultiEntity");
                     return;
                 }
-                
+
                 _tree.Add(type, component);
 
                 if (component is ISupportedDataBase)
@@ -373,15 +367,16 @@ namespace GameServer
         }
 
         #endregion
-        
+
         #region ForEach
+
 #if GAMESERVER_NET
         /// <summary>
         /// 获取一个 IEnumerable，用于遍历当前实体上所有实现了 ISupportedSingleCollection 接口的组件。
         /// </summary>
-        [BsonIgnore] 
+        [BsonIgnore]
         [JsonIgnore]
-        [IgnoreDataMember] 
+        [IgnoreDataMember]
         public IEnumerable<Entity> ForEachSingleCollection
         {
             get
@@ -401,9 +396,9 @@ namespace GameServer
         /// <summary>
         /// 获取一个 IEnumerable，用于遍历当前实体上所有实现了 ISupportedSingleCollection 或 ISupportedTransfer 接口的组件。
         /// </summary>
-        [BsonIgnore] 
+        [BsonIgnore]
         [JsonIgnore]
-        [IgnoreDataMember] 
+        [IgnoreDataMember]
         public IEnumerable<Entity> ForEachTransfer
         {
             get
@@ -444,13 +439,13 @@ namespace GameServer
             {
                 yield break;
             }
-            
+
             foreach (var (_, supportedMultiEntity) in _multi)
             {
                 yield return (Entity)supportedMultiEntity;
             }
         }
-        
+
         /// <summary>
         /// 获取一个 IEnumerable，用于遍历当前实体上挂载的普通组件。
         /// </summary>
@@ -461,7 +456,7 @@ namespace GameServer
             {
                 yield break;
             }
-            
+
             foreach (var (_, entity) in _tree)
             {
                 yield return entity;
@@ -471,6 +466,7 @@ namespace GameServer
         #endregion
 
         #region GetComponent
+
         /// <summary>
         /// 获取当前实体上的一个指定类型的组件实体。
         /// </summary>
@@ -509,7 +505,7 @@ namespace GameServer
                 return default;
             }
 
-            return _multi.TryGetValue(id, out var entity) ? (T) entity : default;
+            return _multi.TryGetValue(id, out var entity) ? (T)entity : default;
         }
 
         /// <summary>
@@ -521,7 +517,7 @@ namespace GameServer
         public T GetComponent<T>(bool isNullAdd) where T : Entity, new()
         {
             var component = GetComponent<T>();
-            
+
             if (component == null && isNullAdd)
             {
                 return AddComponent<T>();
@@ -533,6 +529,7 @@ namespace GameServer
         #endregion
 
         #region RemoveComponent
+
         /// <summary>
         /// 从当前实体上移除一个指定类型的组件。
         /// </summary>
@@ -575,7 +572,7 @@ namespace GameServer
             {
                 return;
             }
-            
+
             if (component is ISupportedMultiEntity)
             {
                 if (_multi != null)
@@ -607,7 +604,7 @@ namespace GameServer
                 if (component is ISupportedDataBase && _treeDb != null)
                 {
                     _treeDb.Remove(component);
-            
+
                     if (_treeDb.Count == 0)
                     {
                         _treeDb.Dispose();
@@ -616,7 +613,7 @@ namespace GameServer
                 }
 #endif
                 _tree.Remove(component.GetType());
-                
+
                 if (_tree.Count == 0)
                 {
                     _tree.Dispose();
@@ -633,6 +630,7 @@ namespace GameServer
         #endregion
 
         #region Deserialize
+
         /// <summary>
         /// 从序列化数据中恢复当前实体的状态，并将其添加到指定的场景中。
         /// </summary>
@@ -696,6 +694,7 @@ namespace GameServer
         #endregion
 
         #region Clone
+
         /// <summary>
         /// 克隆当前实体，并返回一个新的实体对象，新对象将具有相同的状态和组件。
         /// </summary>
@@ -716,6 +715,7 @@ namespace GameServer
         #endregion
 
         #region Dispose
+
         /// <summary>
         /// 释放当前实体及其所有组件。如果实体已释放，则不执行任何操作。
         /// </summary>
@@ -739,18 +739,18 @@ namespace GameServer
                 _tree.Dispose();
                 _tree = null;
             }
-            
+
             if (_multi != null)
             {
                 foreach (var (_, entity) in _multi)
                 {
                     entity.Dispose();
                 }
-                
+
                 _multi.Dispose();
                 _multi = null;
             }
-            
+
 #if GAMESERVER_NET
             if (_treeDb != null)
             {
@@ -758,18 +758,18 @@ namespace GameServer
                 {
                     entity.Dispose();
                 }
-                
+
                 _treeDb.Dispose();
                 _treeDb = null;
             }
-            
+
             if (_multiDb != null)
             {
                 foreach (var entity in _multiDb)
                 {
                     entity.Dispose();
                 }
-                
+
                 _multiDb.Dispose();
                 _multiDb = null;
             }

@@ -18,11 +18,13 @@ namespace GameServer
         /// <summary>
         /// 获取或设置实体的时间戳部分。
         /// </summary>
-        public uint Time{ get; private set; }
+        public uint Time { get; private set; }
+
         /// <summary>
         /// 获取或设置实体的序列号部分。
         /// </summary>
-        public uint Sequence{ get; private set; }
+        public uint Sequence { get; private set; }
+
         /// <summary>
         /// 获取或设置实体的位置 ID。
         /// </summary>
@@ -32,6 +34,7 @@ namespace GameServer
         /// 获取实体 ID 对应的 AppId。
         /// </summary>
         public ushort AppId => (ushort)(LocationId >> 10 & RouteIdStruct.MaskAppId);
+
         /// <summary>
         /// 获取实体 ID 对应的 WordId。
         /// </summary>
@@ -41,6 +44,7 @@ namespace GameServer
         /// 表示用于掩码的 RouteId。
         /// </summary>
         public const int MaskRouteId = 0x3FFFF;
+
         /// <summary>
         /// 表示用于掩码的 Sequence。
         /// </summary>
@@ -78,15 +82,15 @@ namespace GameServer
         /// <param name="id">要转换的 <see cref="long"/> 类型的值。</param>
         public static implicit operator EntityIdStruct(long id)
         {
-            var result = (ulong) id;
+            var result = (ulong)id;
             var idStruct = new EntityIdStruct()
             {
-                Sequence = (uint) (result & MaskSequence)
+                Sequence = (uint)(result & MaskSequence)
             };
             result >>= 16;
-            idStruct.LocationId = (uint) (result & 0x3FFFF);
+            idStruct.LocationId = (uint)(result & 0x3FFFF);
             result >>= 18;
-            idStruct.Time = (uint) result;
+            idStruct.Time = (uint)result;
             return idStruct;
         }
     }

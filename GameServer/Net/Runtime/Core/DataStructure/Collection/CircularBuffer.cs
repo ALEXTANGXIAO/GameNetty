@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
@@ -10,7 +11,6 @@ namespace GameServer
     /// 1、环大小8192，溢出的会自动增加环的大小。
     /// 2、每个块都是一个环形缓存，当溢出的时候会自动添加到下一个环中。
     /// 3、当读取完成后用过的环会放在缓存中，不会销毁掉。
-
     /// <summary>
     /// 自增式缓存类，继承自 Stream 和 IDisposable 接口。
     /// 环形缓存具有自动扩充的特性，但不会收缩，适用于操作不过大的 IO 流。
@@ -18,20 +18,25 @@ namespace GameServer
     public sealed class CircularBuffer : Stream, IDisposable
     {
         private byte[] _lastBuffer;
+
         /// <summary>
         /// 环形缓存块的默认大小
         /// </summary>
         public const int ChunkSize = 8192;
+
         private readonly Queue<byte[]> _bufferCache = new Queue<byte[]>();
         private readonly Queue<byte[]> _bufferQueue = new Queue<byte[]>();
+
         /// <summary>
         /// 获取或设置环形缓存的第一个索引位置
         /// </summary>
         public int FirstIndex { get; set; }
+
         /// <summary>
         /// 获取或设置环形缓存的最后一个索引位置
         /// </summary>
         public int LastIndex { get; set; }
+
         /// <summary>
         /// 获取环形缓存的总长度
         /// </summary>
@@ -79,6 +84,7 @@ namespace GameServer
                 return _lastBuffer;
             }
         }
+
         /// <summary>
         /// 向环形缓存中添加一个新的块
         /// </summary>
@@ -88,6 +94,7 @@ namespace GameServer
             _bufferQueue.Enqueue(buffer);
             _lastBuffer = buffer;
         }
+
         /// <summary>
         /// 从环形缓存中移除第一个块
         /// </summary>
@@ -145,7 +152,7 @@ namespace GameServer
             {
                 var n = count - copyCount;
                 var asMemory = First.AsMemory();
-                
+
                 if (ChunkSize - FirstIndex > n)
                 {
                     var slice = asMemory.Slice(FirstIndex, n);
@@ -182,7 +189,7 @@ namespace GameServer
             var length = Length;
             if (length < count)
             {
-                count = (int) length;
+                count = (int)length;
             }
 
             var copyCount = 0;
@@ -229,8 +236,8 @@ namespace GameServer
         public void Write(Stream stream)
         {
             var copyCount = 0;
-            var count = (int) (stream.Length - stream.Position);
-            
+            var count = (int)(stream.Length - stream.Position);
+
             while (copyCount < count)
             {
                 if (LastIndex == ChunkSize)
@@ -240,7 +247,7 @@ namespace GameServer
                 }
 
                 var n = count - copyCount;
-                
+
                 if (ChunkSize - LastIndex > n)
                 {
                     _ = stream.Read(Last, LastIndex, n);
@@ -295,14 +302,17 @@ namespace GameServer
         /// 获取一个值，指示流是否支持读取操作。
         /// </summary>
         public override bool CanRead { get; } = true;
+
         /// <summary>
         /// 获取一个值，指示流是否支持寻找操作。
         /// </summary>
         public override bool CanSeek { get; } = false;
+
         /// <summary>
         /// 获取一个值，指示流是否支持写入操作。
         /// </summary>
         public override bool CanWrite { get; } = true;
+
         /// <summary>
         /// 获取或设置流中的位置。
         /// </summary>

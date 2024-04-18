@@ -16,6 +16,7 @@ public class CommandLineOptions
     /// </summary>
     [Option("AppId", Required = false, Default = (uint)0, HelpText = "Enter an AppId such as 1")]
     public uint AppId { get; set; }
+
     /// <summary>
     /// App类型，获取或设置应用程序的类型。
     /// Game - 游戏服务器App
@@ -23,6 +24,7 @@ public class CommandLineOptions
     /// </summary>
     [Option("AppType", Required = true, Default = null, HelpText = "Game")]
     public string AppType { get; set; }
+
     /// <summary>
     /// 服务器运行模式，获取或设置服务器的运行模式。
     /// Develop - 开发模式（所有Server都在一个进程中）
@@ -30,6 +32,7 @@ public class CommandLineOptions
     /// </summary>
     [Option("Mode", Required = true, Default = "Release", HelpText = "Develop:所有Server都在一个进程中,Release:每个Server都在独立的进程中")]
     public string Mode { get; set; }
+
     /// <summary>
     /// 服务器内部网络协议
     /// TCP - 服务器内部之间通讯使用TCP协议
@@ -37,7 +40,7 @@ public class CommandLineOptions
     /// </summary>
     [Option("InnerNetwork", Required = false, Default = "TCP", HelpText = "TCP、KCP")]
     public string InnerNetwork { get; set; }
-    
+
     /// <summary>
     /// 是否启用控制台。
     /// </summary>

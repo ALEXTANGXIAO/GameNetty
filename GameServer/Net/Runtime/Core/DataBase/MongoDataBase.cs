@@ -1,6 +1,5 @@
 #if GAMESERVER_NET
 using System.Linq.Expressions;
-
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -35,6 +34,7 @@ public sealed class MongoDataBase : IDateBase
     }
 
     #region Other
+
     /// <summary>
     /// 对满足条件的文档中的某个数值字段进行求和操作。
     /// </summary>
@@ -45,7 +45,7 @@ public sealed class MongoDataBase : IDateBase
     /// <returns>满足条件的文档中指定字段的求和结果。</returns>
     public async FTask<long> Sum<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> sumExpression, string collection = null) where T : Entity
     {
-        var member = (MemberExpression) ((UnaryExpression) sumExpression.Body).Operand;
+        var member = (MemberExpression)((UnaryExpression)sumExpression.Body).Operand;
 
         var projection =
             new BsonDocument("_id", "null").Add("Result", new BsonDocument("$sum", $"${member.Member.Name}"));
@@ -59,6 +59,7 @@ public sealed class MongoDataBase : IDateBase
     #endregion
 
     #region GetCollection
+
     /// <summary>
     /// 获取指定集合中的 MongoDB 文档的 IMongoCollection 对象。
     /// </summary>
@@ -69,6 +70,7 @@ public sealed class MongoDataBase : IDateBase
     {
         return _mongoDatabase.GetCollection<T>(collection ?? typeof(T).Name);
     }
+
     /// <summary>
     /// 获取指定集合中的 MongoDB 文档的 IMongoCollection 对象，其中实体类型为 Entity。
     /// </summary>
@@ -82,6 +84,7 @@ public sealed class MongoDataBase : IDateBase
     #endregion
 
     #region Count
+
     /// <summary>
     /// 统计指定集合中满足条件的文档数量。
     /// </summary>
@@ -92,6 +95,7 @@ public sealed class MongoDataBase : IDateBase
     {
         return await GetCollection<T>(collection).CountDocumentsAsync(d => true);
     }
+
     /// <summary>
     /// 统计指定集合中满足条件的文档数量。
     /// </summary>
@@ -107,6 +111,7 @@ public sealed class MongoDataBase : IDateBase
     #endregion
 
     #region Exist
+
     /// <summary>
     /// 判断指定集合中是否存在文档。
     /// </summary>
@@ -117,6 +122,7 @@ public sealed class MongoDataBase : IDateBase
     {
         return await Count<T>(collection) > 0;
     }
+
     /// <summary>
     /// 判断指定集合中是否存在满足条件的文档。
     /// </summary>
@@ -132,6 +138,7 @@ public sealed class MongoDataBase : IDateBase
     #endregion
 
     #region Query
+
     /// <summary>
     /// 在不加数据库锁定的情况下，查询指定 ID 的文档。
     /// </summary>
@@ -145,6 +152,7 @@ public sealed class MongoDataBase : IDateBase
         var v = await cursor.FirstOrDefaultAsync();
         return v;
     }
+
     /// <summary>
     /// 查询指定 ID 的文档，并加数据库锁定以确保数据一致性。
     /// </summary>
@@ -171,7 +179,8 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="pageSize">每页大小。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档数量和日期列表。</returns>
-    public async FTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string collection = null) where T : Entity
+    public async FTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize,
+        string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -191,7 +200,8 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="cols">要查询的列名称数组。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档数量和日期列表。</returns>
-    public async FTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols, string collection = null) where T : Entity
+    public async FTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols,
+        string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -199,7 +209,7 @@ public sealed class MongoDataBase : IDateBase
 
             var dates = await QueryByPage(filter, pageIndex, pageSize, cols, collection);
 
-            return ((int) count, dates);
+            return ((int)count, dates);
         }
     }
 
@@ -232,7 +242,8 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="cols">要查询的列名称数组。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols, string collection = null) where T : Entity
+    public async FTask<List<T>> QueryByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols, string collection = null)
+        where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -259,7 +270,8 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="isAsc">是否升序排序。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryByPageOrderBy<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, Expression<Func<T, object>> orderByExpression, bool isAsc = true, string collection = null) where T : Entity
+    public async FTask<List<T>> QueryByPageOrderBy<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize,
+        Expression<Func<T, object>> orderByExpression, bool isAsc = true, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -304,13 +316,13 @@ public sealed class MongoDataBase : IDateBase
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
             var projection = Builders<T>.Projection.Include("");
-            
+
             foreach (var col in cols)
             {
                 projection = projection.Include(col);
             }
 
-            var options = new FindOptions<T, T> {Projection = projection};
+            var options = new FindOptions<T, T> { Projection = projection };
 
             FilterDefinition<T> filterDefinition = new JsonFilterDefinition<T>(json);
 
@@ -329,7 +341,8 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="isAsc">是否升序排序。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryOrderBy<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByExpression, bool isAsc = true, string collection = null) where T : Entity
+    public async FTask<List<T>> QueryOrderBy<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByExpression, bool isAsc = true,
+        string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -422,13 +435,13 @@ public sealed class MongoDataBase : IDateBase
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
             var projection = Builders<T>.Projection.Include("");
-            
+
             foreach (var col in cols)
             {
                 projection = projection.Include(col);
             }
 
-            var options = new FindOptions<T, T> {Projection = projection};
+            var options = new FindOptions<T, T> { Projection = projection };
 
             FilterDefinition<T> filterDefinition = new JsonFilterDefinition<T>(json);
 
@@ -483,6 +496,7 @@ public sealed class MongoDataBase : IDateBase
     #endregion
 
     #region Save
+
     /// <summary>
     /// 保存实体对象到数据库（加锁）。
     /// </summary>
@@ -499,12 +513,12 @@ public sealed class MongoDataBase : IDateBase
         }
 
         var clone = MongoHelper.Instance.Clone(entity);
-        
+
         using (await IDateBase.DataBaseLock.Lock(clone.Id))
         {
             await GetCollection(collection ?? clone.GetType().Name).ReplaceOneAsync(
-                (IClientSessionHandle) transactionSession, d => d.Id == clone.Id, clone,
-                new ReplaceOptions {IsUpsert = true});
+                (IClientSessionHandle)transactionSession, d => d.Id == clone.Id, clone,
+                new ReplaceOptions { IsUpsert = true });
         }
     }
 
@@ -528,7 +542,7 @@ public sealed class MongoDataBase : IDateBase
         using (await IDateBase.DataBaseLock.Lock(clone.Id))
         {
             await GetCollection(collection ?? clone.GetType().Name).ReplaceOneAsync(d => d.Id == clone.Id, clone,
-                new ReplaceOptions {IsUpsert = true});
+                new ReplaceOptions { IsUpsert = true });
         }
     }
 
@@ -551,7 +565,7 @@ public sealed class MongoDataBase : IDateBase
 
         using (await IDateBase.DataBaseLock.Lock(clone.Id))
         {
-            await GetCollection(collection ?? clone.GetType().Name).ReplaceOneAsync(d => d.Id == clone.Id, clone, new ReplaceOptions {IsUpsert = true});
+            await GetCollection(collection ?? clone.GetType().Name).ReplaceOneAsync(d => d.Id == clone.Id, clone, new ReplaceOptions { IsUpsert = true });
         }
     }
 
@@ -577,7 +591,7 @@ public sealed class MongoDataBase : IDateBase
                 try
                 {
                     await GetCollection(clone.GetType().Name).ReplaceOneAsync(d => d.Id == clone.Id, clone,
-                        new ReplaceOptions {IsUpsert = true});
+                        new ReplaceOptions { IsUpsert = true });
                 }
                 catch (Exception e)
                 {
@@ -590,6 +604,7 @@ public sealed class MongoDataBase : IDateBase
     #endregion
 
     #region Insert
+
     /// <summary>
     /// 插入单个实体对象到数据库（加锁）。
     /// </summary>
@@ -600,6 +615,7 @@ public sealed class MongoDataBase : IDateBase
     {
         return Save(entity);
     }
+
     /// <summary>
     /// 批量插入实体对象列表到数据库（加锁）。
     /// </summary>
@@ -613,6 +629,7 @@ public sealed class MongoDataBase : IDateBase
             await GetCollection<T>(collection ?? typeof(T).Name).InsertManyAsync(list);
         }
     }
+
     /// <summary>
     /// 批量插入实体对象列表到数据库（加锁）。
     /// </summary>
@@ -624,13 +641,14 @@ public sealed class MongoDataBase : IDateBase
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
-            await GetCollection<T>(collection ?? typeof(T).Name).InsertManyAsync((IClientSessionHandle) transactionSession, list);
+            await GetCollection<T>(collection ?? typeof(T).Name).InsertManyAsync((IClientSessionHandle)transactionSession, list);
         }
     }
 
     #endregion
 
     #region Remove
+
     /// <summary>
     /// 根据ID删除单个实体对象（加锁）。
     /// </summary>
@@ -643,10 +661,11 @@ public sealed class MongoDataBase : IDateBase
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
-            var result = await GetCollection<T>(collection).DeleteOneAsync((IClientSessionHandle) transactionSession, d => d.Id == id);
+            var result = await GetCollection<T>(collection).DeleteOneAsync((IClientSessionHandle)transactionSession, d => d.Id == id);
             return result.DeletedCount;
         }
     }
+
     /// <summary>
     /// 根据ID删除单个实体对象（加锁）。
     /// </summary>
@@ -662,6 +681,7 @@ public sealed class MongoDataBase : IDateBase
             return result.DeletedCount;
         }
     }
+
     /// <summary>
     /// 根据ID和筛选条件删除多个实体对象（加锁）。
     /// </summary>
@@ -675,10 +695,11 @@ public sealed class MongoDataBase : IDateBase
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
-            var result = await GetCollection<T>(collection).DeleteManyAsync((IClientSessionHandle) transactionSession, filter);
+            var result = await GetCollection<T>(collection).DeleteManyAsync((IClientSessionHandle)transactionSession, filter);
             return result.DeletedCount;
         }
     }
+
     /// <summary>
     /// 根据ID和筛选条件删除多个实体对象（加锁）。
     /// </summary>
@@ -718,18 +739,19 @@ public sealed class MongoDataBase : IDateBase
         {
             return;
         }
-        
+
         var indexModels = new List<CreateIndexModel<T>>();
 
         foreach (object key in keys)
         {
-            IndexKeysDefinition<T> indexKeysDefinition = (IndexKeysDefinition<T>) key;
-            
+            IndexKeysDefinition<T> indexKeysDefinition = (IndexKeysDefinition<T>)key;
+
             indexModels.Add(new CreateIndexModel<T>(indexKeysDefinition));
         }
 
         await GetCollection<T>(collection).Indexes.CreateManyAsync(indexModels);
     }
+
     /// <summary>
     /// 创建数据库的索引（加锁）。
     /// </summary>
@@ -746,8 +768,8 @@ public sealed class MongoDataBase : IDateBase
 
         foreach (object key in keys)
         {
-            IndexKeysDefinition<T> indexKeysDefinition = (IndexKeysDefinition<T>) key;
-            
+            IndexKeysDefinition<T> indexKeysDefinition = (IndexKeysDefinition<T>)key;
+
             indexModels.Add(new CreateIndexModel<T>(indexKeysDefinition));
         }
 
@@ -757,6 +779,7 @@ public sealed class MongoDataBase : IDateBase
     #endregion
 
     #region CreateDB
+
     /// <summary>
     /// 创建数据库集合（如果不存在）。
     /// </summary>
@@ -770,11 +793,12 @@ public sealed class MongoDataBase : IDateBase
         {
             return;
         }
-        
+
         await _mongoDatabase.CreateCollectionAsync(name);
-        
+
         _collections.Add(name);
     }
+
     /// <summary>
     /// 创建数据库集合（如果不存在）。
     /// </summary>
@@ -782,12 +806,12 @@ public sealed class MongoDataBase : IDateBase
     public async FTask CreateDB(Type type)
     {
         string name = type.Name;
-        
+
         if (_collections.Contains(name))
         {
             return;
         }
-        
+
         await _mongoDatabase.CreateCollectionAsync(name);
 
         _collections.Add(name);

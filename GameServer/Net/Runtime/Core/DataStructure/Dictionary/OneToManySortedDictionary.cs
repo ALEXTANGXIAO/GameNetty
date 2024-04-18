@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+
 #pragma warning disable CS8601
 
 namespace GameServer
@@ -12,7 +13,7 @@ namespace GameServer
     /// <typeparam name="TValue">内部字典中的值类型。</typeparam>
     public class
         OneToManySortedDictionaryPool<TKey, TSortedKey, TValue> : OneToManySortedDictionary<TKey, TSortedKey, TValue>,
-            IDisposable where TKey : notnull where TSortedKey : notnull
+        IDisposable where TKey : notnull where TSortedKey : notnull
     {
         private bool _isDispose;
 
@@ -55,6 +56,7 @@ namespace GameServer
     {
         /// 缓存队列的回收限制
         private readonly int _recyclingLimit = 120;
+
         /// 缓存队列，用于存储已回收的内部排序字典
         private readonly Queue<SortedDictionary<TSortedKey, TValue>> _queue =
             new Queue<SortedDictionary<TSortedKey, TValue>>();

@@ -1,6 +1,7 @@
 // 以下指令用于禁止 ReSharper 警告，以处理可为空引用类型的情况。
 // 在此情况下，可以安全地禁用警告，因为我们处理的是非可为空类型。
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+
 namespace GameServer
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace GameServer
                 _runTimeId = 0;
                 return;
             }
-            
+
             _entity = t;
             _runTimeId = t.RuntimeId;
         }

@@ -18,6 +18,11 @@ namespace GameServer
         /// <summary>
         /// 使用TCP（传输控制协议）进行通信。
         /// </summary>
-        TCP = 2
+        TCP = 2,
+        
+        /// <summary>
+        /// 使用Websocket 进行通信。
+        /// </summary>
+        WebSocket,
     }
 }

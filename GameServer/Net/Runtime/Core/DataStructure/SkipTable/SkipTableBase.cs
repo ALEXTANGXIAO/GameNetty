@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 #pragma warning disable CS8601
 #pragma warning disable CS8603
 #pragma warning disable CS8625
@@ -18,26 +19,32 @@ namespace GameServer
         /// 跳表的最大层数
         /// </summary>
         public readonly int MaxLayer;
+
         /// <summary>
         /// 跳表的顶部头节点
         /// </summary>
         public readonly SkipTableNode<TValue> TopHeader;
+
         /// <summary>
         /// 跳表的底部头节点
         /// </summary>
         public SkipTableNode<TValue> BottomHeader;
+
         /// <summary>
         /// 跳表中节点的数量，使用了 Node 字典的计数
         /// </summary>
         public int Count => Node.Count;
+
         /// <summary>
         /// 用于生成随机数的随机数生成器
         /// </summary>
         protected readonly Random Random = new Random();
+
         /// <summary>
         /// 存储跳表节点的字典
         /// </summary>
         protected readonly Dictionary<long, SkipTableNode<TValue>> Node = new();
+
         /// <summary>
         /// 用于辅助反向查找的栈
         /// </summary>

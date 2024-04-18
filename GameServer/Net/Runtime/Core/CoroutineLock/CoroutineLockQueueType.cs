@@ -12,10 +12,13 @@ namespace GameServer
         /// 获取协程锁队列类型的名称。
         /// </summary>
         public readonly string Name;
+
         private readonly Dictionary<long, CoroutineLockQueue> _coroutineLockQueues = new Dictionary<long, CoroutineLockQueue>();
 
-        // 私有构造函数，防止外部实例化
-        private CoroutineLockQueueType() { }
+        // 私有构造函数，防止外部实例化。
+        private CoroutineLockQueueType()
+        {
+        }
 
         /// <summary>
         /// 初始化协程锁队列类型的实例。
@@ -37,7 +40,7 @@ namespace GameServer
         {
             if (_coroutineLockQueues.TryGetValue(key, out var coroutineLockQueue))
             {
-                return await coroutineLockQueue.Lock(tag,time);
+                return await coroutineLockQueue.Lock(tag, time);
             }
 
             coroutineLockQueue = CoroutineLockQueue.Create(key, time, this);

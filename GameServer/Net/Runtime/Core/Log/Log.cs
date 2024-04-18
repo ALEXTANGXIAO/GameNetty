@@ -87,6 +87,7 @@ namespace GameServer
                 LogCore.Error($"{e.Data["StackTrace"]}\n{e}");
                 return;
             }
+
             var str = e.ToString();
             LogCore.Error(str);
         }

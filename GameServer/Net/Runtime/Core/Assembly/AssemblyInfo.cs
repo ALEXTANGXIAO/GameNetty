@@ -17,18 +17,24 @@ namespace GameServer
         /// 获取或设置与此程序集相关联的 <see cref="Assembly"/> 实例。
         /// </summary>
         public Assembly Assembly { get; private set; }
+
         /// <summary>
         /// 程序集类型集合，获取一个列表，包含从程序集加载的所有类型。
         /// </summary>
         public readonly List<Type> AssemblyTypeList = new List<Type>();
+
         /// <summary>
         /// 程序集类型分组集合，获取一个分组列表，将接口类型映射到实现这些接口的类型。
         /// </summary>
         public readonly OneToManyList<Type, Type> AssemblyTypeGroupList = new OneToManyList<Type, Type>();
+
         /// <summary>
         /// 构造函数
         /// </summary>
-        public AssemblyInfo() { }
+        public AssemblyInfo()
+        {
+        }
+
         /// <summary>
         /// 构造函数、可以传递程序集
         /// </summary>
@@ -37,7 +43,7 @@ namespace GameServer
         {
             Load(assembly);
         }
-        
+
         /// <summary>
         /// 从指定的程序集加载类型信息并进行分类。
         /// </summary>

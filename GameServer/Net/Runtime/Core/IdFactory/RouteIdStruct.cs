@@ -16,6 +16,7 @@ namespace GameServer
         /// 进程 ID
         /// </summary>
         public ushort AppId;
+
         /// <summary>
         /// 世界 ID
         /// </summary>
@@ -25,6 +26,7 @@ namespace GameServer
         /// AppId 的掩码。
         /// </summary>
         public const int MaskAppId = 0xFF;
+
         /// <summary>
         /// WordId 的掩码。
         /// </summary>

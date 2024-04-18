@@ -32,6 +32,7 @@ namespace GameServer
             {
                 this[i].Dispose();
             }
+
             // 调用基类的 Clear 方法，清空列表
             base.Clear();
         }

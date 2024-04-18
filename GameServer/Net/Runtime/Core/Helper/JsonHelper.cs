@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+
 #pragma warning disable CS8603
 
 namespace GameServer

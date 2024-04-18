@@ -1,4 +1,3 @@
-
 namespace GameServer
 {
     /// <summary>
@@ -11,7 +10,9 @@ namespace GameServer
         /// 初始化跳表降序版的新实例。
         /// </summary>
         /// <param name="maxLayer">跳表的最大层数，默认为 8。</param>
-        public SkipTableDesc(int maxLayer = 8) : base(maxLayer) { }
+        public SkipTableDesc(int maxLayer = 8) : base(maxLayer)
+        {
+        }
 
         /// <summary>
         /// 向跳表中添加一个节点，根据降序规则进行插入。

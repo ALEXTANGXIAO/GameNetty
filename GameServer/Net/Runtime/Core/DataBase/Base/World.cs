@@ -10,14 +10,17 @@ public sealed class World
     /// 获取游戏世界的唯一标识。
     /// </summary>
     public uint Id { get; private init; }
+
     /// <summary>
     /// 获取游戏世界的数据库接口。
     /// </summary>
     public IDateBase DateBase { get; private init; }
+
     /// <summary>
     /// 获取游戏世界的配置信息。
     /// </summary>
     public WorldConfigInfo Config => ConfigTableManage.WorldConfigInfo(Id);
+
     /// <summary>
     /// 用于存储已创建的游戏世界实例
     /// </summary>
@@ -31,7 +34,7 @@ public sealed class World
     {
         Id = worldConfigInfo.Id;
         var dbType = worldConfigInfo.DbType.ToLower();
-        
+
         switch (dbType)
         {
             case "mongodb":

@@ -12,32 +12,39 @@ namespace GameServer
         /// 针对不同类型的配置表提供的委托，用于获取单个服务器配置信息
         /// </summary>
         public static Func<uint, ServerConfigInfo> ServerConfig;
+
         /// <summary>
         /// 针对不同类型的配置表提供的委托，用于获取单个机器配置信息
         /// </summary>
         public static Func<uint, MachineConfigInfo> MachineConfig;
+
         /// <summary>
         /// 针对不同类型的配置表提供的委托，用于获取单个场景配置信息
         /// </summary>
         public static Func<uint, SceneConfigInfo> SceneConfig;
+
         /// <summary>
         /// 针对不同类型的配置表提供的委托，用于获取单个世界配置信息
         /// </summary>
         public static Func<uint, WorldConfigInfo> WorldConfigInfo;
+
         /// <summary>
         /// 针对不同类型的配置表提供的委托，用于获取全部服务器配置信息列表
         /// </summary>
         public static Func<List<ServerConfigInfo>> AllServerConfig;
+
         /// <summary>
         /// 针对不同类型的配置表提供的委托，用于获取全部机器配置信息列表
         /// </summary>
         public static Func<List<MachineConfigInfo>> AllMachineConfig;
+
         /// <summary>
         /// 针对不同类型的配置表提供的委托，用于获取全部场景配置信息列表
         /// </summary>
         public static Func<List<SceneConfigInfo>> AllSceneConfig;
+
         // 配置表数据缓存字典
-        private static readonly Dictionary<string, AProto> ConfigDic = new ();
+        private static readonly Dictionary<string, AProto> ConfigDic = new();
 
         /// <summary>
         /// 加载配置表数据
@@ -47,12 +54,12 @@ namespace GameServer
         public static T Load<T>() where T : AProto
         {
             var dataConfig = typeof(T).Name;
-            
+
             if (ConfigDic.TryGetValue(dataConfig, out var aProto))
             {
                 return (T)aProto;
             }
-            
+
             try
             {
                 var configFile = GetConfigPath(dataConfig);
@@ -74,7 +81,7 @@ namespace GameServer
             {
                 return aProto;
             }
-            
+
             var fullName = $"GameServer.{dataConfig}";
             var assembly = AssemblyManager.GetAssembly(assemblyName);
             var type = assembly.GetType(fullName);
@@ -84,7 +91,7 @@ namespace GameServer
                 Log.Error($"not find {fullName} in assembly");
                 return null;
             }
-            
+
             try
             {
                 var configFile = GetConfigPath(type.Name);
@@ -124,7 +131,7 @@ namespace GameServer
         {
             foreach (var (_, aProto) in ConfigDic)
             {
-                ((IDisposable) aProto).Dispose();
+                ((IDisposable)aProto).Dispose();
             }
 
             ConfigDic.Clear();

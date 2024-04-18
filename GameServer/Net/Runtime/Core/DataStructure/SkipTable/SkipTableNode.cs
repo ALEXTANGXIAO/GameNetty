@@ -10,30 +10,37 @@ namespace GameServer
         /// 节点在跳跃表中的索引。
         /// </summary>
         public int Index;
+
         /// <summary>
         /// 节点的主键。
         /// </summary>
         public long Key;
+
         /// <summary>
         /// 节点的排序键。
         /// </summary>
         public long SortKey;
+
         /// <summary>
         /// 节点的副键。
         /// </summary>
         public long ViceKey;
+
         /// <summary>
         /// 节点存储的值。
         /// </summary>
         public TValue Value;
+
         /// <summary>
         /// 指向左侧节点的引用。
         /// </summary>
         public SkipTableNode<TValue> Left;
+
         /// <summary>
         /// 指向右侧节点的引用。
         /// </summary>
         public SkipTableNode<TValue> Right;
+
         /// <summary>
         /// 指向下一层节点的引用。
         /// </summary>

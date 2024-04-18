@@ -138,9 +138,9 @@ namespace GameServer
         /// </summary>
         public static void WriteTo(this byte[] bytes, int offset, uint num)
         {
-            bytes[offset]     = (byte)(num & 0xff);
-            bytes[offset + 1] = (byte)((num & 0xff00)     >> 8);
-            bytes[offset + 2] = (byte)((num & 0xff0000)   >> 16);
+            bytes[offset] = (byte)(num & 0xff);
+            bytes[offset + 1] = (byte)((num & 0xff00) >> 8);
+            bytes[offset + 2] = (byte)((num & 0xff0000) >> 16);
             bytes[offset + 3] = (byte)((num & 0xff000000) >> 24);
         }
 
@@ -149,9 +149,9 @@ namespace GameServer
         /// </summary>
         public static void WriteTo(this byte[] bytes, int offset, int num)
         {
-            bytes[offset]     = (byte)(num & 0xff);
-            bytes[offset + 1] = (byte)((num & 0xff00)     >> 8);
-            bytes[offset + 2] = (byte)((num & 0xff0000)   >> 16);
+            bytes[offset] = (byte)(num & 0xff);
+            bytes[offset + 1] = (byte)((num & 0xff00) >> 8);
+            bytes[offset + 2] = (byte)((num & 0xff0000) >> 16);
             bytes[offset + 3] = (byte)((num & 0xff000000) >> 24);
         }
 
@@ -168,7 +168,7 @@ namespace GameServer
         /// </summary>
         public static void WriteTo(this byte[] bytes, int offset, short num)
         {
-            bytes[offset]     = (byte)(num & 0xff);
+            bytes[offset] = (byte)(num & 0xff);
             bytes[offset + 1] = (byte)((num & 0xff00) >> 8);
         }
 
@@ -177,7 +177,7 @@ namespace GameServer
         /// </summary>
         public static void WriteTo(this byte[] bytes, int offset, ushort num)
         {
-            bytes[offset]     = (byte)(num & 0xff);
+            bytes[offset] = (byte)(num & 0xff);
             bytes[offset + 1] = (byte)((num & 0xff00) >> 8);
         }
 
@@ -188,7 +188,7 @@ namespace GameServer
         /// <returns>可读的速度表示</returns>
         public static string ToReadableSpeed(this long byteCount)
         {
-            var    i        = 0;
+            var i = 0;
             double dblSByte = byteCount;
             if (byteCount <= 1024)
             {
@@ -210,7 +210,7 @@ namespace GameServer
         /// <returns>可读的速度表示</returns>
         public static string ToReadableSpeed(this ulong byteCount)
         {
-            var    i        = 0;
+            var i = 0;
             double dblSByte = byteCount;
 
             if (byteCount <= 1024)

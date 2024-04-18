@@ -160,7 +160,7 @@ namespace GameServer
         /// <returns>反序列化得到的对象。</returns>
         public static T FromStream<T>(MemoryStream stream)
         {
-            return (T) Serializer.Deserialize(typeof(T), stream);
+            return (T)Serializer.Deserialize(typeof(T), stream);
         }
 
         /// <summary>

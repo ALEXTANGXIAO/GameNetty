@@ -48,8 +48,10 @@ namespace GameServer
     {
         /// 用于回收和重用的空闲值集合队列。
         private readonly Queue<HashSet<TValue>> _queue = new Queue<HashSet<TValue>>();
+
         /// 设置最大回收限制，用于控制值集合的最大数量。
         private readonly int _recyclingLimit = 120;
+
         /// 一个空的、不包含任何元素的哈希集合，用于在查找失败时返回。
         private static HashSet<TValue> _empty = new HashSet<TValue>();
 

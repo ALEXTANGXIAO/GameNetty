@@ -1,5 +1,4 @@
 using CommandLine;
-
 using NLog;
 
 namespace GameServer
@@ -44,6 +43,7 @@ namespace GameServer
                     throw new NotSupportedException($"AppType is {AppDefine.Options.AppType} Unrecognized!");
                 }
             }
+
             // 根据不同的运行模式来选择日志的方式
             switch (AppDefine.Options.Mode)
             {
@@ -66,6 +66,7 @@ namespace GameServer
                     break;
                 }
             }
+
             // 初始化SingletonSystemCenter这个一定要放到最前面
             // 因为SingletonSystem会注册AssemblyManager的OnLoadAssemblyEvent和OnUnLoadAssemblyEvent的事件
             // 如果不这样、会无法把程序集的单例注册到SingletonManager中
@@ -87,12 +88,12 @@ namespace GameServer
                 {
                     // 开发模式默认所有Server都在一个进程中、方便调试、但网络还都是独立的
                     var serverConfigInfos = ConfigTableManage.AllServerConfig();
-                    
+
                     foreach (var serverConfig in serverConfigInfos)
                     {
                         await Server.Create(serverConfig.Id);
                     }
-                
+
                     return;
                 }
                 case "Release":

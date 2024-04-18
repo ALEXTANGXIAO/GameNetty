@@ -18,6 +18,7 @@ namespace GameServer
         /// 获取协程锁队列的类型。
         /// </summary>
         public CoroutineLockQueueType CoroutineLockQueueType { get; private set; }
+
         private readonly Queue<WaitCoroutineLock> _waitCoroutineLocks = new Queue<WaitCoroutineLock>();
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace GameServer
                 CoroutineLockQueueType.Remove(Key);
                 return;
             }
-            
+
             while (_waitCoroutineLocks.TryDequeue(out var waitCoroutineLock))
             {
                 if (waitCoroutineLock.IsDisposed)
@@ -84,7 +85,7 @@ namespace GameServer
                     // 已释放的等待锁，继续处理下一个
                     continue;
                 }
-                
+
                 waitCoroutineLock.SetResult();
                 break;
             }

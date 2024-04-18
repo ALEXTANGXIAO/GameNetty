@@ -106,7 +106,8 @@ namespace GameServer
             {
                 if (!autoFirstMatch)
                 {
-                    var fullPath = UnityEngine.Application.dataPath.Substring(0, UnityEngine.Application.dataPath.LastIndexOf("Assets", StringComparison.Ordinal));
+                    var fullPath =
+ UnityEngine.Application.dataPath.Substring(0, UnityEngine.Application.dataPath.LastIndexOf("Assets", StringComparison.Ordinal));
                     fullPath = $"{fullPath}{assetPath}";
                     // 跳转到目标代码的特定行
                     InternalEditorUtility.OpenFileAtLineExternal(fullPath.Replace('/', '\\'), line);
@@ -128,7 +129,8 @@ namespace GameServer
                         var path = pathLine.Substring(0, splitIndex);
                         // 行号
                         line = Convert.ToInt32(pathLine.Substring(splitIndex + 1));
-                        var fullPath = UnityEngine.Application.dataPath.Substring(0, UnityEngine.Application.dataPath.LastIndexOf("Assets", StringComparison.Ordinal));
+                        var fullPath =
+ UnityEngine.Application.dataPath.Substring(0, UnityEngine.Application.dataPath.LastIndexOf("Assets", StringComparison.Ordinal));
                         fullPath = $"{fullPath}{path}";
                         // 跳转到目标代码的特定行
                         InternalEditorUtility.OpenFileAtLineExternal(fullPath.Replace('/', '\\'), line);

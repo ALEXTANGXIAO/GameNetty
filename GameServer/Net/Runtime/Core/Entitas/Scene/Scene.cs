@@ -28,14 +28,17 @@ namespace GameServer
         /// 获取或设置场景类型。
         /// </summary>
         public int SceneType { get; private set; }
+
         /// <summary>
         /// 获取或设置场景子类型。
         /// </summary>
         public int SceneSubType { get; private set; }
+
         /// <summary>
         /// 获取或设置所属世界。
         /// </summary>
         public World? World { get; private set; }
+
         /// <summary>
         /// 获取或设置所属服务器。
         /// </summary>
@@ -55,7 +58,7 @@ namespace GameServer
             {
                 return;
             }
-            
+
             base.Dispose();
             LocationId = 0;
 #if GAMESERVER_NET
@@ -109,7 +112,8 @@ namespace GameServer
         /// <param name="onConnectFail">连接失败回调。</param>
         /// <param name="onConnectDisconnect">连接断开回调。</param>
         /// <param name="connectTimeout">连接超时时间（毫秒）。</param>
-        public void CreateSession(string remoteAddress, NetworkProtocolType networkProtocolType, Action onConnectComplete, Action onConnectFail, Action onConnectDisconnect, int connectTimeout = 5000)
+        public void CreateSession(string remoteAddress, NetworkProtocolType networkProtocolType, Action onConnectComplete, Action onConnectFail, Action onConnectDisconnect, int connectTimeout
+ = 5000)
         {
             var address = NetworkHelper.ToIPEndPoint(remoteAddress);
             var clientNetworkComponent = GetComponent<ClientNetworkComponent>() ?? AddComponent<ClientNetworkComponent>();
@@ -162,13 +166,14 @@ namespace GameServer
         /// <param name="outerBindIp">外部绑定IP。</param>
         /// <param name="outerPort">外部端口。</param>
         /// <returns>新创建的场景实体。</returns>
-        public static async FTask<Scene> Create(Server server, int sceneType = 0, int sceneSubType = 0, long sceneId = 0, uint worldId = 0, string networkProtocol = null, string outerBindIp = null, int outerPort = 0)
+        public static async FTask<Scene> Create(Server server, int sceneType = 0, int sceneSubType = 0, long sceneId = 0, uint worldId = 0,
+            string networkProtocol = null, string outerBindIp = null, int outerPort = 0)
         {
             if (sceneId == 0)
             {
                 sceneId = new EntityIdStruct(server.Id, 0, 0);
             }
-            
+
             var scene = Create<Scene>(sceneId, sceneId);
             scene.Scene = scene;
             scene.Parent = scene;
@@ -217,7 +222,7 @@ namespace GameServer
                 {
                     continue;
                 }
-                
+
                 list.Add(sceneConfigInfo);
             }
 

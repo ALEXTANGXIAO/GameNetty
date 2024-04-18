@@ -74,7 +74,7 @@ namespace GameServer
             }
 
             _assemblyList.RemoveByKey(assemblyName);
-            
+
             foreach (var type in assembly)
             {
                 _awakeSystems.Remove(type);
@@ -93,7 +93,7 @@ namespace GameServer
         public void Awake<T>(T entity) where T : Entity
         {
             var type = entity.GetType();
-            
+
             if (!_awakeSystems.TryGetValue(type, out var awakeSystem))
             {
                 return;
@@ -141,7 +141,7 @@ namespace GameServer
         public void Deserialize<T>(T entity) where T : Entity
         {
             var type = entity.GetType();
-            
+
             if (!_deserializeSystems.TryGetValue(type, out var system))
             {
                 return;
@@ -165,12 +165,12 @@ namespace GameServer
         {
             var type = entity.GetType();
             var entityRuntimeId = entity.RuntimeId;
-            
+
             if (_updateSystems.ContainsKey(type))
             {
                 _updateQueue.Enqueue(entityRuntimeId);
             }
-            
+
             if (_frameUpdateSystem.ContainsKey(type))
             {
                 _frameUpdateQueue.Enqueue(entityRuntimeId);
@@ -188,12 +188,12 @@ namespace GameServer
             {
                 var runtimeId = _frameUpdateQueue.Dequeue();
                 var entity = Entity.GetEntity(runtimeId);
-                
+
                 if (entity == null || entity.IsDisposed)
                 {
                     continue;
                 }
-                
+
                 var type = entity.GetType();
 
                 if (!_frameUpdateSystem.TryGetValue(type, out var frameUpdateSystem))
@@ -202,7 +202,7 @@ namespace GameServer
                 }
 
                 _frameUpdateQueue.Enqueue(runtimeId);
-                
+
                 try
                 {
                     frameUpdateSystem.Invoke(entity);
@@ -258,14 +258,14 @@ namespace GameServer
         {
             _updateQueue.Clear();
             _frameUpdateQueue.Clear();
-            
+
             _assemblyList.Clear();
             _awakeSystems.Clear();
             _updateSystems.Clear();
             _destroySystems.Clear();
             _deserializeSystems.Clear();
             _frameUpdateSystem.Clear();
-            
+
             AssemblyManager.OnLoadAssemblyEvent -= OnLoad;
             AssemblyManager.OnUnLoadAssemblyEvent -= OnUnLoad;
             base.Dispose();
