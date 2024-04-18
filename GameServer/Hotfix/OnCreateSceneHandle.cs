@@ -31,6 +31,9 @@ public class OnCreateSceneHandle : AsyncEventSystem<OnCreateSceneEvent>
                 break;
             }
         }
+        
+        Log.Info($"scene create: {self.Scene.SceneType} SceneId:{self.Scene.Id} LocationId:{self.Scene.LocationId} WorldId:{self.Scene.World?.Id}");
+
 
         await FTask.CompletedTask;
     }

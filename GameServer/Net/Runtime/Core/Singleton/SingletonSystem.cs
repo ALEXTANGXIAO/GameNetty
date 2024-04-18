@@ -62,7 +62,7 @@ namespace GameServer
             }
 
             Task.WaitAll(task.ToArray());
-            // Log.Info($"assembly:{assemblyName} load Singleton count:{count}");
+            Log.Info($"Assembly:{AssemblyManager.GetAssembly(assemblyName).FullName} load Singleton count:{count}");
         }
 
         private static void UnLoad(Queue<ISingleton> singletons)

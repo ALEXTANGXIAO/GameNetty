@@ -179,7 +179,7 @@ namespace GameServer
             
             var sceneInfos = Scene.GetSceneInfoByServerConfigId(serverConfigId);
             await Create(serverConfigId, machineConfigInfo.InnerBindIP, serverConfigInfo.InnerPort, machineConfigInfo.OuterBindIP, sceneInfos);
-            Log.Debug($"ServerId:{serverConfigId} is start complete");
+            // Log.Debug($"ServerId:{serverConfigId} is start complete");
         }
 
         /// <summary>

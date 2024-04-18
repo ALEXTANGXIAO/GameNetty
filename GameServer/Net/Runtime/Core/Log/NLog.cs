@@ -26,7 +26,8 @@ public class NLog : ILog
     /// <param name="message">日志消息。</param>
     public void Trace(string message)
     {
-        _logger.Trace(message);
+        string result = $"[TRACE] - {message}";
+        _logger.Trace(result);
     }
 
     /// <summary>
@@ -35,7 +36,8 @@ public class NLog : ILog
     /// <param name="message">日志消息。</param>
     public void Warning(string message)
     {
-        _logger.Warn(message);
+        string result = $"[WARN ] - {message}";
+        _logger.Warn(result);
     }
 
     /// <summary>
@@ -44,7 +46,8 @@ public class NLog : ILog
     /// <param name="message">日志消息。</param>
     public void Info(string message)
     {
-        _logger.Info(message);
+        string result = $"[INFO ] - {message}";
+        _logger.Info(result);
     }
 
     /// <summary>
@@ -53,7 +56,8 @@ public class NLog : ILog
     /// <param name="message">日志消息。</param>
     public void Debug(string message)
     {
-        _logger.Debug(message);
+        string result = $"[DEBUG] - {message}";
+        _logger.Debug(result);
     }
 
     /// <summary>
@@ -62,7 +66,8 @@ public class NLog : ILog
     /// <param name="message">日志消息。</param>
     public void Error(string message)
     {
-        _logger.Error(message);
+        string result = $"[ERROR] - {message}";
+        _logger.Error(result);
     }
 
     /// <summary>
@@ -71,7 +76,8 @@ public class NLog : ILog
     /// <param name="message">日志消息。</param>
     public void Fatal(string message)
     {
-        _logger.Fatal(message);
+        string result = $"[FATAL] - {message}";
+        _logger.Fatal(result);
     }
 
     /// <summary>
@@ -81,7 +87,9 @@ public class NLog : ILog
     /// <param name="args">格式化参数。</param>
     public void Trace(string message, params object[] args)
     {
-        _logger.Trace(message, args);
+        string messageFormat = string.Format(message, args);
+        string result = $"[TRACE] - {messageFormat}";
+        _logger.Trace(result);
     }
 
     /// <summary>
@@ -91,7 +99,9 @@ public class NLog : ILog
     /// <param name="args">格式化参数。</param>
     public void Warning(string message, params object[] args)
     {
-        _logger.Warn(message, args);
+        string messageFormat = string.Format(message, args);
+        string result = $"[WARN ] - {messageFormat}";
+        _logger.Warn(result);
     }
 
     /// <summary>
@@ -101,7 +111,9 @@ public class NLog : ILog
     /// <param name="args">格式化参数。</param>
     public void Info(string message, params object[] args)
     {
-        _logger.Info(message, args);
+        string messageFormat = string.Format(message, args);
+        string result = $"[INFO ] - {messageFormat}";
+        _logger.Info(result);
     }
 
     /// <summary>
@@ -111,7 +123,9 @@ public class NLog : ILog
     /// <param name="args">格式化参数。</param>
     public void Debug(string message, params object[] args)
     {
-        _logger.Debug(message, args);
+        string messageFormat = string.Format(message, args);
+        string result = $"[DEBUG] - {messageFormat}";
+        _logger.Debug(result);
     }
 
     /// <summary>
@@ -121,7 +135,9 @@ public class NLog : ILog
     /// <param name="args">格式化参数。</param>
     public void Error(string message, params object[] args)
     {
-        _logger.Error(message, args);
+        string messageFormat = string.Format(message, args);
+        string result = $"[ERROR] - {messageFormat}";
+        _logger.Error(result);
     }
 
     /// <summary>
@@ -131,7 +147,9 @@ public class NLog : ILog
     /// <param name="args">格式化参数。</param>
     public void Fatal(string message, params object[] args)
     {
-        _logger.Fatal(message, args);
+        string messageFormat = string.Format(message, args);
+        string result = $"[FATAL] - {messageFormat}";
+        _logger.Fatal(result);
     }
 }
 #endif
