@@ -1,0 +1,20 @@
+#if SERVER
+using ProtoBuf;
+using Unity.Mathematics;
+using System.Collections.Generic;
+using GameServer;
+#pragma warning disable CS8618
+
+namespace GameServer
+{	
+#else
+using ProtoBuf;
+using Unity.Mathematics;
+using System.Collections.Generic;
+using GameServer;
+#pragma warning disable CS8618
+
+namespace GameServer
+{
+#endif
+(Content)}
