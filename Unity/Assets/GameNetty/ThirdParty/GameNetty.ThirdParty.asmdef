@@ -1,0 +1,16 @@
+{
+    "name": "GameNetty.ThirdParty",
+    "rootNamespace": "ET",
+    "references": [
+        "MemoryPack"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
