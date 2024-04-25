@@ -1,2 +1,2 @@
-# GameServer
-GameServer
+# GameNetty
+GameNetty
