@@ -228,7 +228,7 @@ namespace GameNetty
 #endif
             if (!_messageHandlers.TryGetValue(type, out var messageHandler))
             {
-                Log.Warning($"Scene:{session.Scene.Id} Found Unhandled Message: {message.GetType()}");
+                NettyLog.Warning($"Scene:{session.Scene.Id} Found Unhandled Message: {message.GetType()}");
                 return;
             }
             

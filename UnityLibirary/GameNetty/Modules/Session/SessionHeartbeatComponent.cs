@@ -1,3 +1,6 @@
+using System;
+using LZ4;
+
 #if GAME_UNITY
 
 namespace GameNetty
@@ -26,17 +29,24 @@ namespace GameNetty
             Ping = 0;
             _session = null;
             _selfRunTimeId = 0;
+            _onDissConnect = null;
             base.Dispose();
         }
+        
+        private int _tempCnt = 0;
+        
+        private Action _onDissConnect;
 
         /// <summary>
         /// 使用指定的间隔启动心跳功能。
         /// </summary>
         /// <param name="interval">以毫秒为单位的心跳请求发送间隔。</param>
-        public void Start(int interval)
+        /// <param name="onDissConnect">失去心跳回调。</param>
+        public void Start(int interval,Action onDissConnect = null)
         {
             _session = (Session)Parent;
             _selfRunTimeId = RuntimeId;
+            _onDissConnect = onDissConnect;
             _timerId = TimerScheduler.Instance.Unity.RepeatedTimer(interval, () => RepeatedSend().Coroutine());
         }
 
@@ -64,17 +74,47 @@ namespace GameNetty
                 Stop();
             }
             
-            var requestTime = TimeHelper.Now;
-            var pingResponse = (PingResponse)await _session.Call(_pingRequest);
-
-            if (pingResponse.ErrorCode != 0)
+            // var requestTime = TimeHelper.Now;
+            // var pingResponse = (PingResponse)await _session.Call(_pingRequest);
+            //
+            // if (pingResponse.ErrorCode != 0)
+            // {
+            //     return;
+            // }
+            //
+            // var responseTime = TimeHelper.Now; // 记录接收心跳响应的时间
+            // Ping = (int)(responseTime - requestTime) / 2;
+            // TimeHelper.TimeDiff = pingResponse.Now + Ping - responseTime;
+            try
             {
-                return;
+                _tempCnt ++;
+
+                if (_tempCnt > 3)
+                {
+                    _onDissConnect?.Invoke();
+                    _tempCnt = 0;
+                    return;
+                }
+                
+                var requestTime = TimeHelper.Now;
+                var pingResponse = (PingResponse)await _session.Call(_pingRequest);
+
+                if (pingResponse.ErrorCode != 0)
+                {
+                    return;
+                }
+
+                _tempCnt--;
+                
+                var responseTime = TimeHelper.Now; // 记录接收心跳响应的时间
+                Ping = (int)(responseTime - requestTime) / 2;
+                TimeHelper.TimeDiff = pingResponse.Now + Ping - responseTime;
             }
-            
-            var responseTime = TimeHelper.Now; // 记录接收心跳响应的时间
-            Ping = (int)(responseTime - requestTime) / 2;
-            TimeHelper.TimeDiff = pingResponse.Now + Ping - responseTime;
+            catch (Exception e)
+            {
+                Stop();
+                _onDissConnect?.Invoke();
+            }
         }
     }
 }

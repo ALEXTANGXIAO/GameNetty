@@ -56,7 +56,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
             }
         }
 
@@ -97,7 +97,7 @@ namespace GameNetty
         {
             if (message is not TRequest request)
             {
-                Log.Error($"消息类型转换错误: {message.GetType().Name} to {typeof(TRequest).Name}");
+                NettyLog.Error($"消息类型转换错误: {message.GetType().Name} to {typeof(TRequest).Name}");
                 return;
             }
             
@@ -127,7 +127,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
                 response.ErrorCode = CoreErrorCode.ErrRpcFail;
             }
             finally
@@ -182,7 +182,7 @@ namespace GameNetty
             
             if (_delegates.Contains(a))
             {
-                Log.Error($"{typeof(T).Name} already register action delegateName:{a.Method.Name}");
+                NettyLog.Error($"{typeof(T).Name} already register action delegateName:{a.Method.Name}");
                 return;
             }
 
@@ -205,7 +205,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }

@@ -177,7 +177,7 @@ namespace GameNetty
                     }
                     catch (Exception e)
                     {
-                        Log.Error(e);
+                        NettyLog.Error(e);
                     }
                 }
 
@@ -217,7 +217,7 @@ namespace GameNetty
                     }
                     catch (Exception e)
                     {
-                        Log.Error(e);
+                        NettyLog.Error(e);
                     }
                     finally
                     {

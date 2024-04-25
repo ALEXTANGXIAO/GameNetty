@@ -170,7 +170,7 @@ namespace GameNetty
 
             if (waitSendSize > _maxSndWnd)
             {
-                Log.Warning($"ERR_KcpWaitSendSizeTooLarge {waitSendSize} > {_maxSndWnd}");
+                NettyLog.Warning($"ERR_KcpWaitSendSizeTooLarge {waitSendSize} > {_maxSndWnd}");
                 Dispose();
                 return;
             }
@@ -226,7 +226,7 @@ namespace GameNetty
 
                     if (receiveCount != peekSize)
                     {
-                        Log.Error($"receiveCount != peekSize receiveCount:{receiveCount} peekSize:{peekSize}");
+                        NettyLog.Error($"receiveCount != peekSize receiveCount:{receiveCount} peekSize:{peekSize}");
                         break;
                     }
 
@@ -248,7 +248,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -286,7 +286,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
             }
         }
 

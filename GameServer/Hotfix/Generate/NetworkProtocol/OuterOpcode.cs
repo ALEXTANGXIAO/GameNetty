@@ -18,5 +18,23 @@ namespace GameNetty
 		 public const int M2C_ExitResponse = 250000002;
 		 public const int C2M_MoveMessage = 190000001;
 		 public const int M2C_MoveBroadcast = 190000002;
+		 public const int H_C2G_Message = 100000001;
+		 public const int H_C2G_MessageRequest = 110000006;
+		 public const int H_G2C_MessageResponse = 160000006;
+		 public const int H_C2G_PushMessageToClient = 100000002;
+		 public const int H_G2C_ReceiveMessageToServer = 100000003;
+		 public const int H_C2G_LoginAddressRequest = 110000007;
+		 public const int H_G2C_LoginAddressResponse = 160000007;
+		 public const int H_C2M_Message = 190000003;
+		 public const int H_C2M_MessageRequest = 200000003;
+		 public const int H_M2C_MessageResponse = 250000003;
+		 public const int H_C2M_PushAddressMessageToClient = 190000004;
+		 public const int H_M2C_ReceiveAddressMessageToServer = 190000005;
+		 public const int H_C2G_LoginRequest = 110000008;
+		 public const int H_G2C_LoginResponse = 160000008;
+		 public const int H_C2G_RegisterRequest = 110000009;
+		 public const int H_G2C_RegisterResponse = 160000009;
+		 public const int CmdGmReq = 110000010;
+		 public const int CmdGmRes = 160000010;
 	}
 }

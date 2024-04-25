@@ -40,7 +40,7 @@ namespace GameNetty
             var key = coroutineLockQueue.Key;
 
             // 记录日志，指明超时的协程锁队列类型、键值和标签
-            Log.Error($"coroutine lock timeout CoroutineLockQueueType:{coroutineLockQueueType.Name} Key:{key} Tag:{self.WaitCoroutineLock.Tag}");
+            NettyLog.Error($"coroutine lock timeout CoroutineLockQueueType:{coroutineLockQueueType.Name} Key:{key} Tag:{self.WaitCoroutineLock.Tag}");
         }
     }
 
@@ -103,7 +103,7 @@ namespace GameNetty
         {
             if (IsDisposed)
             {
-                Log.Error("WaitCoroutineLock is Dispose");
+                NettyLog.Error("WaitCoroutineLock is Dispose");
                 return;
             }
             

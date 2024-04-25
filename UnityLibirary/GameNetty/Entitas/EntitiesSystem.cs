@@ -104,7 +104,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error($"{type.Name} Error {e}");
+                NettyLog.Error($"{type.Name} Error {e}");
             }
         }
 
@@ -128,7 +128,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error($"{type.Name} Error {e}");
+                NettyLog.Error($"{type.Name} Error {e}");
             }
         }
 
@@ -152,7 +152,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error($"{type.Name} Error {e}");
+                NettyLog.Error($"{type.Name} Error {e}");
             }
         }
 
@@ -208,7 +208,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error($"{type} Error {e}");
+                    NettyLog.Error($"{type} Error {e}");
                 }
             }
         }
@@ -245,7 +245,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error($"{type} Error {e}");
+                    NettyLog.Error($"{type} Error {e}");
                 }
             }
         }
