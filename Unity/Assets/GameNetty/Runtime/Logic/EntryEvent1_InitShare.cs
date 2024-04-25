@@ -11,6 +11,11 @@ namespace ET
             root.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.UnOrderedMessage);
             root.AddComponent<ProcessInnerSender>();
             
+            // Client Owner
+            
+            root.AddComponent<CurrentScenesComponent>();
+            await EventSystem.Instance.PublishAsync(root, new AppStartInitFinish());
+                        
             await ETTask.CompletedTask;
         }
     }

@@ -37,10 +37,10 @@ namespace ET
             // 注册Entity序列化器
             EntitySerializeRegister.Init();
             World.Instance.AddSingleton<IdGenerater>();
-            // World.Instance.AddSingleton<OpcodeType>();
+            World.Instance.AddSingleton<OpcodeType>();
             World.Instance.AddSingleton<ObjectPool>();
-            // World.Instance.AddSingleton<MessageQueue>();
-            // World.Instance.AddSingleton<NetServices>();
+            World.Instance.AddSingleton<MessageQueue>();
+            World.Instance.AddSingleton<NetServices>();
             // World.Instance.AddSingleton<LogMsg>();
 
             // 创建需要reload的code singleton

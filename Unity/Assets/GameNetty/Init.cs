@@ -5,6 +5,33 @@ using UnityEngine;
 
 public class Init : MonoBehaviour
 {
+    [Event(SceneType.Main)]
+    public class OnAppStartInitFinish: AEvent<Scene, AppStartInitFinish>
+    {
+        protected override async ETTask Run(Scene root, AppStartInitFinish args)
+        {
+            await ETTask.CompletedTask;
+            
+            Log.Warning("On AppStartInit Finish");
+            
+
+        }
+        
+        public static async ETTask<long> LoginAsync(Scene root, string account, string password)
+        {
+            var fiberId = await FiberManager.Instance.Create(SchedulerType.ThreadPool, 0, SceneType.NetClient, "");
+            var netClientActorId = new ActorId(root.Fiber().Process, fiberId);
+
+            // Main2NetClient_Login main2NetClientLogin = Main2NetClient_Login.Create();
+            // main2NetClientLogin.OwnerFiberId = root.Fiber().Id;
+            // main2NetClientLogin.Account = account;
+            // main2NetClientLogin.Password = password;
+            // NetClient2Main_Login response = await root.Root().GetComponent<ProcessInnerSender>().Call(netClientActorId, main2NetClientLogin) as NetClient2Main_Login;
+            // return response.PlayerId;
+            return 0;
+        }
+    }
+    
     private void Start()
     {
         this.StartAsync().Coroutine();
