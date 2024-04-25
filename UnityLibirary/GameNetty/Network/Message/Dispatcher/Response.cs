@@ -1,0 +1,6 @@
+using ProtoBuf;
+
+namespace GameNetty
+{
+    
+}
