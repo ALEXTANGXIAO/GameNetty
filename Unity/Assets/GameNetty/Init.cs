@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using ET;
+using System;
+using System.Reflection;
 using UnityEngine;
 
 public class Init : MonoBehaviour
@@ -30,8 +29,19 @@ public class Init : MonoBehaviour
         // await codeLoader.DownloadAsync();
 			     //
         // codeLoader.Start();
+        await ETTask.CompletedTask;
         
         Log.Debug($"StartAsync");
+
+        Assembly runtime = typeof(Entry).Assembly;
+        
+        World.Instance.AddSingleton<CodeTypes, Assembly[]>(new[]
+        {
+            typeof (World).Assembly, typeof (Init).Assembly,
+        });
+
+        IStaticMethod start = new StaticMethod(runtime, "ET.Entry", "Start");
+        start.Run();
     }
     
     private void Update()

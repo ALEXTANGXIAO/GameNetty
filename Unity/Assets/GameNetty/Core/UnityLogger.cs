@@ -7,22 +7,22 @@ namespace ET
     {
         public void Trace(string msg)
         {
-            UnityEngine.Debug.Log(msg);
+            UnityEngine.Debug.Log($"<color=gray><b>[Trace] ► </b></color> - {msg}");
         }
 
         public void Debug(string msg)
         {
-            UnityEngine.Debug.Log(msg);
+            UnityEngine.Debug.Log($"<color=#gray><b>[Debug] ► </b></color> - {msg}");
         }
 
         public void Info(string msg)
         {
-            UnityEngine.Debug.Log(msg);
+            UnityEngine.Debug.Log($"<color=gray><b>[Info] ► </b></color> - {msg}");
         }
 
         public void Warning(string msg)
         {
-            UnityEngine.Debug.LogWarning(msg);
+            UnityEngine.Debug.LogWarning($"<color=#FF9400><b>[WARNING] ► </b></color> - {msg}");
         }
 
         public void Error(string msg)
@@ -30,7 +30,7 @@ namespace ET
 #if UNITY_EDITOR
             msg = Msg2LinkStackMsg(msg);
 #endif
-            UnityEngine.Debug.LogError(msg);
+            UnityEngine.Debug.LogError($"<color=red><b>[ERROR] ► </b></color> - {msg}");
         }
         
         private static string Msg2LinkStackMsg(string msg)
@@ -46,7 +46,7 @@ namespace ET
 
         public void Error(Exception e)
         {
-            UnityEngine.Debug.LogException(e);
+            UnityEngine.Debug.LogException(new Exception($"<color=red><b>[ERROR] ► </b></color> - {e}"));
         }
 
         public void Trace(string message, params object[] args)
