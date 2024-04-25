@@ -1,5 +1,5 @@
 #if GAMESERVER_NET
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 服务器配置信息。

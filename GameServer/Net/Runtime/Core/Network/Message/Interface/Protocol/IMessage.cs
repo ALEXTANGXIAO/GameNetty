@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示通用消息接口。

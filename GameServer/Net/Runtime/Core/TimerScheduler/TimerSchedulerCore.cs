@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #pragma warning disable CS8625
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 计时器调度核心类，提供计时器的核心功能。

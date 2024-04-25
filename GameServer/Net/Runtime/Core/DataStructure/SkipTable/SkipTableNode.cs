@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 跳跃表节点。

@@ -8,7 +8,7 @@ using System.Net;
 #pragma warning disable CS8601
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 网络会话的基类，用于管理网络通信。

@@ -3,7 +3,7 @@ using System;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 网络消息发送者的类。

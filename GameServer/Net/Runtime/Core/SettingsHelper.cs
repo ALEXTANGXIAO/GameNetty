@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 #pragma warning disable CS8601
 #pragma warning disable CS8618
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// SettingsHelper 类用于加载和管理Server系统的各项设置。

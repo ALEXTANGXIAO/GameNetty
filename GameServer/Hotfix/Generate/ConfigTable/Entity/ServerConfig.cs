@@ -1,6 +1,6 @@
 using System;
 using ProtoBuf;
-using GameServer;
+using GameNetty;
 using System.Linq;
 using System.Collections.Generic;
 // ReSharper disable CollectionNeverUpdated.Global
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 #pragma warning disable CS8625
 #pragma warning disable CS8603
 
-namespace GameServer
+namespace GameNetty
 {
     [ProtoContract]
     public sealed partial class ServerConfigData :  AProto, IConfigTable, IDisposable

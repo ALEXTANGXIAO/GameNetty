@@ -5,7 +5,7 @@ using System.Collections.Generic;
 #pragma warning disable CS8604
 #pragma warning disable CS8603
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供一个双向映射字典对象池类，用于双向键值对映射。

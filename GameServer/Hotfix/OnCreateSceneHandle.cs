@@ -1,4 +1,4 @@
-using GameServer;
+using GameNetty;
 
 /// <summary>
 /// Scene创建后处理。

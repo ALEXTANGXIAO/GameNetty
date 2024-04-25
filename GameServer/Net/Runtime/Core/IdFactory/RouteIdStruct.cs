@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示一个路由 ID 的结构。

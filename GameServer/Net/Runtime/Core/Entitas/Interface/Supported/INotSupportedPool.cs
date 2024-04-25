@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// Entity不支持对象池创建和回收

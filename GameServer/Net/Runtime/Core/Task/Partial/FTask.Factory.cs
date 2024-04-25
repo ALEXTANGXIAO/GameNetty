@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供用于异步任务操作的静态方法和对象创建。

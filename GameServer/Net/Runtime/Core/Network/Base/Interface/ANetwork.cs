@@ -6,7 +6,7 @@ using System.IO;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 消息缓存信息结构。

@@ -3,7 +3,7 @@ using System.IO;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 不同类型的网络操作。

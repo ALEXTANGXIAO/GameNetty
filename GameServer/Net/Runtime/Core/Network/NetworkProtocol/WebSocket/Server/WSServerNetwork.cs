@@ -1,4 +1,4 @@
-﻿namespace GameServer;
+﻿namespace GameNetty;
 
 /// <summary>
 /// 表示 Websocket 协议服务端网络类。

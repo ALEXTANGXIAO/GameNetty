@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 // ReSharper disable SuspiciousTypeConversion.Global
 // ReSharper disable InconsistentNaming
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 实体基类，用于实体创建、回收、获取，和组件操作

@@ -1,7 +1,7 @@
 using System;
 
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 等待协程锁超时的数据结构。

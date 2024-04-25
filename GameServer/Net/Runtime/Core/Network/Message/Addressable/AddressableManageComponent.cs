@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 地址映射管理组件，用于管理地址映射和锁定。

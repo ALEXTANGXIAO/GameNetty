@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 // ReSharper disable PossibleNullReferenceException
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 用于存储消息处理器的信息，包括类型和对象实例。

@@ -1,6 +1,6 @@
 using System;
 #pragma warning disable CS1591
-namespace GameServer
+namespace GameNetty
 {
     public class KCPSettings
     {

@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 跳表降序版，用于存储降序排列的数据。

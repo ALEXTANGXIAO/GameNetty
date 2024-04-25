@@ -1,5 +1,5 @@
 #if GAMESERVER_NET
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 机器配置信息的类。

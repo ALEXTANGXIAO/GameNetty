@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace GameServer.Exporter;
+namespace GameNetty.Exporter;
 
 /// <summary>
 /// 定义日志记录功能的接口。

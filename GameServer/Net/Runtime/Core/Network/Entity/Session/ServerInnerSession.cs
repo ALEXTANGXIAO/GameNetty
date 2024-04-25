@@ -1,5 +1,5 @@
 #if GAMESERVER_NET
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 网络服务器内部会话。

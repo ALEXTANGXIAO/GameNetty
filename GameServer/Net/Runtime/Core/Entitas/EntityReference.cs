@@ -2,7 +2,7 @@
 // 在此情况下，可以安全地禁用警告，因为我们处理的是非可为空类型。
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 实体引用只读结构，用作对 Entity 实例的引用。

@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     using System;
 

@@ -20,7 +20,7 @@
 // THE SOFTWARE.
 // ---------------------------------------------------------------------
 
-namespace GameServer
+namespace GameNetty
 {
     using System;
     using System.Collections.Concurrent;

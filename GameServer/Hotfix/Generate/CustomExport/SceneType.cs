@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
 	// 生成器自动生成，请不要手动编辑。
 	public static class SceneType

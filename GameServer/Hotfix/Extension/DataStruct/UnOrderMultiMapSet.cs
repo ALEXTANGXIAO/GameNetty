@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 无序重用HashSet

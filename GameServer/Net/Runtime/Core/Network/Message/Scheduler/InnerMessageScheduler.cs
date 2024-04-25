@@ -1,7 +1,7 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 #if GAMESERVER_NET
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供了一个机制来调度和处理内部网络消息。

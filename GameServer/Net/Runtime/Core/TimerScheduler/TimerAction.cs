@@ -3,7 +3,7 @@ using System;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 计时器操作类，用于管理定时器相关信息。

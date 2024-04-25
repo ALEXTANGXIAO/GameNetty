@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供一个可以重用的字典类，支持使用对象池管理。

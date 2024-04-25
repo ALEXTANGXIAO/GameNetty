@@ -4,7 +4,7 @@ using CommandLine;
 
 #pragma warning disable CS8618
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 命令行选项类，用于解析命令行参数。

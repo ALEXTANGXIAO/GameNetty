@@ -12,7 +12,7 @@ using kcp2k;
 // ReSharper disable PossibleNullReferenceException
 // ReSharper disable InconsistentNaming
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// KCP协议客户端网络类，用于管理KCP客户端网络连接。

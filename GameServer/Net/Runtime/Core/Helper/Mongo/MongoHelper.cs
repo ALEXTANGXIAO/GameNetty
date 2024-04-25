@@ -6,7 +6,7 @@ using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.Serializers;
 using Unity.Mathematics;
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 提供与MongoDB数据序列化和反序列化相关的帮助方法。
@@ -286,7 +286,7 @@ public sealed class MongoHelper : Singleton<MongoHelper>
 #if GAME_UNITY
 using System;
 using System.IO;
-namespace GameServer
+namespace GameNetty
 {
     public sealed class MongoHelper : Singleton<MongoHelper>
     {

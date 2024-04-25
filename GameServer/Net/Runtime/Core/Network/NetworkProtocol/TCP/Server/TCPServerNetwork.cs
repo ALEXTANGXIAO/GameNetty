@@ -8,7 +8,7 @@ using System.Net.Sockets;
 #pragma warning disable CS8622
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示 TCP 协议服务端网络类。

@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 定义实体帧更新系统的接口。实体帧更新系统用于管理特定类型的实体，在每次帧更新时执行与该类型实体相关的逻辑。

@@ -3,7 +3,7 @@ using System.Buffers;
 using System.IO;
 
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 抽象的数据包信息基类，用于存储解析得到的数据包信息。

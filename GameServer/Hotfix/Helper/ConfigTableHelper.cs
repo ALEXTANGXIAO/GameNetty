@@ -1,6 +1,6 @@
 #pragma warning disable CS8603
 
-namespace GameServer;
+namespace GameNetty;
 
 public static class ConfigTableHelper
 {

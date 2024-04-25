@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 // ReSharper disable InconsistentNaming
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供网络操作相关的帮助方法。

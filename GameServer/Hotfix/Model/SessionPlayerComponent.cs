@@ -1,4 +1,4 @@
-using GameServer;
+using GameNetty;
 namespace BestGame;
 
 /// 这是一个在网关缓存玩家基本信息的组件，添加给客户端与网关的连接session

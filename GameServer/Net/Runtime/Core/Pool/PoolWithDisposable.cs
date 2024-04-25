@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 静态通用对象池，用于存储实现了 IDisposable 接口的对象。

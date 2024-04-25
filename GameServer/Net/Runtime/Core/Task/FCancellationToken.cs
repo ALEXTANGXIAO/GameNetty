@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 #pragma warning disable CS8625
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示一个自定义的取消标记，允许添加和移除取消动作，并可用于取消一组注册的动作。

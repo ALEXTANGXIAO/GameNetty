@@ -3,7 +3,7 @@
 #pragma warning disable CS8603
 
 #if GAMESERVER_NET
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 消息辅助类，用于处理网络消息的发送和接收。

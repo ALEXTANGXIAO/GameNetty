@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供日志记录功能的静态类。

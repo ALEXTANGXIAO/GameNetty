@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 定义实体销毁系统接口。当需要在实体销毁时执行特定的逻辑时，应实现此接口。

@@ -1,5 +1,5 @@
 #if GAMESERVER_NET
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 负责检查会话空闲超时的组件。

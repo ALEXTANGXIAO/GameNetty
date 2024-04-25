@@ -2,7 +2,7 @@ using System;
 using System.IO;
 
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 抽象网络消息调度器基类，用于处理网络消息的调度和处理逻辑。

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 可释放的列表（List）对象池。

@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供加密和解密相关的辅助方法。

@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 在扫描过程中发生的异常。

@@ -6,7 +6,7 @@ using System.Reflection;
 // ReSharper disable CollectionNeverQueried.Global
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// AssemblyInfo提供有关程序集和类型的信息

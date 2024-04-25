@@ -10,7 +10,7 @@ using kcp2k;
 // ReSharper disable InconsistentNaming
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// KCP 服务端网络实现。

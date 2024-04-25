@@ -1,6 +1,6 @@
 using System.Reflection;
-using GameServer;
-using GameServer.Exporter;
+using GameNetty;
+using GameNetty.Exporter;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using ProtoBuf;

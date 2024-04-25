@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-namespace GameServer
+namespace GameNetty
 {
 	public static class AudioHelper
 	{

@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 定义事件的接口。

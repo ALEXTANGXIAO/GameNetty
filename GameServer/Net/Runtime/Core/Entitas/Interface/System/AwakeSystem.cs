@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 定义实体的唤醒系统接口。当需要在实体唤醒时执行特定的逻辑时，应实现此接口。

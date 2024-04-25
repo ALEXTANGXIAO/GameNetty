@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 #if GAME_UNITY
 using UnityEngine;
 #endif
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 计时器调度器类，用于管理计时器任务的调度。

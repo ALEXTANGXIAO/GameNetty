@@ -1,4 +1,4 @@
-namespace GameServer.Exporter;
+namespace GameNetty.Exporter;
 
 /// <summary>
 /// 导出类型枚举，用于标识不同类型的导出操作。

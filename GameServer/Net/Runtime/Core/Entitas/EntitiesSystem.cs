@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 实体系统管理器，用于管理各种实体系统的生命周期和更新

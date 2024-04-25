@@ -6,7 +6,7 @@ using System.IO;
 using Microsoft.IO;
 #endif
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供获取可回收内存流的帮助方法。

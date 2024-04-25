@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示消息处理器的接口，处理特定类型的消息。

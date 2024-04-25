@@ -1,7 +1,7 @@
 using CommandLine;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-namespace GameServer.Exporter;
+namespace GameNetty.Exporter;
 
 public class ExporterAges
 {

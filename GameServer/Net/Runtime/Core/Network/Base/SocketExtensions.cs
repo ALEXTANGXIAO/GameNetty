@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供扩展方法以操作 Socket 缓冲区大小。

@@ -1,6 +1,6 @@
 #pragma warning disable CS8603 // Possible null reference return.
 
-namespace GameServer;
+namespace GameNetty;
 
 public static class ConfigTableManage
 {

@@ -1,9 +1,9 @@
 using ProtoBuf;
 using Unity.Mathematics;
 using System.Collections.Generic;
-using GameServer;
+using GameNetty;
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {	
 }

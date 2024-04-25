@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #pragma warning disable CS8601
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 一对多映射关系的排序字典对象池。

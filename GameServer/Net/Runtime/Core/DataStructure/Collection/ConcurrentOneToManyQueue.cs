@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 #pragma warning disable CS8603
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示一个并发的一对多队列池，用于维护具有相同键的多个值的关联关系，实现了 <see cref="IDisposable"/> 接口。

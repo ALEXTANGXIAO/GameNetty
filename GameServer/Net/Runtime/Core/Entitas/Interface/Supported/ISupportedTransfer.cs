@@ -1,5 +1,5 @@
 #if GAMESERVER_NET
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// Entity支持传送

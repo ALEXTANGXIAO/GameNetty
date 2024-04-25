@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     // 普通路由消息
     /// <summary>

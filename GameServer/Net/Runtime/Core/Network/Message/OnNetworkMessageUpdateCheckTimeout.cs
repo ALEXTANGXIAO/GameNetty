@@ -1,7 +1,7 @@
 #if GAMESERVER_NET
 
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 定时处理网络消息超时的任务。

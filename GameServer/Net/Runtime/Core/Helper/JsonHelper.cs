@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 #pragma warning disable CS8603
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供操作 JSON 数据的辅助方法。

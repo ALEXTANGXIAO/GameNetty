@@ -1,7 +1,7 @@
 using System.IO;
 using System.Security.Cryptography;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供计算 MD5 散列值的辅助方法。

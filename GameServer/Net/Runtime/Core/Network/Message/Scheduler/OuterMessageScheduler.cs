@@ -2,7 +2,7 @@ using System;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供了一个机制来调度和处理外部网络消息。

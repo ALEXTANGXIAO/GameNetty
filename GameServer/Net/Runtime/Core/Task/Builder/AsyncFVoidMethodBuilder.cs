@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 
-namespace GameServer
+namespace GameNetty
 {
     [StructLayout(LayoutKind.Auto)]
     internal struct AsyncFVoidMethodBuilder

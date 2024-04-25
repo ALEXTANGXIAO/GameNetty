@@ -2,7 +2,7 @@
 using ProtoBuf;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示响应消息的基类，实现了 <see cref="IResponse"/> 接口。

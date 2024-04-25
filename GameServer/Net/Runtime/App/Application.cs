@@ -1,7 +1,7 @@
 using CommandLine;
 using NLog;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// GameServer 应用程序入口类型

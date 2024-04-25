@@ -5,7 +5,7 @@ using System.IO;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// 环形缓存（自增式缓存，自动扩充、不会收缩缓存、所以不要用这个操作过大的IO流）
     /// 1、环大小8192，溢出的会自动增加环的大小。

@@ -10,7 +10,7 @@ using kcp2k;
 
 // ReSharper disable InconsistentNaming
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// KCP 服务器网络通道类，负责管理基于 KCP 协议的网络通信。

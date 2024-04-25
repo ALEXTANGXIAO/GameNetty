@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 定义一个可更新的单例接口，继承自 <see cref="ISingleton"/>。

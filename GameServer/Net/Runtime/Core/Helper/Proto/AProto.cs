@@ -1,6 +1,6 @@
 using ProtoBuf;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供 ProtoBuf 序列化和反序列化支持的抽象基类。

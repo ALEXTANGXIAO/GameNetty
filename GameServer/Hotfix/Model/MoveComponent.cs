@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using GameServer;
+using GameNetty;
 using UnityEngine;
 
 namespace BestGame;

@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 定义实体系统的接口。实体系统用于管理特定类型的实体，执行与该类型实体相关的逻辑。

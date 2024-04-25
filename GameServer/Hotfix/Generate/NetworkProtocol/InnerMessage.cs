@@ -1,10 +1,10 @@
 using ProtoBuf;
 using Unity.Mathematics;
 using System.Collections.Generic;
-using GameServer;
+using GameNetty;
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {	
 	/// <summary>
 	///  Gate跟Map服务器进行通讯、注册Address协议。

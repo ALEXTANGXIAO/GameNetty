@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 #pragma warning disable CS8601
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供对字典的扩展方法。

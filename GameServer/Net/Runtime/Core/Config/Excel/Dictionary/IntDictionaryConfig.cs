@@ -3,7 +3,7 @@ using ProtoBuf;
 // ReSharper disable CheckNamespace
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 使用 ProtoBuf 序列化的整数字典配置类。

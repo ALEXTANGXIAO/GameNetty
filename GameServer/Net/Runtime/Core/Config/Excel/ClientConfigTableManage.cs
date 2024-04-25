@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 配置表管理器，用于加载和管理配置表数据。

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 网络线程管理器的单例类。负责处理网络相关操作、通信以及线程管理。

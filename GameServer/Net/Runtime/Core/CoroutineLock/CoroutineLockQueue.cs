@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 协程锁队列，用于协程等待和释放锁的管理。

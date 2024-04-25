@@ -3,7 +3,7 @@
 // ReSharper disable CollectionNeverQueried.Global
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 连接其他进程实体地址管理组件

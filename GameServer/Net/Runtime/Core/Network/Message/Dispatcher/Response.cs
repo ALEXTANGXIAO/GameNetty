@@ -1,6 +1,6 @@
 using ProtoBuf;
 
-namespace GameServer
+namespace GameNetty
 {
     
 }

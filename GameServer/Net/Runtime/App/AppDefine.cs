@@ -1,5 +1,5 @@
 #pragma warning disable CS8618
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 控制台程序定义类型。

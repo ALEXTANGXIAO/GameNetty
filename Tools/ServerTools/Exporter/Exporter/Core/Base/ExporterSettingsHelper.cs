@@ -1,4 +1,4 @@
-using GameServer;
+using GameNetty;
 using Microsoft.Extensions.Configuration;
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8632

@@ -1,7 +1,6 @@
 using Exporter;
-using GameServer;
 
-namespace GameServer.Exporter;
+namespace GameNetty.Exporter;
 
 /// <summary>
 /// 网络协议操作码缓存

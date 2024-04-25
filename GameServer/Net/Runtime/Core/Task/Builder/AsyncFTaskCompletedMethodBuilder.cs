@@ -5,7 +5,7 @@ using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 用于构建已完成的异步任务方法的构建器。

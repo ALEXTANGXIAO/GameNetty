@@ -4,7 +4,7 @@ using System.Linq;
 
 #pragma warning disable CS8603
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 基于排序字典和并发集合实现的一对多映射列表的对象池包装类，继承自 <see cref="SortedConcurrentOneToManyList{TKey, TValue}"/> 类，

@@ -1,7 +1,7 @@
 #if GAMESERVER_NET
 using NLog;
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 使用 NLog 实现的日志记录器。

@@ -1,6 +1,6 @@
 #if GAME_UNITY
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 负责管理会话心跳的组件。

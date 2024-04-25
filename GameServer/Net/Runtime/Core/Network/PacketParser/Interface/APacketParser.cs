@@ -3,7 +3,7 @@ using System.Buffers;
 using System.IO;
 
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 抽象的包解析器基类，用于解析网络通信数据包。

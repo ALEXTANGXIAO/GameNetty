@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 #pragma warning disable CS8625
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 表示用于执行各种数据库操作的数据库接口。

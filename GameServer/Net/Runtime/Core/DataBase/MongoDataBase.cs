@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 使用 MongoDB 数据库的实现。

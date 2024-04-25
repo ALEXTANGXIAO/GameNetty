@@ -1,5 +1,5 @@
 #if GAMESERVER_NET
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 声明一个 sealed 类 I_AddressableRemoveHandler，继承自 RouteRPC 类，并指定泛型参数 

@@ -5,7 +5,7 @@ using Type = System.Type;
 
 // ReSharper disable MethodOverloadWithOptionalParameter
 
-namespace GameServer
+namespace GameNetty
 {
     internal sealed class EventInfo
     {

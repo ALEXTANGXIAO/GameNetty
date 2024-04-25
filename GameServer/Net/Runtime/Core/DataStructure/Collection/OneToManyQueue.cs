@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #pragma warning disable CS8603
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 支持一对多关系的队列池，用于存储具有相同键的值的队列集合。

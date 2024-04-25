@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 用于异步任务方法的构建器。

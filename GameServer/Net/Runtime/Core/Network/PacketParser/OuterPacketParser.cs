@@ -4,7 +4,7 @@ using System.IO;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 用于解析外部网络消息的数据包信息。

@@ -9,7 +9,7 @@ using System.Threading;
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable InconsistentNaming
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// TCP客户端网络类，用于管理TCP客户端网络连接。

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 已完成的异步任务结构。

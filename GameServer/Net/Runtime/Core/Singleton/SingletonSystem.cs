@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 单例管理系统，负责管理和调度实现 <see cref="ISingleton"/> 接口的单例对象。

@@ -1,7 +1,7 @@
 // using System;
 // using System.IO;
 //
-// namespace GameServer
+// namespace GameNetty
 // {
 //     public enum NetworkMessageSchedulerHandlerType
 //     {

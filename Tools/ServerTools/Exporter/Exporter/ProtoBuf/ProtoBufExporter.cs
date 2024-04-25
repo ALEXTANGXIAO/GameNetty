@@ -1,12 +1,12 @@
 using System.Text;
 using Exporter;
-using GameServer;
+using GameNetty;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 #pragma warning disable CS8604 // Possible null reference argument.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 
-namespace GameServer.Exporter;
+namespace GameNetty.Exporter;
 /// <summary>
 /// ProtoBuf操作码类型枚举
 /// </summary>
@@ -447,7 +447,7 @@ public sealed class ProtoBufExporter
         
         #region GenerateOpCode
         file.Clear();
-        file.AppendLine("namespace GameServer");
+        file.AppendLine("namespace GameNetty");
         file.AppendLine("{");
         file.AppendLine($"\tpublic static partial class {opCodeName}");
         file.AppendLine("\t{");
@@ -475,7 +475,7 @@ public sealed class ProtoBufExporter
         var routeTypeFile = $"{_protoBufDirectory}RouteType.Config";
         var protoFileText = await File.ReadAllTextAsync(routeTypeFile);
         var routeTypeFileSb = new StringBuilder();
-        routeTypeFileSb.AppendLine("namespace GameServer.Core.Network\n{");
+        routeTypeFileSb.AppendLine("namespace GameNetty.Core.Network\n{");
         routeTypeFileSb.AppendLine("\t// Route协议定义(需要定义1000以上、因为1000以内的框架预留)\t");
         routeTypeFileSb.AppendLine("\tpublic enum RouteType : long\n\t{");
 

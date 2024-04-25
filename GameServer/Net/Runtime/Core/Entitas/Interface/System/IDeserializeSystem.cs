@@ -1,6 +1,6 @@
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示一个用于反序列化的系统接口，扩展自 <see cref="IEntitiesSystem"/>。

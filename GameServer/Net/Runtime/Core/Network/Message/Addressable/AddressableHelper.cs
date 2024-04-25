@@ -1,6 +1,6 @@
 #if GAMESERVER_NET
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 提供操作地址映射的辅助方法。

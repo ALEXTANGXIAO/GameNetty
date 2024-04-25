@@ -1,4 +1,4 @@
-using GameServer;
+using GameNetty;
 using UnityEngine;
 
 namespace BestGame

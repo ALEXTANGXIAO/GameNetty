@@ -1,4 +1,4 @@
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示可以序列化为 BSON 格式的消息接口。

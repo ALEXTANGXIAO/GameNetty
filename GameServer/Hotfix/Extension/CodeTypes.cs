@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace GameServer
+namespace GameNetty
 {
     public class CodeTypes
     {

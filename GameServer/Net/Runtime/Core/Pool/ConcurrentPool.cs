@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 线程安全的静态通用对象池。

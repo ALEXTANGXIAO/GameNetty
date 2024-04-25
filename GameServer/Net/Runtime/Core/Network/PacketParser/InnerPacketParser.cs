@@ -6,7 +6,7 @@ using MongoDB.Bson.Serialization.Serializers;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 用于处理内部网络数据包信息的类。

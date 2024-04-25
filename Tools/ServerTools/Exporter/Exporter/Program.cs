@@ -2,7 +2,7 @@
 using CommandLine;
 using Exporter;
 using Exporter.Excel;
-using GameServer.Exporter;
+using GameNetty.Exporter;
 
 try
 {

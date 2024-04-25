@@ -1,4 +1,4 @@
-﻿namespace GameServer
+﻿namespace GameNetty
 {
     /// <summary>
     /// 基础标签。

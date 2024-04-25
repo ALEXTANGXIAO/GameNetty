@@ -2,7 +2,7 @@
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 当Server启动完成时触发。

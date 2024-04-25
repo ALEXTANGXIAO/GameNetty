@@ -4,7 +4,7 @@ using System.Net;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 抽象的网络通道基类。

@@ -5,7 +5,7 @@ using System.Linq;
 #pragma warning disable CS8603
 #pragma warning disable CS8601
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 一对多映射关系的字典对象池。

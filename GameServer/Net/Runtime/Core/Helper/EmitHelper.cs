@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection.Emit;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// Emit帮助类。

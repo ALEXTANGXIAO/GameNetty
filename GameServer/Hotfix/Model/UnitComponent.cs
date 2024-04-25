@@ -1,4 +1,4 @@
-using GameServer;
+using GameNetty;
 
 namespace BestGame;
 public class UnitComponent : Entity 

@@ -7,7 +7,7 @@ using System.Runtime.ExceptionServices;
 #pragma warning disable CS8625
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示异步任务的状态。

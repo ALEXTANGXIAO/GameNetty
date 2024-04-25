@@ -1,7 +1,7 @@
 #if GAMESERVER_NET
 
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 配置表管理器

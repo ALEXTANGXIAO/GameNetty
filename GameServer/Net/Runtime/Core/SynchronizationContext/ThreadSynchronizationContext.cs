@@ -6,7 +6,7 @@ using System.Threading;
 #pragma warning disable CS8601
 #pragma warning disable CS8618
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 一个用于线程同步的上下文。

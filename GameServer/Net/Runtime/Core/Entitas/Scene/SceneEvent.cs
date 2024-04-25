@@ -1,7 +1,7 @@
 #if GAMESERVER_NET
 using System;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 表示当创建新场景时引发的事件数据结构。

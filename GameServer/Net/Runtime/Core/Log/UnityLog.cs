@@ -10,7 +10,7 @@ using System;
 #endif
 
 #if GAME_UNITY
-namespace GameServer
+namespace GameNetty
 {
     public class UnityLog : ILog
     {
@@ -73,7 +73,7 @@ namespace GameServer
 #endif
 
 #if UNITY_EDITOR
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 日志重定向相关的实用函数。

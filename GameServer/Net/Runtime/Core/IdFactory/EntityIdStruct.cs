@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace GameServer
+namespace GameNetty
 {
     /// <summary>
     /// 实体的唯一标识符结构。

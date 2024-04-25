@@ -2,7 +2,7 @@
 
 // ReSharper disable SuspiciousTypeConversion.Global
 
-namespace GameServer;
+namespace GameNetty;
 
 /// <summary>
 /// 单例集合管理器类，继承自 <see cref="Singleton{T}"/>。

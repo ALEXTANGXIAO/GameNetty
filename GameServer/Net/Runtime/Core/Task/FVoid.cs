@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace GameServer
+namespace GameNetty
 {
     [AsyncMethodBuilder(typeof(AsyncFVoidMethodBuilder))]
     [StructLayout(LayoutKind.Auto)]

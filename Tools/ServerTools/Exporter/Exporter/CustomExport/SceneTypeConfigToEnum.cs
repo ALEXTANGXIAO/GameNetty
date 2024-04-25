@@ -1,7 +1,7 @@
 using System.Collections.Concurrent;
 using System.Text;
 using Exporter.Excel;
-using GameServer.Exporter;
+using GameNetty.Exporter;
 using System.Collections.Generic;
 
 namespace Exporter;
@@ -64,7 +64,7 @@ public class SceneTypeConfigToEnum : ACustomExport
         var strBuilder = new StringBuilder();
         var dicBuilder = new StringBuilder();
         // 添加命名空间和注释头部
-        strBuilder.AppendLine("namespace GameServer\n{");
+        strBuilder.AppendLine("namespace GameNetty\n{");
         strBuilder.AppendLine("\t// 生成器自动生成，请不要手动编辑。");
         // 生成场景类型的静态类
         strBuilder.AppendLine("\tpublic static class SceneType\n\t{");
