@@ -33,7 +33,7 @@ namespace GameNetty
 
                         if (!session.RequestCallback.TryGetValue(packInfo.RpcId, out var action))
                         {
-                            Log.Error($"not found rpc {packInfo.RpcId}, response message: {aResponse.GetType().Name}");
+                            NettyLog.Error($"not found rpc {packInfo.RpcId}, response message: {aResponse.GetType().Name}");
                             return;
                         }
 
@@ -51,7 +51,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
                 return;
             }
             finally

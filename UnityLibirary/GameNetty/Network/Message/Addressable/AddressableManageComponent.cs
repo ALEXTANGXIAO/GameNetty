@@ -29,11 +29,11 @@ namespace GameNetty
                 }
                 
                 _addressable[addressableId] = routeId;
-                Log.Debug($"AddressableManageComponent Add addressableId:{addressableId} routeId:{routeId}");
+                NettyLog.Debug($"AddressableManageComponent Add addressableId:{addressableId} routeId:{routeId}");
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
             }
             finally
             {
@@ -64,7 +64,7 @@ namespace GameNetty
             using (await _addressableLock.Lock(addressableId))
             {
                 _addressable.Remove(addressableId);
-                Log.Debug($"Addressable Remove addressableId: {addressableId} _addressable:{_addressable.Count}");
+                NettyLog.Debug($"Addressable Remove addressableId: {addressableId} _addressable:{_addressable.Count}");
             }
         }
 
@@ -88,7 +88,7 @@ namespace GameNetty
         {
             if (!_locks.Remove(addressableId, out var coroutineLock))
             {
-                Log.Error($"Addressable unlock not found addressableId: {addressableId} Source:{source}");
+                NettyLog.Error($"Addressable unlock not found addressableId: {addressableId} Source:{source}");
                 return;
             }
 
@@ -100,7 +100,7 @@ namespace GameNetty
             }
 
             coroutineLock.Dispose();
-            Log.Debug($"Addressable UnLock key: {addressableId} oldAddressableId : {oldAddressableId} routeId: {routeId}  Source:{source}");
+            NettyLog.Debug($"Addressable UnLock key: {addressableId} oldAddressableId : {oldAddressableId} routeId: {routeId}  Source:{source}");
         }
     }
 }

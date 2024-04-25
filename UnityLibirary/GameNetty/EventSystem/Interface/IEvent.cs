@@ -72,7 +72,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error($"{_selfType.Name} Error {e}");
+                NettyLog.Error($"{_selfType.Name} Error {e}");
             }
         }
     }
@@ -114,7 +114,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error($"{_selfType.Name} Error {e}");
+                NettyLog.Error($"{_selfType.Name} Error {e}");
             }
         }
     }

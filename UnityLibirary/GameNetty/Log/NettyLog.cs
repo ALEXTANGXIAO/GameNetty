@@ -6,11 +6,11 @@ namespace GameNetty
     /// <summary>
     /// 提供日志记录功能的静态类。
     /// </summary>
-    public static class Log
+    public static class NettyLog
     {
         private static readonly ILog LogCore;
 
-        static Log()
+        static NettyLog()
         {
 #if GAMESERVER_NET
             LogCore = new NLog("Server");

@@ -98,7 +98,7 @@ namespace GameNetty
 
                             if (action == null)
                             {
-                                Log.Error($"timer {timer.ToJson()}");
+                                NettyLog.Error($"timer {timer.ToJson()}");
                                 break;
                             }
 
@@ -112,7 +112,7 @@ namespace GameNetty
 
                             if (action == null)
                             {
-                                Log.Error($"timer {timer.ToJson()}");
+                                NettyLog.Error($"timer {timer.ToJson()}");
                                 break;
                             }
 
@@ -124,7 +124,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
             }
         }
         
@@ -292,7 +292,7 @@ namespace GameNetty
         {
             if (tillTime < _now())
             {
-                Log.Error($"new once time too small tillTime:{tillTime} Now:{_now()}");
+                NettyLog.Error($"new once time too small tillTime:{tillTime} Now:{_now()}");
             }
 
             var timer = TimerAction.Create();

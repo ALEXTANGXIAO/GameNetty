@@ -143,7 +143,7 @@ namespace GameNetty
                 catch (Exception e)
                 {
                     packInfo?.Dispose();
-                    Log.Error(e);
+                    NettyLog.Error(e);
                     return false;
                 }
             }
@@ -192,7 +192,7 @@ namespace GameNetty
             catch (Exception e)
             {
                 packInfo?.Dispose();
-                Log.Error(e);
+                NettyLog.Error(e);
                 return false;
             }
         }

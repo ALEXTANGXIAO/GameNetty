@@ -211,7 +211,7 @@ namespace GameNetty
                     
                     if (receiveLength > _rawReceiveBuffer.Length)
                     {
-                        Log.Error($"KCP ClientConnection: message of size {receiveLength} does not fit into buffer of size {_rawReceiveBuffer.Length}. The excess was silently dropped. Disconnecting.");
+                        NettyLog.Error($"KCP ClientConnection: message of size {receiveLength} does not fit into buffer of size {_rawReceiveBuffer.Length}. The excess was silently dropped. Disconnecting.");
                         Dispose();
                         return;
                     }
@@ -291,7 +291,7 @@ namespace GameNetty
                             
                             if (messageLength <= 0)
                             {
-                                Log.Warning($"KCPClient KcpHeader.Data  messageLength <= 0");
+                                NettyLog.Warning($"KCPClient KcpHeader.Data  messageLength <= 0");
                                 break;
                             }
 
@@ -322,7 +322,7 @@ namespace GameNetty
                 catch (SocketException) { }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -346,7 +346,7 @@ namespace GameNetty
 
             if (waitSendSize > _maxSndWnd)
             {
-                Log.Warning($"ERR_KcpWaitSendSizeTooLarge {waitSendSize} > {_maxSndWnd}");
+                NettyLog.Warning($"ERR_KcpWaitSendSizeTooLarge {waitSendSize} > {_maxSndWnd}");
                 Dispose();
                 return;
             }
@@ -434,7 +434,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
             }
         }
 
@@ -481,7 +481,7 @@ namespace GameNetty
 
                     if (receiveCount != peekSize)
                     {
-                        Log.Error($"receiveCount != peekSize receiveCount:{receiveCount} peekSize:{peekSize}");
+                        NettyLog.Error($"receiveCount != peekSize receiveCount:{receiveCount} peekSize:{peekSize}");
                         break;
                     }
 
@@ -502,7 +502,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -586,7 +586,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
             }
                 
             AddToUpdate(_kcp.Check(nowTime));

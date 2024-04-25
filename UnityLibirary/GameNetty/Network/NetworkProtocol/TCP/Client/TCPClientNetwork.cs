@@ -218,7 +218,7 @@ namespace GameNetty
 
             if (asyncEventArgs.SocketError != SocketError.Success)
             {
-                Log.Error($"Unable to connect to the target server asyncEventArgs:{asyncEventArgs.SocketError}");
+                NettyLog.Error($"Unable to connect to the target server asyncEventArgs:{asyncEventArgs.SocketError}");
                 
                 if (OnConnectFail != null)
                 {
@@ -379,7 +379,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -460,7 +460,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -520,12 +520,12 @@ namespace GameNetty
                 }
                 catch (ScanException e)
                 {
-                    Log.Debug($"{e}");
+                    NettyLog.Debug($"{e}");
                     Dispose();
                 }
                 catch (Exception e)
                 {
-                    Log.Error($"{e}");
+                    NettyLog.Error($"{e}");
                     Dispose();
                 }
             }

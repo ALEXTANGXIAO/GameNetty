@@ -317,13 +317,13 @@ namespace GameNetty
         {
             if (this == component)
             {
-                Log.Error("Cannot add oneself to one's own components");
+                NettyLog.Error("Cannot add oneself to one's own components");
                 return;
             }
             
             if (component.IsDisposed)
             {
-                Log.Error($"component is Disposed {component.GetType().FullName}");
+                NettyLog.Error($"component is Disposed {component.GetType().FullName}");
                 return;
             }
             
@@ -355,7 +355,7 @@ namespace GameNetty
                 }
                 else if(_tree.ContainsKey(type))
                 {
-                    Log.Error($"type:{type.FullName} If you want to add multiple components of the same type, please implement IMultiEntity");
+                    NettyLog.Error($"type:{type.FullName} If you want to add multiple components of the same type, please implement IMultiEntity");
                     return;
                 }
                 
@@ -689,7 +689,7 @@ namespace GameNetty
                     Entities.Remove(RuntimeId);
                 }
 
-                Log.Error(e);
+                NettyLog.Error(e);
             }
         }
 

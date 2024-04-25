@@ -284,7 +284,7 @@ namespace GameNetty
                             
                             if (messageLength <= 0)
                             {
-                                Log.Warning($"KCP Server KcpHeader.Data  messageLength <= 0");
+                                NettyLog.Warning($"KCP Server KcpHeader.Data  messageLength <= 0");
                                 break;
                             }
 
@@ -308,7 +308,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -337,7 +337,7 @@ namespace GameNetty
 
             if (remoteEndPoint != null && !remoteEndPoint.Equals(channel.RemoteEndPoint))
             {
-                Log.Error($"KCPNetworkChannel syn address diff: {channelId} {channel.RemoteEndPoint} {remoteEndPoint}");
+                NettyLog.Error($"KCPNetworkChannel syn address diff: {channelId} {channel.RemoteEndPoint} {remoteEndPoint}");
                 return false;
             }
 
@@ -449,7 +449,7 @@ namespace GameNetty
                     }
                     catch (Exception e)
                     {
-                        Log.Error(e);
+                        NettyLog.Error(e);
                     }
 
                     if (channelKcp != null)

@@ -186,7 +186,7 @@ namespace GameNetty
 
             if (asyncEventArgs.SocketError != SocketError.Success)
             {
-                Log.Error($"Socket Accept Error: {_acceptAsync.SocketError}");
+                NettyLog.Error($"Socket Accept Error: {_acceptAsync.SocketError}");
                 return;
             }
 
@@ -216,7 +216,7 @@ namespace GameNetty
             }
             catch (Exception e)
             {
-                Log.Error(e);
+                NettyLog.Error(e);
             }
             finally
             {

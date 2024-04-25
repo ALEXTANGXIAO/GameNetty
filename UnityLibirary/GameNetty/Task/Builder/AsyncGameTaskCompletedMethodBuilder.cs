@@ -38,7 +38,7 @@ namespace GameNetty
         [DebuggerHidden]
         public void SetException(Exception exception)
         {
-            Log.Error(exception);
+            NettyLog.Error(exception);
             // ExceptionDispatchInfo.Capture(exception).Throw();
         }
 

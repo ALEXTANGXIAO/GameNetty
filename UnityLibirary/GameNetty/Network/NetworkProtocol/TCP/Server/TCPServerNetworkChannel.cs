@@ -166,7 +166,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -250,7 +250,7 @@ namespace GameNetty
                 }
                 catch (Exception e)
                 {
-                    Log.Error(e);
+                    NettyLog.Error(e);
                 }
             }
         }
@@ -310,12 +310,12 @@ namespace GameNetty
                 }
                 catch (ScanException e)
                 {
-                    Log.Debug($"RemoteAddress:{RemoteEndPoint} \n{e}");
+                    NettyLog.Debug($"RemoteAddress:{RemoteEndPoint} \n{e}");
                     Dispose();
                 }
                 catch (Exception e)
                 {
-                    Log.Error($"RemoteAddress:{RemoteEndPoint} \n{e}");
+                    NettyLog.Error($"RemoteAddress:{RemoteEndPoint} \n{e}");
                     Dispose();
                 }
             }
