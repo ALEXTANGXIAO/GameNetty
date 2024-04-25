@@ -28,8 +28,8 @@ namespace GameNetty
     /// <summary>
     /// 轻量级异步任务类。
     /// </summary>
-    [AsyncMethodBuilder(typeof(AsyncFTaskMethodBuilder))]
-    public sealed partial class FTask : ICriticalNotifyCompletion
+    [AsyncMethodBuilder(typeof(AsyncGameTaskMethodBuilder))]
+    public sealed partial class GameTask : ICriticalNotifyCompletion
     {
         private Action _callBack;
         private ExceptionDispatchInfo _exception;
@@ -64,7 +64,7 @@ namespace GameNetty
         /// <returns>一个异步任务等待器。</returns>
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public FTask GetAwaiter()
+        public GameTask GetAwaiter()
         {
             return this;
         }
@@ -74,7 +74,7 @@ namespace GameNetty
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [DebuggerHidden]
-        private async FVoid InnerCoroutine()
+        private async GameVoid InnerCoroutine()
         {
             await this;
         }
@@ -136,7 +136,7 @@ namespace GameNetty
 
             _status = STaskStatus.Pending;
             _callBack = null;
-            Pool<FTask>.Return(this);
+            Pool<GameTask>.Return(this);
         }
 
         /// <summary>
@@ -204,8 +204,8 @@ namespace GameNetty
     /// <summary>
     /// 表示一个轻量级的异步任务（Future Task），提供类似于 Task 的异步编程模型，但仅适用于某些简单的异步操作。
     /// </summary>
-    [AsyncMethodBuilder(typeof(AsyncFTaskMethodBuilder<>))]
-    public sealed partial class FTask<T> : ICriticalNotifyCompletion
+    [AsyncMethodBuilder(typeof(AsyncGameTaskMethodBuilder<>))]
+    public sealed partial class GameTask<T> : ICriticalNotifyCompletion
     {
         private Action _callBack;
         private ExceptionDispatchInfo _exception;
@@ -241,14 +241,14 @@ namespace GameNetty
         /// <returns>用于等待异步任务的 awaiter。</returns>
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public FTask<T> GetAwaiter()
+        public GameTask<T> GetAwaiter()
         {
             return this;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         [DebuggerHidden]
-        private async FVoid InnerCoroutine()
+        private async GameVoid InnerCoroutine()
         {
             await this;
         }
@@ -313,7 +313,7 @@ namespace GameNetty
             _status = STaskStatus.Pending;
             _callBack = null;
             _value = default;
-            Pool<FTask<T>>.Return(this);
+            Pool<GameTask<T>>.Return(this);
         }
 
         /// <summary>

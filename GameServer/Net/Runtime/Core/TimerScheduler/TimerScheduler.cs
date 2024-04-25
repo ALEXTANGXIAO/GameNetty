@@ -30,7 +30,7 @@ namespace GameNetty
         public override async Task Initialize()
         {
             TimeHelper.PreviousFrameTime = TimeHelper.Now;
-            await FTask.CompletedTask;
+            await GameTask.CompletedTask;
         }
 
         /// <summary>

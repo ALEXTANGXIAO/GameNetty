@@ -14,7 +14,7 @@ namespace GameNetty
         /// <param name="session">网络会话。</param>
         /// <param name="messageType">消息类型。</param>
         /// <param name="packInfo">消息封包信息。</param>
-        protected override async FTask Handler(Session session, Type messageType, APackInfo packInfo)
+        protected override async GameTask Handler(Session session, Type messageType, APackInfo packInfo)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace GameNetty
         /// <param name="routeTypeCode">路由类型码。</param>
         /// <param name="messageType">消息类型。</param>
         /// <param name="message">消息对象。</param>
-        protected override async FTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message)
+        protected override async GameTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message)
         {
             try
             {

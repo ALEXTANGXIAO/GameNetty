@@ -13,10 +13,10 @@ public sealed class I_AddressableUnLockHandler : RouteRPC<Scene, I_AddressableUn
     /// <param name="request">包含请求信息的 I_AddressableUnLock_Request 实例。</param>
     /// <param name="response">用于构建响应的 I_AddressableUnLock_Response 实例。</param>
     /// <param name="reply">执行响应的回调操作。</param>
-    protected override async FTask Run(Scene scene, I_AddressableUnLock_Request request, I_AddressableUnLock_Response response, Action reply)
+    protected override async GameTask Run(Scene scene, I_AddressableUnLock_Request request, I_AddressableUnLock_Response response, Action reply)
     {
         scene.GetComponent<AddressableManageComponent>().UnLock(request.AddressableId, request.RouteId, request.Source);
-        await FTask.CompletedTask;
+        await GameTask.CompletedTask;
     }
 }
 #endif

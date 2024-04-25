@@ -13,7 +13,7 @@ public sealed class I_AddressableGetHandler : RouteRPC<Scene, I_AddressableGet_R
     /// <param name="request">包含请求信息的 I_AddressableGet_Request 实例。</param>
     /// <param name="response">用于构建响应的 I_AddressableGet_Response 实例。</param>
     /// <param name="reply">执行响应的回调操作。</param>
-    protected override async FTask Run(Scene scene, I_AddressableGet_Request request, I_AddressableGet_Response response, Action reply)
+    protected override async GameTask Run(Scene scene, I_AddressableGet_Request request, I_AddressableGet_Response response, Action reply)
     {
         response.RouteId =  await scene.GetComponent<AddressableManageComponent>().Get(request.AddressableId);
     }

@@ -79,8 +79,8 @@ namespace GameNetty
         /// 启动 GameServer 应用程序。
         /// 在发布模式下，只会启动一个指定的 Server。您可以创建一个专门的 Server 来管理其他 Server 的启动。
         /// </summary>
-        /// <returns><see cref="FTask"/></returns>
-        public static async FTask Start()
+        /// <returns><see cref="GameTask"/></returns>
+        public static async GameTask Start()
         {
             switch (AppDefine.Options.Mode)
             {

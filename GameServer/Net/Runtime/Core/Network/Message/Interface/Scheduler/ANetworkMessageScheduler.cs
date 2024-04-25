@@ -20,7 +20,7 @@ namespace GameNetty
         /// <param name="session">会话对象。</param>
         /// <param name="packInfo">消息包信息。</param>
         /// <returns>异步任务。</returns>
-        public async FTask Scheduler(Session session, APackInfo packInfo)
+        public async GameTask Scheduler(Session session, APackInfo packInfo)
         {
             var disposePackInfo = true;
             Type messageType = null;
@@ -106,7 +106,7 @@ namespace GameNetty
         /// <param name="routeTypeCode">路由类型代码。</param>
         /// <param name="message">要处理的消息对象。</param>
         /// <returns>异步任务。</returns>
-        public async FTask InnerScheduler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, object message)
+        public async GameTask InnerScheduler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, object message)
         {
             var messageType = message.GetType();
             
@@ -152,7 +152,7 @@ namespace GameNetty
         /// <param name="messageType">消息类型。</param>
         /// <param name="packInfo">消息包信息。</param>
         /// <returns>异步任务。</returns>
-        protected abstract FTask Handler(Session session, Type messageType, APackInfo packInfo);
+        protected abstract GameTask Handler(Session session, Type messageType, APackInfo packInfo);
         /// <summary>
         /// 处理内部网络消息的抽象方法。
         /// </summary>
@@ -164,6 +164,6 @@ namespace GameNetty
         /// <param name="messageType">消息类型。</param>
         /// <param name="message">要处理的消息对象。</param>
         /// <returns>异步任务。</returns>
-        protected abstract FTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message);
+        protected abstract GameTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message);
     }
 }

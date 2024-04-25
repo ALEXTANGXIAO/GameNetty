@@ -23,7 +23,7 @@ namespace GameNetty
         /// <param name="messageTypeCode">消息类型代码。</param>
         /// <param name="message">要处理的消息。</param>
         /// <returns>异步任务。</returns>
-        FTask Handle(Session session, uint rpcId, uint messageTypeCode, object message);
+        GameTask Handle(Session session, uint rpcId, uint messageTypeCode, object message);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ namespace GameNetty
         /// <param name="messageTypeCode">消息类型代码。</param>
         /// <param name="message">要处理的消息。</param>
         /// <returns>异步任务。</returns>
-        public async FTask Handle(Session session, uint rpcId, uint messageTypeCode, object message)
+        public async GameTask Handle(Session session, uint rpcId, uint messageTypeCode, object message)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace GameNetty
         /// <param name="session">会话对象。</param>
         /// <param name="message">要处理的消息。</param>
         /// <returns>异步任务。</returns>
-        protected abstract FTask Run(Session session, T message);
+        protected abstract GameTask Run(Session session, T message);
     }
 
     /// <summary>
@@ -93,7 +93,7 @@ namespace GameNetty
         /// <param name="messageTypeCode">消息类型代码。</param>
         /// <param name="message">要处理的消息。</param>
         /// <returns>异步任务。</returns>
-        public async FTask Handle(Session session, uint rpcId, uint messageTypeCode, object message)
+        public async GameTask Handle(Session session, uint rpcId, uint messageTypeCode, object message)
         {
             if (message is not TRequest request)
             {
@@ -144,7 +144,7 @@ namespace GameNetty
         /// <param name="response">响应消息。</param>
         /// <param name="reply">发送响应的方法。</param>
         /// <returns>异步任务。</returns>
-        protected abstract FTask Run(Session session, TRequest request, TResponse response, Action reply);
+        protected abstract GameTask Run(Session session, TRequest request, TResponse response, Action reply);
     }
 #if GAME_UNITY
     public interface IMessageDelegateHandler

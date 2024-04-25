@@ -13,7 +13,7 @@ public sealed class I_AddressableAddHandler : RouteRPC<Scene, I_AddressableAdd_R
     /// <param name="request">包含请求信息的 I_AddressableAdd_Request 实例。</param>
     /// <param name="response">用于构建响应的 I_AddressableAdd_Response 实例。</param>
     /// <param name="reply">执行响应的回调操作。</param>
-    protected override async FTask Run(Scene scene, I_AddressableAdd_Request request, I_AddressableAdd_Response response, Action reply)
+    protected override async GameTask Run(Scene scene, I_AddressableAdd_Request request, I_AddressableAdd_Response response, Action reply)
     {
         await scene.GetComponent<AddressableManageComponent>().Add(request.AddressableId, request.RouteId, request.IsLock);
     }

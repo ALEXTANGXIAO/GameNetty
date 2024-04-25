@@ -246,7 +246,7 @@ namespace GameNetty
         /// <param name="entity">实体对象</param>
         /// <param name="message">消息对象</param>
         /// <param name="rpcId">RPC标识</param>
-        public async FTask RouteMessageHandler(Session session, Type type, Entity entity, object message, uint rpcId)
+        public async GameTask RouteMessageHandler(Session session, Type type, Entity entity, object message, uint rpcId)
         {
             if (!_routeMessageHandlers.TryGetValue(type, out var routeMessageHandler))
             {

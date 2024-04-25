@@ -150,21 +150,21 @@ namespace GameNetty
         /// <typeparam name="TEventData">事件数据类型（值类型）。</typeparam>
         /// <param name="eventData">事件数据实例。</param>
         /// <returns>表示异步操作的任务。</returns>
-        public async FTask PublishAsync<TEventData>(TEventData eventData) where TEventData : struct
+        public async GameTask PublishAsync<TEventData>(TEventData eventData) where TEventData : struct
         {
             if (!_asyncEvents.TryGetValue(eventData.GetType(), out var list))
             {
                 return;
             }
             
-            using var tasks = ListPool<FTask>.Create();
+            using var tasks = ListPool<GameTask>.Create();
 
             foreach (var @event in list)
             {
                 tasks.Add(@event.InvokeAsync(eventData));
             }
 
-            await FTask.WhenAll(tasks);
+            await GameTask.WhenAll(tasks);
         }
 
         /// <summary>
@@ -174,21 +174,21 @@ namespace GameNetty
         /// <param name="eventData">事件数据实例。</param>
         /// <param name="isDisposed">是否释放事件数据。</param>
         /// <returns>表示异步操作的任务。</returns>
-        public async FTask PublishAsync<TEventData>(TEventData eventData, bool isDisposed = true) where TEventData : Entity
+        public async GameTask PublishAsync<TEventData>(TEventData eventData, bool isDisposed = true) where TEventData : Entity
         {
             if (!_asyncEvents.TryGetValue(eventData.GetType(), out var list))
             {
                 return;
             }
             
-            using var tasks = ListPool<FTask>.Create();
+            using var tasks = ListPool<GameTask>.Create();
 
             foreach (var @event in list)
             {
                 tasks.Add(@event.InvokeAsync(eventData));
             }
 
-            await FTask.WhenAll(tasks);
+            await GameTask.WhenAll(tasks);
 
             if (isDisposed)
             {

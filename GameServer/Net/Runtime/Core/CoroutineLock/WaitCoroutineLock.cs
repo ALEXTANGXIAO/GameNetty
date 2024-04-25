@@ -70,7 +70,7 @@ namespace GameNetty
         /// <summary>
         /// 获取用于等待协程锁释放的任务。
         /// </summary>
-        public FTask<WaitCoroutineLock> Tcs { get; private set; }
+        public GameTask<WaitCoroutineLock> Tcs { get; private set; }
 
         /// <summary>
         /// 获取所属的协程锁队列。
@@ -92,7 +92,7 @@ namespace GameNetty
             waitCoroutineLock.Tag = tag;
             waitCoroutineLock.LockId = lockId;
             waitCoroutineLock.CoroutineLockQueue = coroutineLockQueue;
-            waitCoroutineLock.Tcs = FTask<WaitCoroutineLock>.Create();
+            waitCoroutineLock.Tcs = GameTask<WaitCoroutineLock>.Create();
             waitCoroutineLock._timerId = TimerScheduler.Instance.Core.OnceTimer(timeOut, new CoroutineLockTimeout()
             {
                 LockId = lockId, WaitCoroutineLock = waitCoroutineLock

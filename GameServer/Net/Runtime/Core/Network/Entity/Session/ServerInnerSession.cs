@@ -56,7 +56,7 @@ public sealed class ServerInnerSession : Session
     /// <param name="request">要调用的请求。</param>
     /// <param name="routeId">路由标识符。</param>
     /// <returns>一个代表异步操作的任务，返回响应。</returns>
-    public override FTask<IResponse> Call(IRequest request, long routeId = 0)
+    public override GameTask<IResponse> Call(IRequest request, long routeId = 0)
     {
         throw new Exception("The use of this method is not supported");
     }

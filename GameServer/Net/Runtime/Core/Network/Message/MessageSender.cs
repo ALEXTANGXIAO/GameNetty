@@ -33,7 +33,7 @@ namespace GameNetty
         /// <summary>
         /// 获取或设置任务。
         /// </summary>
-        public FTask<IResponse> Tcs { get; private set; }
+        public GameTask<IResponse> Tcs { get; private set; }
 
         /// <summary>
         /// 释放资源。
@@ -56,7 +56,7 @@ namespace GameNetty
         /// <param name="requestType">请求消息类型。</param>
         /// <param name="tcs">任务。</param>
         /// <returns>创建的 <see cref="MessageSender"/> 实例。</returns>
-        public static MessageSender Create(uint rpcId, Type requestType, FTask<IResponse> tcs)
+        public static MessageSender Create(uint rpcId, Type requestType, GameTask<IResponse> tcs)
         {
             var routeMessageSender = Pool<MessageSender>.Rent();
             routeMessageSender.Tcs = tcs;
@@ -73,7 +73,7 @@ namespace GameNetty
         /// <param name="request">请求消息。</param>
         /// <param name="tcs">任务。</param>
         /// <returns>创建的 <see cref="MessageSender"/> 实例。</returns>
-        public static MessageSender Create(uint rpcId, IRequest request, FTask<IResponse> tcs)
+        public static MessageSender Create(uint rpcId, IRequest request, GameTask<IResponse> tcs)
         {
             var routeMessageSender = Pool<MessageSender>.Rent();
             routeMessageSender.Tcs = tcs;
@@ -91,7 +91,7 @@ namespace GameNetty
         /// <param name="request">路由消息请求。</param>
         /// <param name="tcs">任务。</param>
         /// <returns>创建的 <see cref="MessageSender"/> 实例。</returns>
-        public static MessageSender Create(uint rpcId, long routeId, IRouteMessage request, FTask<IResponse> tcs)
+        public static MessageSender Create(uint rpcId, long routeId, IRouteMessage request, GameTask<IResponse> tcs)
         {
             var routeMessageSender = Pool<MessageSender>.Rent();
             routeMessageSender.Tcs = tcs;

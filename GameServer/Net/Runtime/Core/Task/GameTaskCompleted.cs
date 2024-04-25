@@ -8,16 +8,16 @@ namespace GameNetty
     /// <summary>
     /// 已完成的异步任务结构。
     /// </summary>
-    [AsyncMethodBuilder(typeof(AsyncFTaskCompletedMethodBuilder))]
+    [AsyncMethodBuilder(typeof(AsyncGameTaskCompletedMethodBuilder))]
     [StructLayout(LayoutKind.Auto)]
-    public struct FTaskCompleted : INotifyCompletion
+    public struct GameTaskCompleted : INotifyCompletion
     {
         /// <summary>
         /// 获取一个等待器以等待此已完成的异步任务。
         /// </summary>
         /// <returns>一个等待器。</returns>
         [DebuggerHidden]
-        public FTaskCompleted GetAwaiter()
+        public GameTaskCompleted GetAwaiter()
         {
             return this;
         }

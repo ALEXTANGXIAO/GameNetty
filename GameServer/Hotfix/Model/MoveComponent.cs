@@ -8,7 +8,7 @@ namespace BestGame;
 public class MoveComponent : Entity 
 {
     /// 测试练习，这里不在服务器上做位置的计算与寻路验证
-    public async FTask MoveToAsync(MoveInfo moveInfo)
+    public async GameTask MoveToAsync(MoveInfo moveInfo)
     {
         // 是否禁止移动
         // 获取数值组件，移动速度
@@ -16,10 +16,10 @@ public class MoveComponent : Entity
 
         // 添加广播消息
         MoveToAndSendAsync(moveInfo).Coroutine();
-        await FTask.CompletedTask;
+        await GameTask.CompletedTask;
     }
 
-    public async FTask MoveToAndSendAsync(MoveInfo moveInfo)
+    public async GameTask MoveToAndSendAsync(MoveInfo moveInfo)
     {
         var unit = (Unit)Parent;
         // 计算移动距离与时间,略角度计算
@@ -38,14 +38,14 @@ public class MoveComponent : Entity
 
         // 服务器上unit的位置移动计算
         InnerMoveToAsync(unit,moveInfo,speed).Coroutine();
-        await FTask.CompletedTask;
+        await GameTask.CompletedTask;
     }
 
-    public async FTask InnerMoveToAsync(Unit unit, MoveInfo moveInfo, float speed)
+    public async GameTask InnerMoveToAsync(Unit unit, MoveInfo moveInfo, float speed)
     {
         // 测试练习，略插值计算过程...
         unit.moveInfo = moveInfo;
 
-        await FTask.CompletedTask;
+        await GameTask.CompletedTask;
     }
 }

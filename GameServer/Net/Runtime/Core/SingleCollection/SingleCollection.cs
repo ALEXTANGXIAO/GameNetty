@@ -75,7 +75,7 @@ public class SingleCollection : Singleton<SingleCollection>
     /// </summary>
     /// <param name="entity">实体对象。</param>
     /// <returns>表示异步操作的任务。</returns>
-    public async FTask GetCollections(Entity entity)
+    public async GameTask GetCollections(Entity entity)
     {
         if (entity is not ISingleCollectionRoot)
         {
@@ -106,7 +106,7 @@ public class SingleCollection : Singleton<SingleCollection>
     /// </summary>
     /// <param name="entity">实体对象。</param>
     /// <returns>表示异步操作的任务。</returns>
-    public async FTask SaveCollections(Entity entity)
+    public async GameTask SaveCollections(Entity entity)
     {
         if (entity is not ISingleCollectionRoot)
         {

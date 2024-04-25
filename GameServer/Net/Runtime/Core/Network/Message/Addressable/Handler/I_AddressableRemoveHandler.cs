@@ -13,7 +13,7 @@ public sealed class I_AddressableRemoveHandler : RouteRPC<Scene, I_AddressableRe
     /// <param name="request">包含请求信息的 I_AddressableRemove_Request 实例。</param>
     /// <param name="response">用于构建响应的 I_AddressableRemove_Response 实例。</param>
     /// <param name="reply">执行响应的回调操作。</param>
-    protected override async FTask Run(Scene scene, I_AddressableRemove_Request request, I_AddressableRemove_Response response, Action reply)
+    protected override async GameTask Run(Scene scene, I_AddressableRemove_Request request, I_AddressableRemove_Response response, Action reply)
     {
         await scene.GetComponent<AddressableManageComponent>().Remove(request.AddressableId);
     }

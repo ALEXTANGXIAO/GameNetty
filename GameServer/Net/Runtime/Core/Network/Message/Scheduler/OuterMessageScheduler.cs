@@ -46,7 +46,7 @@ namespace GameNetty
         /// <param name="session">网络会话。</param>
         /// <param name="messageType">消息类型。</param>
         /// <param name="packInfo">消息封包信息。</param>
-        protected override async FTask Handler(Session session, Type messageType, APackInfo packInfo)
+        protected override async GameTask Handler(Session session, Type messageType, APackInfo packInfo)
         {
             if (packInfo.ProtocolCode >= Opcode.InnerRouteMessage)
             {
@@ -158,7 +158,7 @@ namespace GameNetty
         /// <param name="routeTypeCode">路由类型码。</param>
         /// <param name="messageType">消息类型。</param>
         /// <param name="message">消息对象。</param>
-        protected override FTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message)
+        protected override GameTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message)
         {
             throw new NotSupportedException($"OuterMessageScheduler NotSupported InnerHandler");
         }

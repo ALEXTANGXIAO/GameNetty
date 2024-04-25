@@ -29,7 +29,7 @@ namespace GameNetty
         /// 注册可寻址消息组件。
         /// </summary>
         /// <param name="isLock">是否进行锁定。</param>
-        public FTask Register(bool isLock = true)
+        public GameTask Register(bool isLock = true)
         {
             if (Parent == null)
             {
@@ -52,7 +52,7 @@ namespace GameNetty
         /// <summary>
         /// 锁定可寻址消息组件。
         /// </summary>
-        public FTask Lock()
+        public GameTask Lock()
         {
 #if GAME_DEVELOP
             Log.Debug($"AddressableMessageComponent Lock {Parent.Id}");
@@ -64,7 +64,7 @@ namespace GameNetty
         /// 解锁可寻址消息组件。
         /// </summary>
         /// <param name="source">解锁来源。</param>
-        public FTask UnLock(string source)
+        public GameTask UnLock(string source)
         {
 #if GAME_DEVELOP
             Log.Debug($"AddressableMessageComponent UnLock {Parent.Id} {Parent.RuntimeId}");

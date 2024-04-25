@@ -18,7 +18,7 @@ namespace GameNetty
         /// <param name="addressableId">地址映射的唯一标识。</param>
         /// <param name="routeId">路由 ID。</param>
         /// <param name="isLock">是否进行锁定。</param>
-        public async FTask Add(long addressableId, long routeId, bool isLock)
+        public async GameTask Add(long addressableId, long routeId, bool isLock)
         {
             WaitCoroutineLock waitCoroutineLock = null;
             try
@@ -46,7 +46,7 @@ namespace GameNetty
         /// </summary>
         /// <param name="addressableId">地址映射的唯一标识。</param>
         /// <returns>地址映射的路由 ID。</returns>
-        public async FTask<long> Get(long addressableId)
+        public async GameTask<long> Get(long addressableId)
         {
             using (await _addressableLock.Lock(addressableId))
             {
@@ -59,7 +59,7 @@ namespace GameNetty
         /// 移除地址映射。
         /// </summary>
         /// <param name="addressableId">地址映射的唯一标识。</param>
-        public async FTask Remove(long addressableId)
+        public async GameTask Remove(long addressableId)
         {
             using (await _addressableLock.Lock(addressableId))
             {
@@ -72,7 +72,7 @@ namespace GameNetty
         /// 锁定地址映射。
         /// </summary>
         /// <param name="addressableId">地址映射的唯一标识。</param>
-        public async FTask Lock(long addressableId)
+        public async GameTask Lock(long addressableId)
         {
             var waitCoroutineLock = await _addressableLock.Lock(addressableId);
             _locks.Add(addressableId, waitCoroutineLock);

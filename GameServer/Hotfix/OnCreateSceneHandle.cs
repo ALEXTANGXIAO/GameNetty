@@ -5,7 +5,7 @@ using GameNetty;
 /// </summary>
 public class OnCreateSceneHandle : AsyncEventSystem<OnCreateSceneEvent>
 {
-    public override async FTask Handler(OnCreateSceneEvent self)
+    public override async GameTask Handler(OnCreateSceneEvent self)
     {
         // GameServer服务器是以Scene为单位的、所以Scene下有什么组件都可以自己添加定义
         // OnCreateScene这个事件就是给开发者使用的
@@ -35,6 +35,6 @@ public class OnCreateSceneHandle : AsyncEventSystem<OnCreateSceneEvent>
         Log.Info($"scene create: {self.Scene.SceneType} SceneId:{self.Scene.Id} LocationId:{self.Scene.LocationId} WorldId:{self.Scene.World?.Id}");
 
 
-        await FTask.CompletedTask;
+        await GameTask.CompletedTask;
     }
 }

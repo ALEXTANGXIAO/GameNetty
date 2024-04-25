@@ -159,7 +159,7 @@ namespace GameNetty
         /// 创建并初始化具有指定服务器配置的服务器。
         /// </summary>
         /// <param name="serverConfigId">服务器配置的标识符。</param>
-        public static async FTask Create(uint serverConfigId)
+        public static async GameTask Create(uint serverConfigId)
         {
             var serverConfigInfo = ConfigTableManage.ServerConfig(serverConfigId);
             
@@ -191,7 +191,7 @@ namespace GameNetty
         /// <param name="outerBindIp">服务器的外部绑定 IP 地址。</param>
         /// <param name="sceneInfos">要创建的场景配置信息列表。</param>
         /// <returns>创建或获取的服务器实例。</returns>
-        public static async FTask<Server> Create(uint serverConfigId, string innerBindIp, int innerPort, string outerBindIp, List<SceneConfigInfo> sceneInfos)
+        public static async GameTask<Server> Create(uint serverConfigId, string innerBindIp, int innerPort, string outerBindIp, List<SceneConfigInfo> sceneInfos)
         {
             if (Servers.TryGetValue(serverConfigId, out var server))
             {

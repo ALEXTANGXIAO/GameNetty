@@ -126,7 +126,7 @@ public static class MessageHelper
     /// <param name="requestType">请求类型</param>
     /// <param name="request">请求数据流</param>
     /// <returns>异步任务，返回响应</returns>
-    public static async FTask<IResponse> CallInnerRoute(Scene scene, long entityId, long routeTypeOpCode, Type requestType, MemoryStream request)
+    public static async GameTask<IResponse> CallInnerRoute(Scene scene, long entityId, long routeTypeOpCode, Type requestType, MemoryStream request)
     {
         if (entityId == 0)
         {
@@ -137,7 +137,7 @@ public static class MessageHelper
         EntityIdStruct entityIdStruct = entityId;
         var rpcId = ++_rpcId;
         var session = scene.Server.GetSession(entityIdStruct.LocationId);
-        var requestCallback = FTask<IResponse>.Create(false);
+        var requestCallback = GameTask<IResponse>.Create(false);
         RequestCallback.Add(rpcId, MessageSender.Create(rpcId, requestType, requestCallback));
         session.Send(request, rpcId, routeTypeOpCode, entityId);
         return await requestCallback;
@@ -150,7 +150,7 @@ public static class MessageHelper
     /// <param name="entityId">实体ID</param>
     /// <param name="request">路由消息</param>
     /// <returns></returns>
-    public static async FTask<IResponse> CallInnerRoute(Server server, long entityId, IRouteMessage request)
+    public static async GameTask<IResponse> CallInnerRoute(Server server, long entityId, IRouteMessage request)
     {
         if (entityId == 0)
         {
@@ -161,7 +161,7 @@ public static class MessageHelper
         EntityIdStruct entityIdStruct = entityId;
         var rpcId = ++_rpcId;
         var session = server.GetSession(entityIdStruct.LocationId);
-        var requestCallback = FTask<IResponse>.Create(false);
+        var requestCallback = GameTask<IResponse>.Create(false);
         RequestCallback.Add(rpcId, MessageSender.Create(rpcId, request, requestCallback));
         session.Send(request, rpcId, entityId);
         return await requestCallback;
@@ -174,7 +174,7 @@ public static class MessageHelper
     /// <param name="entityId">实体ID</param>
     /// <param name="request">路由消息</param>
     /// <returns>异步任务，返回响应</returns>
-    public static async FTask<IResponse> CallInnerRoute(Scene scene, long entityId, IRouteMessage request)
+    public static async GameTask<IResponse> CallInnerRoute(Scene scene, long entityId, IRouteMessage request)
     {
         if (entityId == 0)
         {
@@ -185,7 +185,7 @@ public static class MessageHelper
         EntityIdStruct entityIdStruct = entityId;
         var rpcId = ++_rpcId;
         var session = scene.Server.GetSession(entityIdStruct.LocationId);
-        var requestCallback = FTask<IResponse>.Create(false);
+        var requestCallback = GameTask<IResponse>.Create(false);
         RequestCallback.Add(rpcId, MessageSender.Create(rpcId, request, requestCallback));
         session.Send(request, rpcId, entityId);
         return await requestCallback;
@@ -198,11 +198,11 @@ public static class MessageHelper
     /// <param name="targetServerId">目标服务器ID</param>
     /// <param name="request">请求消息</param>
     /// <returns>异步任务，返回响应</returns>
-    public static async FTask<IResponse> CallInnerServer(Scene scene, uint targetServerId, IRequest request)
+    public static async GameTask<IResponse> CallInnerServer(Scene scene, uint targetServerId, IRequest request)
     {
         var rpcId = ++_rpcId;
         var session = scene.Server.GetSession(targetServerId);
-        var requestCallback = FTask<IResponse>.Create(false);
+        var requestCallback = GameTask<IResponse>.Create(false);
         RequestCallback.Add(rpcId, MessageSender.Create(rpcId, request, requestCallback));
         session.Send(request, rpcId);
         return await requestCallback;
@@ -215,7 +215,7 @@ public static class MessageHelper
     /// <param name="addressableId">可寻址对象ID</param>
     /// <param name="request">路由消息</param>
     /// <returns>异步任务，返回响应</returns>
-    public static async FTask<IResponse> CallAddressable(Scene scene, long addressableId, IRouteMessage request)
+    public static async GameTask<IResponse> CallAddressable(Scene scene, long addressableId, IRouteMessage request)
     {
         var failCount = 0;
 
@@ -280,7 +280,7 @@ public static class MessageHelper
     /// <param name="addressableId">addressableId</param>
     /// <param name="entityType">设置连接的Entity的EntityType</param>
     /// <returns></returns>
-    public static async FTask<bool> Link(Entity entity, int entityType, long addressableId)
+    public static async GameTask<bool> Link(Entity entity, int entityType, long addressableId)
     {
         var response = (LinkEntity_Response)await CallAddressable(entity.Scene, addressableId,
             new LinkEntity_Request()
@@ -303,7 +303,7 @@ public static class MessageHelper
     /// <param name="session"></param>
     /// <param name="addressableId"></param>
     /// <returns></returns>
-    public static async FTask<bool> LinkClient(Session session, long addressableId)
+    public static async GameTask<bool> LinkClient(Session session, long addressableId)
     {
         var response = (LinkEntity_Response)await CallAddressable(session.Scene, addressableId,
             new LinkEntity_Request()

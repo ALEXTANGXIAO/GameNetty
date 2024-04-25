@@ -31,7 +31,7 @@ namespace GameNetty
         /// <param name="addressableId">地址映射的唯一标识。</param>
         /// <param name="routeId">路由 ID。</param>
         /// <param name="isLock">是否锁定。</param>
-        public static async FTask AddAddressable(Scene scene, long addressableId, long routeId, bool isLock = true)
+        public static async GameTask AddAddressable(Scene scene, long addressableId, long routeId, bool isLock = true)
         {
             // 获取指定索引的地址映射场景配置信息
             var addressableScene = AddressableScenes[(int)addressableId % AddressableScenes.Count];
@@ -53,7 +53,7 @@ namespace GameNetty
         /// <param name="scene">场景实例。</param>
         /// <param name="addressableId">地址映射的唯一标识。</param>
         /// <returns>地址映射的路由 ID。</returns>
-        public static async FTask<long> GetAddressableRouteId(Scene scene, long addressableId)
+        public static async GameTask<long> GetAddressableRouteId(Scene scene, long addressableId)
         {
             // 获取指定索引的地址映射场景配置信息
             var addressableScene = AddressableScenes[(int)addressableId % AddressableScenes.Count];
@@ -78,7 +78,7 @@ namespace GameNetty
         /// </summary>
         /// <param name="server">内部网络Server，可通过Scene.Server获得</param>
         /// <param name="addressableId">地址映射的唯一标识</param>
-        public static async FTask RemoveAddressable(Server server, long addressableId)
+        public static async GameTask RemoveAddressable(Server server, long addressableId)
         {
             var addressableScene = AddressableScenes[(int)addressableId % AddressableScenes.Count];
             var response = await MessageHelper.CallInnerRoute(server, addressableScene.EntityId,
@@ -97,7 +97,7 @@ namespace GameNetty
         /// </summary>
         /// <param name="scene">场景实例。</param>
         /// <param name="addressableId">地址映射的唯一标识。</param>
-        public static async FTask RemoveAddressable(Scene scene, long addressableId)
+        public static async GameTask RemoveAddressable(Scene scene, long addressableId)
         {
             var addressableScene = AddressableScenes[(int)addressableId % AddressableScenes.Count];
             var response = await MessageHelper.CallInnerRoute(scene, addressableScene.EntityId,
@@ -117,7 +117,7 @@ namespace GameNetty
         /// </summary>
         /// <param name="scene">场景实例。</param>
         /// <param name="addressableId">地址映射的唯一标识。</param>
-        public static async FTask LockAddressable(Scene scene, long addressableId)
+        public static async GameTask LockAddressable(Scene scene, long addressableId)
         {
             var addressableScene = AddressableScenes[(int)addressableId % AddressableScenes.Count];
             var response = await MessageHelper.CallInnerRoute(scene, addressableScene.EntityId,
@@ -139,7 +139,7 @@ namespace GameNetty
         /// <param name="addressableId">地址映射的唯一标识。</param>
         /// <param name="routeId">路由 ID。</param>
         /// <param name="source">解锁来源。</param>
-        public static async FTask UnLockAddressable(Scene scene, long addressableId, long routeId, string source)
+        public static async GameTask UnLockAddressable(Scene scene, long addressableId, long routeId, string source)
         {
             var addressableScene = AddressableScenes[(int)addressableId % AddressableScenes.Count];
             var response = await MessageHelper.CallInnerRoute(scene, addressableScene.EntityId,

@@ -4,7 +4,7 @@ namespace BestGame;
 
 public class G2M_CreateUnitRequestHandler : RouteRPC<Scene,G2M_CreateUnitRequest,M2G_CreateUnitResponse>
 {
-    protected override async FTask Run(Scene scene,G2M_CreateUnitRequest request, M2G_CreateUnitResponse response, Action reply)
+    protected override async GameTask Run(Scene scene,G2M_CreateUnitRequest request, M2G_CreateUnitResponse response, Action reply)
     {
         var unitManage = scene.GetComponent<UnitComponent>();
         // 1、用PlayerId创建一个Unit

@@ -17,7 +17,7 @@ public class StateSync : Entity
         AddSync().Coroutine();
     }
 
-    public async FTask AddSync()
+    public async GameTask AddSync()
     {
         IsWait = true;
         long runtimeId = RuntimeId;

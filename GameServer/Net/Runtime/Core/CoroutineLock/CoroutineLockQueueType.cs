@@ -36,7 +36,7 @@ namespace GameNetty
         /// <param name="tag">锁标识。</param>
         /// <param name="time">等待时间。</param>
         /// <returns>等待协程锁的任务。</returns>
-        public async FTask<WaitCoroutineLock> Lock(long key, string tag = null, int time = 30000)
+        public async GameTask<WaitCoroutineLock> Lock(long key, string tag = null, int time = 30000)
         {
             if (_coroutineLockQueues.TryGetValue(key, out var coroutineLockQueue))
             {

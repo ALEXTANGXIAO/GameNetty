@@ -11,7 +11,7 @@ namespace GameNetty
     /// 用于构建已完成的异步任务方法的构建器。
     /// </summary>
     [StructLayout(LayoutKind.Auto)]
-    public struct AsyncFTaskCompletedMethodBuilder
+    public struct AsyncGameTaskCompletedMethodBuilder
     {
         // 1. 静态的 Create 方法。
         /// <summary>
@@ -19,16 +19,16 @@ namespace GameNetty
         /// </summary>
         /// <returns>已完成的异步任务构建器。</returns>
         [DebuggerHidden]
-        public static AsyncFTaskCompletedMethodBuilder Create()
+        public static AsyncGameTaskCompletedMethodBuilder Create()
         {
-            return new AsyncFTaskCompletedMethodBuilder();
+            return new AsyncGameTaskCompletedMethodBuilder();
         }
 
         // 2. TaskLike Task property(void)
         /// <summary>
         /// 获取表示已完成的异步任务。
         /// </summary>
-        public FTaskCompleted Task => default;
+        public GameTaskCompleted Task => default;
 
         // 3. SetException
         /// <summary>

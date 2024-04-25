@@ -43,7 +43,7 @@ namespace GameNetty
         /// <summary>
         /// 存储请求回调的字典。
         /// </summary>
-        public readonly Dictionary<long, FTask<IResponse>> RequestCallback = new();
+        public readonly Dictionary<long, GameTask<IResponse>> RequestCallback = new();
 
         /// <summary>
         /// 创建一个会话并添加到会话字典中。
@@ -264,7 +264,7 @@ namespace GameNetty
         /// <param name="request">要调用的请求。</param>
         /// <param name="routeId">路由标识符。</param>
         /// <returns>一个代表异步操作的任务，返回响应。</returns>
-        public virtual FTask<IResponse> Call(IRequest request, long routeId = 0)
+        public virtual GameTask<IResponse> Call(IRequest request, long routeId = 0)
         {
             if (IsDisposed)
             {
@@ -272,7 +272,7 @@ namespace GameNetty
             }
 
             // 创建用于等待响应的任务
-            var requestCallback = FTask<IResponse>.Create();
+            var requestCallback = GameTask<IResponse>.Create();
             
             unchecked
             {

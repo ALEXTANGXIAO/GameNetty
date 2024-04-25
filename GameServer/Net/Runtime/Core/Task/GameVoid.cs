@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 
 namespace GameNetty
 {
-    [AsyncMethodBuilder(typeof(AsyncFVoidMethodBuilder))]
+    [AsyncMethodBuilder(typeof(AsyncGameVoidMethodBuilder))]
     [StructLayout(LayoutKind.Auto)]
-    internal struct FVoid : ICriticalNotifyCompletion
+    internal struct GameVoid : ICriticalNotifyCompletion
     {
         [DebuggerHidden]
         public void Coroutine()

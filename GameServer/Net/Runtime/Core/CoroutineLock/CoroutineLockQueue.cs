@@ -52,7 +52,7 @@ namespace GameNetty
         /// <param name="tag">锁标识。</param>
         /// <param name="time">等待时间。</param>
         /// <returns>等待协程锁的任务。</returns>
-        public async FTask<WaitCoroutineLock> Lock(string tag, int time)
+        public async GameTask<WaitCoroutineLock> Lock(string tag, int time)
         {
 #if GAME_DEVELOP
             if (_waitCoroutineLocks.Count >= 100)

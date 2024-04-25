@@ -21,7 +21,7 @@ namespace GameNetty
         /// <param name="rpcId">RPC标识。</param>
         /// <param name="routeMessage">要处理的路由消息。</param>
         /// <returns>异步任务。</returns>
-        FTask Handle(Session session, Entity entity, uint rpcId, object routeMessage);
+        GameTask Handle(Session session, Entity entity, uint rpcId, object routeMessage);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ namespace GameNetty
         /// <param name="rpcId">RPC标识。</param>
         /// <param name="routeMessage">要处理的路由消息。</param>
         /// <returns>异步任务。</returns>
-        public async FTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
+        public async GameTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
         {
             if (routeMessage is not TMessage ruteMessage)
             {
@@ -83,7 +83,7 @@ namespace GameNetty
         /// <param name="entity">实体对象。</param>
         /// <param name="message">要处理的路由消息。</param>
         /// <returns>异步任务。</returns>
-        protected abstract FTask Run(TEntity entity, TMessage message);
+        protected abstract GameTask Run(TEntity entity, TMessage message);
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ namespace GameNetty
         /// <param name="rpcId">RPC标识。</param>
         /// <param name="routeMessage">要处理的路由消息。</param>
         /// <returns>异步任务。</returns>
-        public async FTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
+        public async GameTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
         {
             if (routeMessage is not TRouteRequest tRouteRequest)
             {
@@ -175,7 +175,7 @@ namespace GameNetty
         /// <param name="response">响应路由消息。</param>
         /// <param name="reply">发送响应的方法。</param>
         /// <returns>异步任务。</returns>
-        protected abstract FTask Run(TEntity entity, TRouteRequest request, TRouteResponse response, Action reply);
+        protected abstract GameTask Run(TEntity entity, TRouteRequest request, TRouteResponse response, Action reply);
     }
 
     /// <summary>
@@ -201,7 +201,7 @@ namespace GameNetty
         /// <param name="entity">实体。</param>
         /// <param name="rpcId">RPC标识。</param>
         /// <param name="routeMessage">可寻址路由消息。</param>
-        public async FTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
+        public async GameTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
         {
             if (routeMessage is not TMessage ruteMessage)
             {
@@ -239,7 +239,7 @@ namespace GameNetty
         /// </summary>
         /// <param name="entity">实体。</param>
         /// <param name="message">可寻址路由消息。</param>
-        protected abstract FTask Run(TEntity entity, TMessage message);
+        protected abstract GameTask Run(TEntity entity, TMessage message);
     }
 
     /// <summary>
@@ -268,7 +268,7 @@ namespace GameNetty
         /// <param name="entity">实体。</param>
         /// <param name="rpcId">RPC标识。</param>
         /// <param name="routeMessage">可寻址RPC路由请求。</param>
-        public async FTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
+        public async GameTask Handle(Session session, Entity entity, uint rpcId, object routeMessage)
         {
             if (routeMessage is not TRouteRequest tRouteRequest)
             {
@@ -329,7 +329,7 @@ namespace GameNetty
         /// <param name="request">可寻址RPC路由请求。</param>
         /// <param name="response">可寻址RPC路由响应。</param>
         /// <param name="reply">回复操作。</param>
-        protected abstract FTask Run(TEntity entity, TRouteRequest request, TRouteResponse response, Action reply);
+        protected abstract GameTask Run(TEntity entity, TRouteRequest request, TRouteResponse response, Action reply);
     }
 }
 #endif

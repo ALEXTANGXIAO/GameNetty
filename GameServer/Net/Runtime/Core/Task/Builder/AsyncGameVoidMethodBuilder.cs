@@ -7,12 +7,12 @@ using System.Runtime.InteropServices;
 namespace GameNetty
 {
     [StructLayout(LayoutKind.Auto)]
-    internal struct AsyncFVoidMethodBuilder
+    internal struct AsyncGameVoidMethodBuilder
     {
         // 1. Static Create method.
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static AsyncFVoidMethodBuilder Create()
+        public static AsyncGameVoidMethodBuilder Create()
         {
             return default;
         }
@@ -33,7 +33,7 @@ namespace GameNetty
         }
 
         // 4. Return to task
-        public FVoid Task
+        public GameVoid Task
         {
             [DebuggerHidden]
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

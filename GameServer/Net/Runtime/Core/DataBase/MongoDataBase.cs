@@ -43,7 +43,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="sumExpression">要对其进行求和的字段表达式。</param>
     /// <param name="collection">集合名称，可选。如果未指定，将使用实体类型的名称。</param>
     /// <returns>满足条件的文档中指定字段的求和结果。</returns>
-    public async FTask<long> Sum<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> sumExpression, string collection = null) where T : Entity
+    public async GameTask<long> Sum<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> sumExpression, string collection = null) where T : Entity
     {
         var member = (MemberExpression)((UnaryExpression)sumExpression.Body).Operand;
 
@@ -91,7 +91,7 @@ public sealed class MongoDataBase : IDateBase
     /// <typeparam name="T">实体类型。</typeparam>
     /// <param name="collection">集合名称，可选。如果未指定，将使用实体类型的名称。</param>
     /// <returns>满足条件的文档数量。</returns>
-    public async FTask<long> Count<T>(string collection = null) where T : Entity
+    public async GameTask<long> Count<T>(string collection = null) where T : Entity
     {
         return await GetCollection<T>(collection).CountDocumentsAsync(d => true);
     }
@@ -103,7 +103,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="filter">用于筛选文档的表达式。</param>
     /// <param name="collection">集合名称，可选。如果未指定，将使用实体类型的名称。</param>
     /// <returns>满足条件的文档数量。</returns>
-    public async FTask<long> Count<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
+    public async GameTask<long> Count<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
     {
         return await GetCollection<T>(collection).CountDocumentsAsync(filter);
     }
@@ -118,7 +118,7 @@ public sealed class MongoDataBase : IDateBase
     /// <typeparam name="T">实体类型。</typeparam>
     /// <param name="collection">集合名称，可选。如果未指定，将使用实体类型的名称。</param>
     /// <returns>如果存在文档则返回 true，否则返回 false。</returns>
-    public async FTask<bool> Exist<T>(string collection = null) where T : Entity
+    public async GameTask<bool> Exist<T>(string collection = null) where T : Entity
     {
         return await Count<T>(collection) > 0;
     }
@@ -130,7 +130,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="filter">用于筛选文档的表达式。</param>
     /// <param name="collection">集合名称，可选。如果未指定，将使用实体类型的名称。</param>
     /// <returns>如果存在满足条件的文档则返回 true，否则返回 false。</returns>
-    public async FTask<bool> Exist<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
+    public async GameTask<bool> Exist<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
     {
         return await Count(filter, collection) > 0;
     }
@@ -146,7 +146,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="id">要查询的文档 ID。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>查询到的文档。</returns>
-    public async FTask<T> QueryNotLock<T>(long id, string collection = null) where T : Entity
+    public async GameTask<T> QueryNotLock<T>(long id, string collection = null) where T : Entity
     {
         var cursor = await GetCollection<T>(collection).FindAsync(d => d.Id == id);
         var v = await cursor.FirstOrDefaultAsync();
@@ -160,7 +160,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="id">要查询的文档 ID。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>查询到的文档。</returns>
-    public async FTask<T> Query<T>(long id, string collection = null) where T : Entity
+    public async GameTask<T> Query<T>(long id, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
@@ -179,7 +179,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="pageSize">每页大小。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档数量和日期列表。</returns>
-    public async FTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize,
+    public async GameTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize,
         string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
@@ -200,7 +200,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="cols">要查询的列名称数组。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档数量和日期列表。</returns>
-    public async FTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols,
+    public async GameTask<(int count, List<T> dates)> QueryCountAndDatesByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols,
         string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
@@ -222,7 +222,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="pageSize">每页大小。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string collection = null) where T : Entity
+    public async GameTask<List<T>> QueryByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -242,7 +242,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="cols">要查询的列名称数组。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols, string collection = null)
+    public async GameTask<List<T>> QueryByPage<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize, string[] cols, string collection = null)
         where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
@@ -270,7 +270,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="isAsc">是否升序排序。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryByPageOrderBy<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize,
+    public async GameTask<List<T>> QueryByPageOrderBy<T>(Expression<Func<T, bool>> filter, int pageIndex, int pageSize,
         Expression<Func<T, object>> orderByExpression, bool isAsc = true, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
@@ -293,7 +293,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="filter">查询过滤条件。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的第一个文档，如果未找到则为 null。</returns>
-    public async FTask<T?> First<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
+    public async GameTask<T?> First<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -311,7 +311,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="cols">要查询的列名称数组。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的第一个文档。</returns>
-    public async FTask<T> First<T>(string json, string[] cols, string collection = null) where T : Entity
+    public async GameTask<T> First<T>(string json, string[] cols, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -341,7 +341,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="isAsc">是否升序排序。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryOrderBy<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByExpression, bool isAsc = true,
+    public async GameTask<List<T>> QueryOrderBy<T>(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByExpression, bool isAsc = true,
         string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
@@ -363,7 +363,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="filter">查询过滤条件。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> Query<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
+    public async GameTask<List<T>> Query<T>(Expression<Func<T, bool>> filter, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -379,7 +379,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="id">文档 ID。</param>
     /// <param name="collectionNames">要查询的集合名称列表。</param>
     /// <param name="result">查询结果存储列表。</param>
-    public async FTask Query(long id, List<string> collectionNames, List<Entity> result)
+    public async GameTask Query(long id, List<string> collectionNames, List<Entity> result)
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
@@ -411,7 +411,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="json">JSON 查询条件。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryJson<T>(string json, string collection = null) where T : Entity
+    public async GameTask<List<T>> QueryJson<T>(string json, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -430,7 +430,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="cols">要查询的列名称数组。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryJson<T>(string json, string[] cols, string collection = null) where T : Entity
+    public async GameTask<List<T>> QueryJson<T>(string json, string[] cols, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -459,7 +459,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="json">JSON 查询条件。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> QueryJson<T>(long taskId, string json, string collection = null) where T : Entity
+    public async GameTask<List<T>> QueryJson<T>(long taskId, string json, string collection = null) where T : Entity
     {
         using (await IDateBase.DataBaseLock.Lock(taskId))
         {
@@ -478,7 +478,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="cols">要查询的列名称数组。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>满足条件的文档列表。</returns>
-    public async FTask<List<T>> Query<T>(Expression<Func<T, bool>> filter, string[] cols, string collection = null) where T : class
+    public async GameTask<List<T>> Query<T>(Expression<Func<T, bool>> filter, string[] cols, string collection = null) where T : class
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -504,7 +504,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="transactionSession">事务会话对象。</param>
     /// <param name="entity">要保存的实体对象。</param>
     /// <param name="collection">集合名称。</param>
-    public async FTask Save<T>(object transactionSession, T entity, string collection = null) where T : Entity
+    public async GameTask Save<T>(object transactionSession, T entity, string collection = null) where T : Entity
     {
         if (entity == null)
         {
@@ -528,7 +528,7 @@ public sealed class MongoDataBase : IDateBase
     /// <typeparam name="T">实体类型。</typeparam>
     /// <param name="entity">要保存的实体对象。</param>
     /// <param name="collection">集合名称。</param>
-    public async FTask Save<T>(T entity, string collection = null) where T : Entity, new()
+    public async GameTask Save<T>(T entity, string collection = null) where T : Entity, new()
     {
         if (entity == null)
         {
@@ -552,7 +552,7 @@ public sealed class MongoDataBase : IDateBase
     /// <typeparam name="T">实体类型。</typeparam>
     /// <param name="entity">要保存的实体对象。</param>
     /// <param name="collection">集合名称。</param>
-    private async FTask SaveBase<T>(T entity, string collection = null) where T : Entity
+    private async GameTask SaveBase<T>(T entity, string collection = null) where T : Entity
     {
         if (entity == null)
         {
@@ -574,7 +574,7 @@ public sealed class MongoDataBase : IDateBase
     /// </summary>
     /// <param name="id">文档 ID。</param>
     /// <param name="entities">要保存的实体对象列表。</param>
-    public async FTask Save(long id, List<Entity> entities)
+    public async GameTask Save(long id, List<Entity> entities)
     {
         if (entities == null)
         {
@@ -611,7 +611,7 @@ public sealed class MongoDataBase : IDateBase
     /// <typeparam name="T">实体类型。</typeparam>
     /// <param name="entity">要插入的实体对象。</param>
     /// <param name="collection">集合名称。</param>
-    public FTask Insert<T>(T entity, string collection = null) where T : Entity, new()
+    public GameTask Insert<T>(T entity, string collection = null) where T : Entity, new()
     {
         return Save(entity);
     }
@@ -622,7 +622,7 @@ public sealed class MongoDataBase : IDateBase
     /// <typeparam name="T">实体类型。</typeparam>
     /// <param name="list">要插入的实体对象列表。</param>
     /// <param name="collection">集合名称。</param>
-    public async FTask InsertBatch<T>(IEnumerable<T> list, string collection = null) where T : Entity, new()
+    public async GameTask InsertBatch<T>(IEnumerable<T> list, string collection = null) where T : Entity, new()
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -637,7 +637,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="transactionSession">事务会话对象。</param>
     /// <param name="list">要插入的实体对象列表。</param>
     /// <param name="collection">集合名称。</param>
-    public async FTask InsertBatch<T>(object transactionSession, IEnumerable<T> list, string collection = null) where T : Entity, new()
+    public async GameTask InsertBatch<T>(object transactionSession, IEnumerable<T> list, string collection = null) where T : Entity, new()
     {
         using (await IDateBase.DataBaseLock.Lock(RandomHelper.RandInt64()))
         {
@@ -657,7 +657,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="id">要删除的实体的ID。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>删除的实体数量。</returns>
-    public async FTask<long> Remove<T>(object transactionSession, long id, string collection = null) where T : Entity, new()
+    public async GameTask<long> Remove<T>(object transactionSession, long id, string collection = null) where T : Entity, new()
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
@@ -673,7 +673,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="id">要删除的实体的ID。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>删除的实体数量。</returns>
-    public async FTask<long> Remove<T>(long id, string collection = null) where T : Entity, new()
+    public async GameTask<long> Remove<T>(long id, string collection = null) where T : Entity, new()
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
@@ -691,7 +691,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="filter">筛选条件。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>删除的实体数量。</returns>
-    public async FTask<long> Remove<T>(long id, object transactionSession, Expression<Func<T, bool>> filter, string collection = null) where T : Entity, new()
+    public async GameTask<long> Remove<T>(long id, object transactionSession, Expression<Func<T, bool>> filter, string collection = null) where T : Entity, new()
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
@@ -708,7 +708,7 @@ public sealed class MongoDataBase : IDateBase
     /// <param name="filter">筛选条件。</param>
     /// <param name="collection">集合名称。</param>
     /// <returns>删除的实体数量。</returns>
-    public async FTask<long> Remove<T>(long id, Expression<Func<T, bool>> filter, string collection = null) where T : Entity, new()
+    public async GameTask<long> Remove<T>(long id, Expression<Func<T, bool>> filter, string collection = null) where T : Entity, new()
     {
         using (await IDateBase.DataBaseLock.Lock(id))
         {
@@ -733,7 +733,7 @@ public sealed class MongoDataBase : IDateBase
     /// 2 : Builders.IndexKeys.Descending(d=>d.Id).Ascending(d=>d.Name)
     /// 3 : Builders.IndexKeys.Descending(d=>d.Id),Builders.IndexKeys.Descending(d=>d.Name)
     /// </code>
-    public async FTask CreateIndex<T>(string collection, params object[] keys) where T : Entity
+    public async GameTask CreateIndex<T>(string collection, params object[] keys) where T : Entity
     {
         if (keys == null || keys.Length <= 0)
         {
@@ -757,7 +757,7 @@ public sealed class MongoDataBase : IDateBase
     /// </summary>
     /// <typeparam name="T">实体类型。</typeparam>
     /// <param name="keys">索引键定义。</param>
-    public async FTask CreateIndex<T>(params object[] keys) where T : Entity
+    public async GameTask CreateIndex<T>(params object[] keys) where T : Entity
     {
         if (keys == null)
         {
@@ -784,7 +784,7 @@ public sealed class MongoDataBase : IDateBase
     /// 创建数据库集合（如果不存在）。
     /// </summary>
     /// <typeparam name="T">实体类型。</typeparam>
-    public async FTask CreateDB<T>() where T : Entity
+    public async GameTask CreateDB<T>() where T : Entity
     {
         // 已经存在数据库表
         string name = typeof(T).Name;
@@ -803,7 +803,7 @@ public sealed class MongoDataBase : IDateBase
     /// 创建数据库集合（如果不存在）。
     /// </summary>
     /// <param name="type">实体类型。</param>
-    public async FTask CreateDB(Type type)
+    public async GameTask CreateDB(Type type)
     {
         string name = type.Name;
 

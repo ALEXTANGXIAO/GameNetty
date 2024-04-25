@@ -4,7 +4,7 @@ namespace BestGame;
 
 public class C2G_EnterMapRequestHandler : MessageRPC<C2G_EnterMapRequest,G2C_EnterMapResponse>
 {
-    protected override async FTask Run(Session session, C2G_EnterMapRequest request, G2C_EnterMapResponse response, Action reply)
+    protected override async GameTask Run(Session session, C2G_EnterMapRequest request, G2C_EnterMapResponse response, Action reply)
     {
         var sessionPlayer = session.GetComponent<SessionPlayerComponent>();
 

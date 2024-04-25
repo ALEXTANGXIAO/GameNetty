@@ -9,7 +9,7 @@ namespace GameNetty
     /// 用于异步任务方法的构建器。
     /// </summary>
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct AsyncFTaskMethodBuilder
+    public readonly struct AsyncGameTaskMethodBuilder
     {
         // 1. 静态的 Create 方法。
         /// <summary>
@@ -18,23 +18,23 @@ namespace GameNetty
         /// <returns>异步任务构建器。</returns>
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static AsyncFTaskMethodBuilder Create()
+        public static AsyncGameTaskMethodBuilder Create()
         {
-            return new AsyncFTaskMethodBuilder(FTask.Create());
+            return new AsyncGameTaskMethodBuilder(GameTask.Create());
         }
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private AsyncFTaskMethodBuilder(FTask fTask)
+        private AsyncGameTaskMethodBuilder(GameTask gameTask)
         {
-            Task = fTask;
+            Task = gameTask;
         }
 
         // 4. 返回任务
         /// <summary>
         /// 获取由该构建器创建的异步任务。
         /// </summary>
-        public FTask Task
+        public GameTask Task
         {
             [DebuggerHidden]
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -121,7 +121,7 @@ namespace GameNetty
     /// </summary>
     /// <typeparam name="T">异步任务的结果类型。</typeparam>
     [StructLayout(LayoutKind.Auto)]
-    public readonly struct AsyncFTaskMethodBuilder<T>
+    public readonly struct AsyncGameTaskMethodBuilder<T>
     {
         // 1. 静态的 Create 方法。
         /// <summary>
@@ -130,23 +130,23 @@ namespace GameNetty
         /// <returns>泛型异步任务构建器。</returns>
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static AsyncFTaskMethodBuilder<T> Create()
+        public static AsyncGameTaskMethodBuilder<T> Create()
         {
-            return new AsyncFTaskMethodBuilder<T>(FTask<T>.Create());
+            return new AsyncGameTaskMethodBuilder<T>(GameTask<T>.Create());
         }
 
         [DebuggerHidden]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private AsyncFTaskMethodBuilder(FTask<T> fTask)
+        private AsyncGameTaskMethodBuilder(GameTask<T> gameTask)
         {
-            Task = fTask;
+            Task = gameTask;
         }
 
         // 4. 返回任务
         /// <summary>
         /// 获取由该构建器创建的泛型异步任务。
         /// </summary>
-        public FTask<T> Task
+        public GameTask<T> Task
         {
             [DebuggerHidden]
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

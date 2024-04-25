@@ -130,7 +130,7 @@ namespace GameNetty
         /// <param name="sceneType">场景类型。</param>
         /// <param name="sceneSubType">场景子类型。</param>
         /// <returns>新创建的场景实体。</returns>
-        public static async FTask<T> Create<T>(Scene scene, int sceneType, int sceneSubType) where T : Scene, new()
+        public static async GameTask<T> Create<T>(Scene scene, int sceneType, int sceneSubType) where T : Scene, new()
         {
             var newScene = Create<T>(scene);
             newScene.Scene = newScene;
@@ -166,7 +166,7 @@ namespace GameNetty
         /// <param name="outerBindIp">外部绑定IP。</param>
         /// <param name="outerPort">外部端口。</param>
         /// <returns>新创建的场景实体。</returns>
-        public static async FTask<Scene> Create(Server server, int sceneType = 0, int sceneSubType = 0, long sceneId = 0, uint worldId = 0,
+        public static async GameTask<Scene> Create(Server server, int sceneType = 0, int sceneSubType = 0, long sceneId = 0, uint worldId = 0,
             string networkProtocol = null, string outerBindIp = null, int outerPort = 0)
         {
             if (sceneId == 0)

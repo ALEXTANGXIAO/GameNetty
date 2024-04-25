@@ -7,7 +7,7 @@ namespace GameNetty
     /// <summary>
     /// 表示一个自定义的取消标记，允许添加和移除取消动作，并可用于取消一组注册的动作。
     /// </summary>
-    public sealed class FCancellationToken : IDisposable
+    public sealed class GameCancellationToken : IDisposable
     {
         private bool _isDispose;
         /// <summary>
@@ -20,9 +20,9 @@ namespace GameNetty
         /// 创建一个取消标记。
         /// </summary>
         /// <returns></returns>
-        public static FCancellationToken Create()
+        public static GameCancellationToken Create()
         {
-            var fCancellationToken = Pool<FCancellationToken>.Rent();
+            var fCancellationToken = Pool<GameCancellationToken>.Rent();
             fCancellationToken._isDispose = false;
             return fCancellationToken;
         }
@@ -80,7 +80,7 @@ namespace GameNetty
             }
             
             _actions.Clear();
-            Pool<FCancellationToken>.Return(this);
+            Pool<GameCancellationToken>.Return(this);
         }
     }
 }

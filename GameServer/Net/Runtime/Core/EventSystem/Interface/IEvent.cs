@@ -34,7 +34,7 @@ namespace GameNetty
         /// </summary>
         /// <param name="self">事件的实例。</param>
         /// <returns>表示异步操作的任务。</returns>
-        FTask InvokeAsync(object self);
+        GameTask InvokeAsync(object self);
     }
 
     /// <summary>
@@ -99,14 +99,14 @@ namespace GameNetty
         /// </summary>
         /// <param name="self">事件的实例。</param>
         /// <returns>表示异步操作的任务。</returns>
-        public abstract FTask Handler(T self);
+        public abstract GameTask Handler(T self);
 
         /// <summary>
         /// 异步调用事件处理方法。
         /// </summary>
         /// <param name="self">事件的实例。</param>
         /// <returns>表示异步操作的任务。</returns>
-        public async FTask InvokeAsync(object self)
+        public async GameTask InvokeAsync(object self)
         {
             try
             {

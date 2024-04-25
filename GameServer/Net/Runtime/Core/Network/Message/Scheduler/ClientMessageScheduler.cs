@@ -78,7 +78,7 @@ namespace GameNetty
         /// <param name="session">客户端会话。</param>
         /// <param name="messageType">消息类型。</param>
         /// <param name="packInfo">消息包信息。</param>
-        protected override FTask Handler(Session session, Type messageType, APackInfo packInfo)
+        protected override GameTask Handler(Session session, Type messageType, APackInfo packInfo)
         {
             throw new NotSupportedException($"Received unsupported message protocolCode:{packInfo.ProtocolCode} messageType:{messageType}");
         }
@@ -93,7 +93,7 @@ namespace GameNetty
         /// <param name="routeTypeCode">路由类型编码。</param>
         /// <param name="messageType">消息类型。</param>
         /// <param name="message">消息实例。</param>
-        protected override FTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message)
+        protected override GameTask InnerHandler(Session session, uint rpcId, long routeId, uint protocolCode, long routeTypeCode, Type messageType, object message)
         {
             throw new NotSupportedException($"Received unsupported message protocolCode:{protocolCode} messageType:{messageType}");
         }

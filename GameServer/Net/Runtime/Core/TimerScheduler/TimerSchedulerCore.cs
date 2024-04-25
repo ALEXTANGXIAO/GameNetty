@@ -86,7 +86,7 @@ namespace GameNetty
                     {
                         case TimerType.OnceWaitTimer:
                         {
-                            var tcs = (FTask<bool>) timer.Callback;
+                            var tcs = (GameTask<bool>) timer.Callback;
                             timer.Dispose();
                             tcs.SetResult(true);
                             break;
@@ -143,7 +143,7 @@ namespace GameNetty
         /// 异步等待一帧时间。
         /// </summary>
         /// <returns>等待是否成功。</returns>
-        public async FTask<bool> WaitFrameAsync()
+        public async GameTask<bool> WaitFrameAsync()
         {
             return await WaitAsync(1);
         }
@@ -154,7 +154,7 @@ namespace GameNetty
         /// <param name="time">等待的时间长度。</param>
         /// <param name="cancellationToken">可选的取消令牌。</param>
         /// <returns>等待是否成功。</returns>
-        public async FTask<bool> WaitAsync(long time, FCancellationToken cancellationToken = null)
+        public async GameTask<bool> WaitAsync(long time, GameCancellationToken cancellationToken = null)
         {
             return await WaitTillAsync(_now() + time, cancellationToken);
         }
@@ -165,14 +165,14 @@ namespace GameNetty
         /// <param name="tillTime">等待的目标时间。</param>
         /// <param name="cancellationToken">可选的取消令牌。</param>
         /// <returns>等待是否成功。</returns>
-        public async FTask<bool> WaitTillAsync(long tillTime, FCancellationToken cancellationToken = null)
+        public async GameTask<bool> WaitTillAsync(long tillTime, GameCancellationToken cancellationToken = null)
         {
             if (_now() > tillTime)
             {
                 return true;
             }
 
-            var tcs = FTask<bool>.Create();
+            var tcs = GameTask<bool>.Create();
             var timerAction = TimerAction.Create();
             var timerId = timerAction.Id;
             timerAction.Callback = tcs;

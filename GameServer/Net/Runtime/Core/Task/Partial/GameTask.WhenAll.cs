@@ -5,13 +5,13 @@ namespace GameNetty
     /// <summary>
     /// 提供用于异步任务操作的静态方法。
     /// </summary>
-    public partial class FTask
+    public partial class GameTask
     {
         /// <summary>
         /// 等待所有任务完成的异步方法。
         /// </summary>
         /// <param name="tasks">要等待的任务列表。</param>
-        public static async FTask WhenAll(List<FTask> tasks)
+        public static async GameTask WhenAll(List<GameTask> tasks)
         {
             if (tasks.Count <= 0)
             {
@@ -28,7 +28,7 @@ namespace GameNetty
 
             await sTaskCompletionSource;
 
-            async FVoid RunSTask(FTask tcs, FTask task)
+            async GameVoid RunSTask(GameTask tcs, GameTask task)
             {
                 await task;
                 count--;
@@ -44,25 +44,25 @@ namespace GameNetty
         /// 等待任意一个任务完成的异步方法。
         /// </summary>
         /// <param name="tasks">要等待的任务数组。</param>
-        public static async FTask Any(params FTask[] tasks)
+        public static async GameTask Any(params GameTask[] tasks)
         {
             if (tasks == null || tasks.Length <= 0)
             {
                 return;
             }
 
-            var tcs = FTask.Create();
+            var tcs = GameTask.Create();
 
             int count = 1;
             
-            foreach (FTask task in tasks)
+            foreach (GameTask task in tasks)
             {
                 RunSTask(task).Coroutine();
             }
             
             await tcs;
 
-            async FVoid RunSTask(FTask task)
+            async GameVoid RunSTask(GameTask task)
             {
                 await task;
 
@@ -79,13 +79,13 @@ namespace GameNetty
     /// <summary>
     /// 提供用于异步任务操作的静态方法，支持泛型参数。
     /// </summary>
-    public partial class FTask<T>
+    public partial class GameTask<T>
     {
         /// <summary>
         /// 等待所有任务完成的异步方法。
         /// </summary>
         /// <param name="tasks">要等待的任务列表。</param>
-        public static async FTask WhenAll(List<FTask<T>> tasks)
+        public static async GameTask WhenAll(List<GameTask<T>> tasks)
         {
             if (tasks.Count <= 0)
             {
@@ -93,7 +93,7 @@ namespace GameNetty
             }
             
             var count = tasks.Count;
-            var sTaskCompletionSource = FTask.Create();
+            var sTaskCompletionSource = GameTask.Create();
 
             foreach (var task in tasks)
             {
@@ -102,7 +102,7 @@ namespace GameNetty
 
             await sTaskCompletionSource;
 
-            async FVoid RunSTask(FTask tcs, FTask<T> task)
+            async GameVoid RunSTask(GameTask tcs, GameTask<T> task)
             {
                 await task;
                 count--;
@@ -117,7 +117,7 @@ namespace GameNetty
         /// 等待所有任务完成的异步方法。
         /// </summary>
         /// <param name="tasks">要等待的任务数组。</param>
-        public static async FTask WhenAll(params FTask<T>[] tasks)
+        public static async GameTask WhenAll(params GameTask<T>[] tasks)
         {
             if (tasks == null || tasks.Length <= 0)
             {
@@ -125,7 +125,7 @@ namespace GameNetty
             }
             
             var count = tasks.Length;
-            var tcs = FTask.Create();
+            var tcs = GameTask.Create();
 
             foreach (var task in tasks)
             {
@@ -134,7 +134,7 @@ namespace GameNetty
 
             await tcs;
 
-            async FVoid RunSTask(FTask<T> task)
+            async GameVoid RunSTask(GameTask<T> task)
             {
                 await task;
                 count--;
@@ -149,25 +149,25 @@ namespace GameNetty
         /// 等待任意一个任务完成的异步方法。
         /// </summary>
         /// <param name="tasks">要等待的任务数组。</param>
-        public static async FTask WaitAny(params FTask<T>[] tasks)
+        public static async GameTask WaitAny(params GameTask<T>[] tasks)
         {
             if (tasks == null || tasks.Length <= 0)
             {
                 return;
             }
 
-            var tcs = FTask.Create();
+            var tcs = GameTask.Create();
 
             int count = 1;
             
-            foreach (FTask<T> task in tasks)
+            foreach (GameTask<T> task in tasks)
             {
                 RunSTask(task).Coroutine();
             }
             
             await tcs;
 
-            async FVoid RunSTask(FTask<T> task)
+            async GameVoid RunSTask(GameTask<T> task)
             {
                 await task;
 

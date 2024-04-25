@@ -63,7 +63,7 @@ public sealed class AddressableRouteComponent : Entity
     /// <param name="routeTypeOpCode">路由类型操作码。</param>
     /// <param name="requestType">请求类型。</param>
     /// <param name="request">请求数据。</param>
-    public async FTask<IResponse> Call(long routeTypeOpCode, Type requestType, MemoryStream request)
+    public async GameTask<IResponse> Call(long routeTypeOpCode, Type requestType, MemoryStream request)
     {
         // 如果组件已被释放，则创建一个带有错误代码的响应，表示路由未找到
         if (IsDisposed)
@@ -137,7 +137,7 @@ public sealed class AddressableRouteComponent : Entity
     /// 调用可寻址路由消息并等待响应。
     /// </summary>
     /// <param name="request">可寻址路由请求。</param>
-    public async FTask<IResponse> Call(IAddressableRouteMessage request)
+    public async GameTask<IResponse> Call(IAddressableRouteMessage request)
     {
         if (IsDisposed)
         {

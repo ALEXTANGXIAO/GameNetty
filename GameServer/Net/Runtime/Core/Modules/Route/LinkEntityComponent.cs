@@ -32,7 +32,7 @@ public sealed class LinkEntityComponent : Entity
 
 public sealed class ConnectEntityHandler : RouteRPC<Entity, LinkEntity_Request, LinkEntity_Response>
 {
-    protected override async FTask Run(Entity entity, LinkEntity_Request request, LinkEntity_Response response, Action reply)
+    protected override async GameTask Run(Entity entity, LinkEntity_Request request, LinkEntity_Response response, Action reply)
     {
         var connectEntityComponent = entity.GetComponent<LinkEntityComponent>() ?? entity.AddComponent<LinkEntityComponent>();
 
@@ -45,7 +45,7 @@ public sealed class ConnectEntityHandler : RouteRPC<Entity, LinkEntity_Request, 
             connectEntityComponent.LinkGateSessionRuntimeId = request.LinkGateSessionRuntimeId;
         }
 
-        await FTask.CompletedTask;
+        await GameTask.CompletedTask;
     }
 }
 #endif
