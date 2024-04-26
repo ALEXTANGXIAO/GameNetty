@@ -4,35 +4,6 @@ using System.Collections.Generic;
 namespace ET
 {
     [MemoryPackable]
-    [Message(OuterMessage.HttpGetRouterResponse)]
-    public partial class HttpGetRouterResponse : MessageObject
-    {
-        public static HttpGetRouterResponse Create(bool isFromPool = false)
-        {
-            return ObjectPool.Instance.Fetch(typeof(HttpGetRouterResponse), isFromPool) as HttpGetRouterResponse;
-        }
-
-        [MemoryPackOrder(0)]
-        public List<string> Realms { get; set; } = new();
-
-        [MemoryPackOrder(1)]
-        public List<string> Routers { get; set; } = new();
-
-        public override void Dispose()
-        {
-            if (!this.IsFromPool)
-            {
-                return;
-            }
-
-            this.Realms.Clear();
-            this.Routers.Clear();
-
-            ObjectPool.Instance.Recycle(this);
-        }
-    }
-
-    [MemoryPackable]
     [Message(OuterMessage.RouterSync)]
     public partial class RouterSync : MessageObject
     {

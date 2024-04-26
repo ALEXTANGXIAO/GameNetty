@@ -30,7 +30,7 @@ namespace ET
             Log.Debug($"recv router info: {routerInfo}");
 
             HttpGetRouterResponse
-                httpGetRouterResponse = JsonHelper.ToObject<HttpGetRouterResponse>(routerInfo); //.JsonUtility.FromJson<HttpGetRouterResponse>(routerInfo);
+                httpGetRouterResponse = JsonHelper.ToObject<HttpGetRouterResponse>(routerInfo);
             self.Info = httpGetRouterResponse;
             Log.Debug($"start get router info finish: {JsonHelper.ToJson(httpGetRouterResponse)}");
 
