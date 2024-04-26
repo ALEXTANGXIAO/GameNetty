@@ -41,7 +41,7 @@ namespace ET
             World.Instance.AddSingleton<ObjectPool>();
             World.Instance.AddSingleton<MessageQueue>();
             World.Instance.AddSingleton<NetServices>();
-            // World.Instance.AddSingleton<LogMsg>();
+            World.Instance.AddSingleton<LogMsg>();
 
             // 创建需要reload的code singleton
             CodeTypes.Instance.CreateCode();

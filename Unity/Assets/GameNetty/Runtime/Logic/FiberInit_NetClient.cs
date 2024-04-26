@@ -1,4 +1,4 @@
-﻿namespace ET.Client
+﻿namespace ET
 {
     [Invoke((long)SceneType.NetClient)]
     public class FiberInit_NetClient: AInvokeHandler<FiberInit, ETTask>

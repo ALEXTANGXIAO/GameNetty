@@ -1,0 +1,19 @@
+{
+    "name": "GameProto",
+    "rootNamespace": "",
+    "references": [
+        "GUID:756335c0388f7114790e504ed368ae1d",
+        "GUID:47f9fc774596be54ebfed7739cd70c86",
+        "GUID:1aa3e8589868c80499255710874679c0",
+        "GUID:d8b63aba1907145bea998dd612889d6b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
