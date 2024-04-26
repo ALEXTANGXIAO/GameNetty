@@ -50,4 +50,7 @@
         <ProjectReference Include="..\Core\Core.csproj" />
         <ProjectReference Include="..\ThirdParty\ThirdParty.csproj" />
     </ItemGroup> 
+    <ItemGroup>
+      <Folder Include="Server\" />
+    </ItemGroup> 
 </Project>
