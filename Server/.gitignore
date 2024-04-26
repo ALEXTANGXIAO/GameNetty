@@ -1,0 +1,19 @@
+# Rider
+.idea/
+
+# Visual Studio cache directory
+.vs/
+
+App/obj/
+
+Core/obj/
+
+Hotfix/obj/
+
+Loader/obj/
+
+Model/obj/
+
+ThirdParty/obj/
+
+GameConfigBytes/
