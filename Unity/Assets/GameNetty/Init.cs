@@ -49,8 +49,6 @@ public class Init : MonoBehaviour
             c2GLoginGate.GateId = r2CLogin.GateId;
             G2C_LoginGate g2CLoginGate = (G2C_LoginGate)await gateSession.Call(c2GLoginGate);
 
-            Log.Debug("登陆gate成功!");
-
             response.PlayerId = g2CLoginGate.PlayerId;
             
             Log.Debug("登陆gate成功!");
