@@ -5,3 +5,5 @@
 .vs/
 
 Bin/
+Logs/
+/**/[Bb]in/
