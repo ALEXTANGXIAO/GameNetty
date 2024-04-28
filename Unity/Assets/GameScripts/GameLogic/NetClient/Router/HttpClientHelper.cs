@@ -16,10 +16,13 @@ namespace ET
         {
             try
             {
-                // using HttpClient httpClient = new();
-                // HttpResponseMessage response =  await httpClient.GetAsync(link);
-                // string result = await response.Content.ReadAsStringAsync();
+#if USE_DOTNET_WEBREQUEST
+                using HttpClient httpClient = new();
+                HttpResponseMessage response =  await httpClient.GetAsync(link);
+                string result = await response.Content.ReadAsStringAsync();
+#else
                 string result = await GetRequest(link);
+#endif
                 return result;
             }
             catch (Exception e)
