@@ -51,6 +51,7 @@
         <ProjectReference Include="..\ThirdParty\ThirdParty.csproj" />
     </ItemGroup> 
     <ItemGroup>
-      <Folder Include="Server\" />
+      <Folder Include="Demo\" />
+      <Folder Include="Generate\" />
     </ItemGroup> 
 </Project>

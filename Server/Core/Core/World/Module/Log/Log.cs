@@ -12,7 +12,7 @@ namespace ET
 
         private static ILog GetLog()
         {
-            return Fiber.Instance != null? Fiber.Instance.Log : Logger.Instance.Log;
+            return Logger.Instance.Log;
         }
         
         [Conditional("DEBUG")]

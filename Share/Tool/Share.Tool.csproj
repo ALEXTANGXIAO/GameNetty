@@ -35,15 +35,15 @@
             <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
         
-        <Compile Include="..\..\Unity\Assets\Scripts\Model\Share\Module\Config\**\*.cs">
+        <Compile Include="..\..\Server\Model\Generate\Config\**\*.cs">
             <Link>Module\Config\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Assets\Scripts\Model\Share\Module\Log\**\*.cs">
+        <Compile Include="..\..\Server\Core\Core\World\Module\Log\**\*.cs">
             <Link>Module\Log\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Assets\Scripts\Core\Network\OpcodeRangeDefine.cs">
+        <Compile Include="..\..\Server\Core\Core\Network\OpcodeRangeDefine.cs">
             <Link>Module\Message\OpcodeRangeDefine.cs</Link>
         </Compile>
     </ItemGroup>
@@ -55,8 +55,8 @@
     </ItemGroup>
     
     <ItemGroup>
-      <ProjectReference Include="..\..\DotNet\Core\DotNet.Core.csproj" />
-      <ProjectReference Include="..\..\DotNet\ThirdParty\DotNet.ThirdParty.csproj" />
+      <ProjectReference Include="..\..\Server\Core\Core.csproj" />
+      <ProjectReference Include="..\..\Server\ThirdParty\ThirdParty.csproj" />
     </ItemGroup>
 
 </Project>
