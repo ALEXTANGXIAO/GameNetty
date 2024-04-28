@@ -1,0 +1,11 @@
+# Rider
+.idea/
+
+# Visual Studio cache directory
+.vs/
+
+Analyzer/obj/
+
+Share.SourceGenerator/obj/
+
+Tool/obj/
