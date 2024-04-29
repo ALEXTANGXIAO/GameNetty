@@ -16,12 +16,12 @@ namespace ET
         {
             try
             {
-#if USE_DOTNET_WEBREQUEST
+#if USE_UNITY_WEBREQUEST
+                string result = await GetRequest(link);
+#else
                 using HttpClient httpClient = new();
                 HttpResponseMessage response =  await httpClient.GetAsync(link);
                 string result = await response.Content.ReadAsStringAsync();
-#else
-                string result = await GetRequest(link);
 #endif
                 return result;
             }
