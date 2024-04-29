@@ -11,6 +11,8 @@
 
 遵循开源MIT协议，原源码所有权@Copyright (c) 2018 tanghai
 
+![image](Books/src/info.png)
+
 
 ## <strong>特别鸣谢
 #### <a href="https://github.com/egametang/ET"><strong>ET</strong></a> - ET是一个开源的游戏客户端（基于unity3d）服务端双端框架，服务端是使用C# .net core开发的分布式游戏服务端，其特点是开发效率高，性能强，双端共享逻辑代码，客户端服务端热更机制完善。
