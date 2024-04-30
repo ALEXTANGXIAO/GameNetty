@@ -1,17 +1,24 @@
 ﻿using UnityEditor;
+using UnityEngine;
 
 namespace ET
 {
     public static class ToolsEditor
     {
-        public static void ExcelExporter()
-        {
+        [MenuItem("ET/Luban 转表 Client")]
+        public static void BuildLubanExcelClient()
+        { 
 #if UNITY_EDITOR_OSX || UNITY_EDITOR_LINUX
-            const string tools = "./Tool";
+            Application.OpenURL(Application.dataPath + @"/../../Tools/Luban/GenConfig_Client.sh");
 #else
-            const string tools = ".\\Tool.exe";
+            Application.OpenURL(Application.dataPath + @"/../../Tools/Luban/GenConfig_Client.bat");
 #endif
-            ShellHelper.Run($"{tools} --AppType=ExcelExporter --Console=1", "../Bin/");
+        }
+        
+        [MenuItem("ET/Luban 转表 Server")]
+        public static void BuildLubanExcelServer()
+        {
+            Application.OpenURL(Application.dataPath + @"/../../Tools/Luban/GenConfig_Server.bat");
         }
 
         private const string clientMessagePath = "../Unity/Assets/GameScripts/GameProto/Generate/Message/";
