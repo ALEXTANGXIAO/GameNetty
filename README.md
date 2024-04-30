@@ -10,7 +10,16 @@
 
 <strong>改动：转表工具和启动服务器配置完全使用最新luban。现已完美兼容支持。</strong>
 
+---
+服务器运行指南：
 
+1.打开Share解决方案编译Share.Analyzer And Share.SourceGenerator。Share.Tool此时无需编译（因为依赖Server，在第二步Server编译过后方可编译）。
+
+2.打开Server服务器解决方案直接编译。（一定要执行第一步，因为Server依赖分析器和源代码生成器）。
+
+3.完成、直接运行Server。
+
+---
 遵循开源MIT协议，原源码所有权@Copyright (c) 2018 tanghai
 
 ![image](Books/src/info.png)
