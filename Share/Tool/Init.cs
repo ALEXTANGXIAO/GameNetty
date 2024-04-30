@@ -33,19 +33,41 @@ namespace ET.Server
                 ETTask.ExceptionHandler += Log.Error;
                 
                 Log.Info($"server start........................ ");
+
+                string protoDirPath = "";
+                string clientPath = "";
+                string serverPath = "";
+                for (int i = 0; i < args.Length; i++)
+                {
+                    string arg = args[i];
+                    Console.WriteLine(arg);
+                    if (i == 3)
+                    {
+                        protoDirPath = arg;
+                    }
+                    if (i == 4)
+                    {
+                        clientPath = arg;
+                    }
+                    if (i == 5)
+                    {
+                        serverPath = arg;
+                    }
+                }
 				
                 switch (Options.Instance.AppType)
                 {
                     case AppType.ExcelExporter:
                     {
                         Options.Instance.Console = 1;
-                        ExcelExporter.Export();
+                        Log.Warning($"导出配置请使用luban！！！........................ ");
+                        // ExcelExporter.Export();
                         return 0;
                     }
                     case AppType.Proto2CS:
                     {
                         Options.Instance.Console = 1;
-                        Proto2CS.Export();
+                        Proto2CS.Export(protoDirPath,clientPath,serverPath);
                         return 0;
                     }
                 }
