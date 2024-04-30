@@ -39,9 +39,9 @@
             <Link>Module\Config\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Server\Core\Core\World\Module\Log\**\*.cs">
+        <!-- <Compile Include="..\..\Server\Core\Core\World\Module\Log\**\*.cs">
             <Link>Module\Log\%(RecursiveDir)%(FileName)%(Extension)</Link>
-        </Compile>
+        </Compile> -->
 
         <Compile Include="..\..\Server\Core\Core\Network\OpcodeRangeDefine.cs">
             <Link>Module\Message\OpcodeRangeDefine.cs</Link>

@@ -14,29 +14,44 @@ namespace ET
 
     public static class Proto2CS
     {
-        public static void Export()
+        public static void Export(string protoDirPath = "",string clientPath = "",string serverPath = "")
         {
-            InnerProto2CS.Proto2CS();
+            InnerProto2CS.Proto2CS(protoDirPath,clientPath,serverPath);
             Log.Console("proto2cs succeed!");
         }
     }
 
     public static partial class InnerProto2CS
     {
-        private const string protoDir = "../Unity/Assets/Config/Proto";
-        private const string clientMessagePath = "../Unity/Assets/Scripts/Model/Generate/Client/Message/";
-        private const string serverMessagePath = "../Unity/Assets/Scripts/Model/Generate/Server/Message/";
-        private const string clientServerMessagePath = "../Unity/Assets/Scripts/Model/Generate/ClientServer/Message/";
+        private static string protoDir = "../Config/Proto";
+        private static string clientMessagePath = "../Unity/Assets/GameScripts/GameProto/Generate/Message/";
+        private static string serverMessagePath = "../Server/Model/Generate/Message/";
+        // private const string clientServerMessagePath = "../Unity/Assets/Scripts/Model/Generate/ClientServer/Message/";
         private static readonly char[] splitChars = [' ', '\t'];
         private static readonly List<OpcodeInfo> msgOpcode = [];
 
-        public static void Proto2CS()
+        public static void Proto2CS(string protoDirPath = "",string clientPath = "",string serverPath = "")
         {
+            if (!string.IsNullOrEmpty(protoDirPath))
+            {
+                protoDir = protoDirPath;
+            }
+            
+            if (!string.IsNullOrEmpty(clientPath))
+            {
+                clientMessagePath = clientPath;
+            }
+            
+            if (!string.IsNullOrEmpty(serverPath))
+            {
+                serverMessagePath = serverPath;
+            }
+            
             msgOpcode.Clear();
 
             RemoveAllFilesExceptMeta(clientMessagePath);
             RemoveAllFilesExceptMeta(serverMessagePath);
-            RemoveAllFilesExceptMeta(clientServerMessagePath);
+            // RemoveAllFilesExceptMeta(clientServerMessagePath);
 
             List<string> list = FileHelper.GetAllFiles(protoDir, "*proto");
             foreach (string s in list)
@@ -56,7 +71,7 @@ namespace ET
 
             RemoveUnusedMetaFiles(clientMessagePath);
             RemoveUnusedMetaFiles(serverMessagePath);
-            RemoveUnusedMetaFiles(clientServerMessagePath);
+            // RemoveUnusedMetaFiles(clientServerMessagePath);
         }
 
         private static void ProtoFile2CS(string fileName, string protoName, string cs, int startOpcode)
@@ -226,13 +241,13 @@ namespace ET
             {
                 GenerateCS(result, clientMessagePath, proto);
                 GenerateCS(result, serverMessagePath, proto);
-                GenerateCS(result, clientServerMessagePath, proto);
+                // GenerateCS(result, clientServerMessagePath, proto);
             }
 
             if (cs.Contains('S'))
             {
                 GenerateCS(result, serverMessagePath, proto);
-                GenerateCS(result, clientServerMessagePath, proto);
+                // GenerateCS(result, clientServerMessagePath, proto);
             }
         }
 
