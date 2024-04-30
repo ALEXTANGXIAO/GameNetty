@@ -13,9 +13,11 @@ dotnet %LUBAN_DLL% ^
     -c cs-bin ^
     -d bin ^
     --conf %CONF_ROOT%\__luban__.conf ^
-    -x outputCodeDir=%WORKSPACE%\Unity\Assets\Scripts\Model\Generate\Client\Config ^
+    -x outputCodeDir=%WORKSPACE%\Unity\Assets\GameScripts\GameProto\Generate\Config ^
     -x bin.outputDataDir=%WORKSPACE%\Config\Excel\c ^
     -x lineEnding=CRLF ^
+    
+
 
 echo ==================== FuncConfig : GenClientFinish ====================
 
@@ -24,3 +26,5 @@ if %ERRORLEVEL% NEQ 0 (
     pause
     exit /b
 )
+
+pause
