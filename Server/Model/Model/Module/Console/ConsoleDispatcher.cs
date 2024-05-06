@@ -35,7 +35,12 @@ namespace ET
 
         public IConsoleHandler Get(string key)
         {
-            return this.handlers[key];
+            if (handlers.TryGetValue(key,out IConsoleHandler consoleHandler))
+            {
+                return consoleHandler;
+            }
+            Log.Info($"Could not found console cmd :{key}.");
+            return null;
         }
     }
 }

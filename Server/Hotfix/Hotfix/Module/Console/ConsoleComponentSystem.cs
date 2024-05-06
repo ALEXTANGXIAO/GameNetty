@@ -47,6 +47,11 @@ namespace ET
                             string mode = modeContex == null? lines[0] : modeContex.Mode;
 
                             IConsoleHandler iConsoleHandler = ConsoleDispatcher.Instance.Get(mode);
+                            if (iConsoleHandler == null)
+                            {
+                                break;
+                            }
+                            
                             if (modeContex == null)
                             {
                                 modeContex = self.AddComponent<ModeContex>();
