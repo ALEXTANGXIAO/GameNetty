@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Init : MonoBehaviour
 {
+    public static Scene Root { private set; get; }
+    
     [Event(SceneType.Main)]
     public class OnAppStartInitFinish : AEvent<Scene, AppStartInitFinish>
     {
@@ -14,7 +16,7 @@ public class Init : MonoBehaviour
 
             Log.Warning("On AppStartInit Finish");
 
-            LoginHelper.Login(root,"123","123").Coroutine();
+            Root = root;
         }
     }
 
