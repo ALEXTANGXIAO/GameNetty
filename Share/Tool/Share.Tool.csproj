@@ -55,6 +55,10 @@
     </ItemGroup>
     
     <ItemGroup>
+      <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    </ItemGroup>
+    
+    <ItemGroup>
       <ProjectReference Include="..\..\Server\Core\Core.csproj" />
       <ProjectReference Include="..\..\Server\ThirdParty\ThirdParty.csproj" />
     </ItemGroup>
