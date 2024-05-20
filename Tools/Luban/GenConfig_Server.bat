@@ -15,7 +15,7 @@ dotnet %LUBAN_DLL% ^
     -t All ^
     -c cs-bin ^
     -d bin ^
-    --conf %CONF_ROOT%\__luban__.conf ^
+    --conf %CONF_ROOT%\GameConfig\__luban__.conf ^
     -x outputCodeDir=%WORKSPACE%\Server\Model\Generate\Config ^
     -x bin.outputDataDir=%WORKSPACE%\Config\Generate\ ^
     -x lineEnding=CRLF ^

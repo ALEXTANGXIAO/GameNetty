@@ -4,7 +4,7 @@ echo %CD%
 set WORKSPACE=..\..
 
 set LUBAN_DLL=%WORKSPACE%\Tools\Luban\LubanRelease\Luban.dll
-set CONF_ROOT=%WORKSPACE%\Config\Excel
+set CONF_ROOT=%WORKSPACE%\Config\Excel\GameConfig
 
 ::Client
 dotnet %LUBAN_DLL% ^
@@ -14,17 +14,11 @@ dotnet %LUBAN_DLL% ^
     -d bin ^
     --conf %CONF_ROOT%\__luban__.conf ^
     -x outputCodeDir=%WORKSPACE%\Unity\Assets\GameScripts\GameProto\Generate\Config ^
-    -x bin.outputDataDir=%WORKSPACE%\Config\Excel\c ^
+    -x bin.outputDataDir=%WORKSPACE%\Config\Excel\GameConfig\c ^
     -x lineEnding=CRLF ^
     
 
 
 echo ==================== FuncConfig : GenClientFinish ====================
-
-if %ERRORLEVEL% NEQ 0 (
-    echo An error occurred, press any key to exit.
-    pause
-    exit /b
-)
 
 pause
