@@ -14,7 +14,7 @@ dotnet %LUBAN_DLL% ^
     -d bin ^
     --conf %CONF_ROOT%\__luban__.conf ^
     -x outputCodeDir=%WORKSPACE%\Unity\Assets\GameScripts\GameProto\Generate\Config ^
-    -x bin.outputDataDir=%WORKSPACE%\Config\Excel\GameConfig\c ^
+    -x bin.outputDataDir=%WORKSPACE%\Config\Generate\GameConfig\c ^
     -x lineEnding=CRLF ^
     
 
