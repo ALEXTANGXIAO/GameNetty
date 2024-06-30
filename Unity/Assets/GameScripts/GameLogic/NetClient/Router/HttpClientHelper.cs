@@ -16,7 +16,7 @@ namespace ET
         {
             try
             {
-#if USE_UNITY_WEBREQUEST
+#if USE_UNITY_WEBREQUEST || UNITY_WEBGL
                 string result = await GetRequest(link);
 #else
                 using HttpClient httpClient = new();

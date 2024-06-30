@@ -18,9 +18,15 @@ namespace GameScripts.GameLogic
             RouterAddressComponent routerAddressComponent =
                 root.AddComponent<RouterAddressComponent, string, int>(ConstValue.RouterHttpHost, ConstValue.RouterHttpPort);
             await routerAddressComponent.Init();
+            
+            NetworkProtocol networkProtocol = NetworkProtocol.UDP;
+#if UNITY_WEBGL
+            networkProtocol = NetworkProtocol.Websocket;
+#endif
             root.AddComponent<NetComponent, AddressFamily, NetworkProtocol>(
                 routerAddressComponent.RouterManagerIPAddress.AddressFamily,
-                NetworkProtocol.UDP);
+                networkProtocol);
+            
             root.GetComponent<FiberParentComponent>().ParentFiberId = request.OwnerFiberId;
 
             NetComponent netComponent = root.GetComponent<NetComponent>();

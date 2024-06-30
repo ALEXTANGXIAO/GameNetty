@@ -2,227 +2,139 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.WebSockets;
-using System.Threading;
-using System.Threading.Tasks;
+using UnityWebSocket;
 
 namespace ET
 {
     public class WChannel: AChannel
     {
-        public HttpListenerWebSocketContext WebSocketContext { get; }
-
         private readonly WService Service;
-
-        private readonly WebSocket webSocket;
-
-        private readonly Queue<MemoryBuffer> queue = new();
-
-        private bool isSending;
-
-        private bool isConnected;
         
-        private CancellationTokenSource cancellationTokenSource = new();
+        private IWebSocket webSocket;
+
+        private IWebSocket wsTemp;
+
+        private Queue<MemoryBuffer> waitSend = new();
         
-        public WChannel(long id, HttpListenerWebSocketContext webSocketContext, WService service)
+        public WChannel(long id, IPEndPoint ipEndPoint, WService service)
         {
             this.Service = service;
             this.Id = id;
-            this.ChannelType = ChannelType.Accept;
-            this.WebSocketContext = webSocketContext;
-            this.webSocket = webSocketContext.WebSocket;
-
-            isConnected = true;
             
-            this.Service.ThreadSynchronizationContext.Post(()=>
-            {
-                this.StartRecv().Coroutine();
-                this.StartSend().Coroutine();
-            });
+            wsTemp = new WebSocket($"ws://{ipEndPoint}");
+
+            this.RemoteAddress = ipEndPoint;
+
+            // Subscribe to the WS events
+            wsTemp.OnOpen += OnOpen;
+            wsTemp.OnClose += OnClosed;
+            wsTemp.OnError += OnError;
+            wsTemp.OnMessage += OnRead;
+
+            // Start connecting to the server
+            wsTemp.ConnectAsync();
         }
-
-        public WChannel(long id, WebSocket webSocket, IPEndPoint ipEndPoint, WService service)
-        {
-            this.Service = service;
-            this.Id = id;
-            this.ChannelType = ChannelType.Connect;
-            this.webSocket = webSocket;
-
-            isConnected = false;
-            
-            this.Service.ThreadSynchronizationContext.Post(()=>this.ConnectAsync($"ws://{ipEndPoint}").Coroutine());
-        }
-
+        
         public override void Dispose()
         {
             if (this.IsDisposed)
             {
                 return;
             }
+            
+            this.Id = 0;
 
-            this.cancellationTokenSource.Cancel();
-            this.cancellationTokenSource.Dispose();
-            this.cancellationTokenSource = null;
-
-            this.webSocket.Dispose();
-        }
-
-        private async ETTask ConnectAsync(string url)
-        {
-            try
-            {
-                await ((ClientWebSocket) this.webSocket).ConnectAsync(new Uri(url), cancellationTokenSource.Token);
-                isConnected = true;
-                
-                this.StartRecv().Coroutine();
-                this.StartSend().Coroutine();
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-                this.OnError(ErrorCore.ERR_WebsocketConnectError);
-            }
+            this.webSocket?.CloseAsync();
+            this.webSocket = null;
         }
 
         public void Send(MemoryBuffer memoryBuffer)
         {
-            this.queue.Enqueue(memoryBuffer);
-
-            if (this.isConnected)
+            if (this.webSocket == null)
             {
-                this.StartSend().Coroutine();
+                this.waitSend.Enqueue(memoryBuffer);
+                return;
             }
+
+            SendOne(memoryBuffer);
         }
 
-        private async ETTask StartSend()
+        private void SendOne(MemoryBuffer memoryBuffer)
         {
+            this.webSocket.SendAsync(memoryBuffer.GetBuffer(), (int)memoryBuffer.Position, (int)memoryBuffer.Length);
+        }
+
+        private void OnOpen(object sender, OpenEventArgs e)
+        {
+            /*if (ws == null)
+            {
+                this.OnError(ErrorCore.ERR_WebsocketConnectError);
+                return;
+            }*/
+
             if (this.IsDisposed)
             {
                 return;
             }
 
-            try
+            this.webSocket = wsTemp;
+                
+            while (this.waitSend.Count > 0)
             {
-                if (this.isSending)
-                {
-                    return;
-                }
+                MemoryBuffer memoryBuffer = this.waitSend.Dequeue();
+                this.SendOne(memoryBuffer);
+            }
+        }
 
-                this.isSending = true;
-
-                while (true)
-                {
-                    if (this.queue.Count == 0)
-                    {
-                        this.isSending = false;
-                        return;
-                    }
-
-                    MemoryBuffer stream = this.queue.Dequeue();
+        /// <summary>
+        /// Called when we received a text message from the server
+        /// </summary>
+        private void OnRead(object sender, MessageEventArgs e)
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
             
-                    try
-                    {
-                        await this.webSocket.SendAsync(stream.GetMemory(), WebSocketMessageType.Binary, true, cancellationTokenSource.Token);
-                        
-                        this.Service.Recycle(stream);
-                        
-                        if (this.IsDisposed)
-                        {
-                            return;
-                        }
-                    }
-                    catch (TaskCanceledException e)
-                    {
-                        Log.Warning(e.ToString());
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(e);
-                        this.OnError(ErrorCore.ERR_WebsocketSendError);
-                        return;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
+            MemoryBuffer memoryBuffer = this.Service.Fetch();
+            memoryBuffer.Write(e.RawData);
+            memoryBuffer.Seek(0, SeekOrigin.Begin);
+            this.Service.ReadCallback(this.Id, memoryBuffer);
         }
 
-        private readonly byte[] cache = new byte[ushort.MaxValue];
-
-        public async ETTask StartRecv()
+        /// <summary>
+        /// Called when the web socket closed
+        /// </summary>
+        private void OnClosed(object sender, CloseEventArgs e)
         {
             if (this.IsDisposed)
             {
                 return;
             }
-
-            try
-            {
-                while (true)
-                {
-                    ValueWebSocketReceiveResult receiveResult;
-                    int receiveCount = 0;
-                    do
-                    {
-                        receiveResult = await this.webSocket.ReceiveAsync(
-                            new Memory<byte>(cache, receiveCount, this.cache.Length - receiveCount),
-                            cancellationTokenSource.Token);
-                        if (this.IsDisposed)
-                        {
-                            return;
-                        }
-
-                        receiveCount += receiveResult.Count;
-                    }
-                    while (!receiveResult.EndOfMessage);
-
-                    if (receiveResult.MessageType == WebSocketMessageType.Close)
-                    {
-                        this.OnError(ErrorCore.ERR_WebsocketPeerReset);
-                        return;
-                    }
-
-                    if (receiveResult.Count > ushort.MaxValue)
-                    {
-                        await this.webSocket.CloseAsync(WebSocketCloseStatus.MessageTooBig, $"message too big: {receiveCount}",
-                            cancellationTokenSource.Token);
-                        this.OnError(ErrorCore.ERR_WebsocketMessageTooBig);
-                        return;
-                    }
-
-                    MemoryBuffer memoryBuffer = this.Service.Fetch(receiveCount);
-                    memoryBuffer.SetLength(receiveCount);
-                    memoryBuffer.Seek(0, SeekOrigin.Begin);
-                    Array.Copy(this.cache, 0, memoryBuffer.GetBuffer(), 0, receiveCount);
-                    this.OnRead(memoryBuffer);
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-                this.OnError(ErrorCore.ERR_WebsocketRecvError);
-            }
+            
+            Log.Error($"wchannel closed: StatusCode: {e.StatusCode}, Reason: {e.Reason}");
+            this.OnError(0);
         }
-        
-        private void OnRead(MemoryBuffer memoryStream)
+
+        /// <summary>
+        /// Called when an error occured on client side
+        /// </summary>
+        private void OnError(object sender, UnityWebSocket.ErrorEventArgs e)
         {
-            try
+            if (this.IsDisposed)
             {
-                this.Service.ReadCallback(this.Id, memoryStream);
+                return;
             }
-            catch (Exception e)
-            {
-                Log.Error(e);
-                this.OnError(ErrorCore.ERR_PacketParserError);
-            }
+            
+            Log.Error($"WChannel error: {this.Id} {e.Message}");
+            
+            this.OnError(ErrorCore.ERR_WebsocketError);
         }
         
         private void OnError(int error)
         {
-            Log.Info($"WChannel error: {error} {this.RemoteAddress}");
-			
+            Log.Info($"WChannel error: {this.Id} {error}");
+            
             long channelId = this.Id;
 			
             this.Service.Remove(channelId);
