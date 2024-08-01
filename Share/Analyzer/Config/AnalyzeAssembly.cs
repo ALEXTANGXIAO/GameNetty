@@ -8,9 +8,9 @@ namespace ET.Analyzer
         public const string DotNetModel = "Model";
         public const string DotNetHotfix = "Hotfix";
 
-        public const string UnityCore = "Unity.Core";
-        public const string UnityModel = "Unity.Model";
-        public const string UnityHotfix = "Unity.Hotfix";
+        public const string UnityCore = "GameLogic";
+        public const string UnityModel = "GameLogic";
+        public const string UnityHotfix = "GameLogic";
         public const string UnityModelView = "Unity.ModelView";
         public const string UnityHotfixView = "Unity.HotfixView";
         

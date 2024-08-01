@@ -31,6 +31,9 @@ public class Init : MonoBehaviour
 
         AppDomain.CurrentDomain.UnhandledException += (sender, e) => { Log.Error(e.ExceptionObject.ToString()); };
 
+        // 注册Entity序列化器
+        EntitySerializeRegister.Init();
+        
         World.Instance.AddSingleton<ET.Logger>().Log = new UnityLogger();
         ETTask.ExceptionHandler += Log.Error;
 
