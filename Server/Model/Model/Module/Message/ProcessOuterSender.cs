@@ -14,6 +14,6 @@ namespace ET.Server
         
         public AService AService;
         
-        public NetworkProtocol InnerProtocol = NetworkProtocol.KCP;
+        public NetworkProtocol InnerProtocol = NetworkProtocol.TCP;
     }
 }
