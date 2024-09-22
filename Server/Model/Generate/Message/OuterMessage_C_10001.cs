@@ -1053,6 +1053,72 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.C2M_UnitMoveSysn)]
+    public partial class C2M_UnitMoveSysn : MessageObject, ILocationMessage
+    {
+        public static C2M_UnitMoveSysn Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2M_UnitMoveSysn), isFromPool) as C2M_UnitMoveSysn;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public Unity.Mathematics.float3 Position { get; set; }
+
+        [MemoryPackOrder(2)]
+        public Unity.Mathematics.float3 EulerAngle { get; set; }
+
+        [MemoryPackOrder(3)]
+        public int CharacterState { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Position = default;
+            this.EulerAngle = default;
+            this.CharacterState = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.M2C_UnitMoveSysn)]
+    public partial class M2C_UnitMoveSysn : MessageObject, IMessage
+    {
+        public static M2C_UnitMoveSysn Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2C_UnitMoveSysn), isFromPool) as M2C_UnitMoveSysn;
+        }
+
+        [MemoryPackOrder(0)]
+        public UnitInfo Unit { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long PlayerId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.Unit = default;
+            this.PlayerId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort RouterSync = 10002;
@@ -1088,5 +1154,7 @@ namespace ET
         public const ushort M2C_TransferMap = 10032;
         public const ushort C2G_Benchmark = 10033;
         public const ushort G2C_Benchmark = 10034;
+        public const ushort C2M_UnitMoveSysn = 10035;
+        public const ushort M2C_UnitMoveSysn = 10036;
     }
 }
