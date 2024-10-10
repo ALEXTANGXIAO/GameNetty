@@ -56,7 +56,7 @@ namespace ET
             channelRecvDatas.Enqueue((channel.RemoteAddress, memoryBuffer));
         }
 
-        public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
+        public void Send(byte[] bytes, int index, int length, EndPoint endPoint, ChannelType channelType)
         {
             long id = this.idEndpoints.GetKeyByValue(endPoint);
             if (id == 0)
