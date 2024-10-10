@@ -1,4 +1,4 @@
-#if !UNITY_EDITOR && UNITY_WEBGL
+﻿#if !UNITY_EDITOR && UNITY_WEBGL
 using System;
 
 namespace UnityWebSocket
@@ -8,7 +8,6 @@ namespace UnityWebSocket
         public string Address { get; private set; }
         public string[] SubProtocols { get; private set; }
         public WebSocketState ReadyState { get { return (WebSocketState)WebSocketManager.WebSocketGetState(instanceId); } }
-        public string BinaryType { get; set; } = "arraybuffer";
 
         public event EventHandler<OpenEventArgs> OnOpen;
         public event EventHandler<CloseEventArgs> OnClose;
@@ -39,7 +38,7 @@ namespace UnityWebSocket
 
         internal void AllocateInstance()
         {
-            instanceId = WebSocketManager.AllocateInstance(this.Address, this.BinaryType);
+            instanceId = WebSocketManager.AllocateInstance(this.Address);
             Log($"Allocate socket with instanceId: {instanceId}");
             if (this.SubProtocols == null) return;
             foreach (var protocol in this.SubProtocols)
@@ -131,7 +130,8 @@ namespace UnityWebSocket
                 case -4: return "WebSocket is already closing.";
                 case -5: return "WebSocket is already closed.";
                 case -6: return "WebSocket is not in open state.";
-                case -7: return "Cannot close WebSocket. An invalid code was specified or reason is too long.";
+                case -7: return "Cannot close WebSocket, An invalid code was specified or reason is too long.";
+                case -8: return "Not support buffer slice. ";
                 default: return $"Unknown error code {errorCode}.";
             }
         }
@@ -139,9 +139,8 @@ namespace UnityWebSocket
         [System.Diagnostics.Conditional("UNITY_WEB_SOCKET_LOG")]
         static void Log(string msg)
         {
-            UnityEngine.Debug.Log($"[UnityWebSocket]" +
-                $"[{DateTime.Now.TimeOfDay}]" +
-                $" {msg}");
+            var time = DateTime.Now.ToString("HH:mm:ss.fff");
+            UnityEngine.Debug.Log($"[{time}][UnityWebSocket] {msg}");
         }
     }
 }

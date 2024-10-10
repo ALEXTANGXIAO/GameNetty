@@ -1,4 +1,4 @@
-#if !NET_LEGACY && (UNITY_EDITOR || !UNITY_WEBGL) && !UNITY_WEB_SOCKET_ENABLE_ASYNC
+﻿#if !NET_LEGACY && (UNITY_EDITOR || !UNITY_WEBGL)
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,6 +53,16 @@ namespace UnityWebSocket
                 sockets[i].Update();
             }
         }
+
+#if UNITY_EDITOR
+        private void OnApplicationQuit()
+        {
+            for (int i = sockets.Count - 1; i >= 0; i--)
+            {
+                sockets[i].Abort();
+            }
+        }
+#endif
     }
 }
 #endif

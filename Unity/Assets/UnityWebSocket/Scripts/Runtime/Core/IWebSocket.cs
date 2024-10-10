@@ -69,6 +69,8 @@ namespace UnityWebSocket
         /// <param name="data">
         /// An array of <see cref="byte"/> that represents the binary data to send.
         /// </param>
+        /// <param name="offset"></param>
+        /// <param name="len"></param>
         /// <exception cref="InvalidOperationException">
         /// The current state of the connection is not Open.
         /// </exception>
@@ -119,19 +121,6 @@ namespace UnityWebSocket
         ///   </para>
         /// </value>
         WebSocketState ReadyState { get; }
-
-        /// <summary>
-        /// Gets the current binaryType of the connection, supported on WEBGL platform only.
-        /// </summary>
-        /// <value>
-        ///   <para>
-        ///   It indicates the current binaryType of the connection.
-        ///   </para>
-        ///   <para>
-        ///   The default value is "arraybuffer", options: "blob" or "arraybuffer".
-        ///   </para>
-        /// </value>
-        string BinaryType { get; set; }
 
         /// <summary>
         /// Occurs when the WebSocket connection has been established.
