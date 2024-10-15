@@ -10,13 +10,13 @@
         <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <DefineConstants>DOTNET;DOTNET_WEBGL</DefineConstants>
+        <DefineConstants>DOTNET;!DOTNET_WEBGL</DefineConstants>
         <OutputPath>..\..\Bin\</OutputPath> 
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <NoWarn>0169,0649,3021,8981,CS9193,CS9192</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <DefineConstants>DOTNET;DOTNET_WEBGL</DefineConstants>
+        <DefineConstants>DOTNET;!DOTNET_WEBGL</DefineConstants>
         <OutputPath>..\..\Bin\</OutputPath>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <Optimize>false</Optimize>
