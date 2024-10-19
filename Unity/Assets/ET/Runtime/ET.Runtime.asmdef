@@ -1,5 +1,5 @@
 {
-    "name": "GameNetty.Runtime",
+    "name": "ET.Runtime",
     "rootNamespace": "",
     "references": [
         "GUID:1aa3e8589868c80499255710874679c0",

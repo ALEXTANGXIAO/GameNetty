@@ -1,5 +1,5 @@
 {
-    "name": "GameNetty.ThirdParty",
+    "name": "ET.ThirdParty",
     "rootNamespace": "ET",
     "references": [
         "MemoryPack"
