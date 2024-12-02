@@ -15,6 +15,8 @@ namespace ET.Analyzer
         public const string UnityHotfixView = "Unity.HotfixView";
         
         public const string UnityETRuntime = "ET.Runtime";
+        public const string UnityETCore = "ET.Core";
+        public const string UnityETNetWork = "ET.Network";
 
         public static readonly string[] AllHotfix =
         {
@@ -36,7 +38,7 @@ namespace ET.Analyzer
         {
             DotNetCore, DotNetModel, DotNetHotfix, 
             UnityCore, UnityModel, UnityHotfix, UnityModelView, UnityHotfixView, 
-            UnityETRuntime,
+            UnityETRuntime, UnityETCore, UnityETNetWork
         };
 
         public static readonly string[] ServerModelHotfix =
@@ -46,7 +48,7 @@ namespace ET.Analyzer
         
         public static readonly string[] AllLogicModel =
         {
-            DotNetModel, UnityModel , UnityETRuntime
+            DotNetModel, UnityModel , UnityETRuntime, UnityETCore, UnityETNetWork
         };
     }
     

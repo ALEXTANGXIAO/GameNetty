@@ -1,15 +1,15 @@
 {
-    "name": "ET.Runtime",
-    "rootNamespace": "",
+    "name": "ET.Network",
+    "rootNamespace": "ET.Network",
     "references": [
-        "GUID:1aa3e8589868c80499255710874679c0",
         "GUID:756335c0388f7114790e504ed368ae1d",
-        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:47f9fc774596be54ebfed7739cd70c86",
+        "GUID:1aa3e8589868c80499255710874679c0",
         "GUID:8b65d8710c3b04373a41cbf6b777ee65"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": true,
+    "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

@@ -49,6 +49,7 @@ public class Init : MonoBehaviour
 
         World.Instance.AddSingleton<CodeTypes, Assembly[]>(new[]
         {
+            typeof(Entity).Assembly,
             // GameNetty.Runtime (Assembly)
             typeof(Entry).Assembly,
             // Assembly-CSharp (Assembly)
